@@ -1,0 +1,67 @@
+
+import { compositeMatchScore } from "./compositeMatchScore.js";
+import checkFullInput from "./checkFullInput.js";
+import { flanClassifier, loadFlan } from "./flanClassifier.js";
+
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
+const intentsData = require("../../intentData/intents.json");
+const intents = Array.isArray(intentsData.intents) ? intentsData.intents : [];
+
+// ****** Main intent-matching logic ******
+export default async function getResponse(messageEnvelope) {
+
+    let bestScore = 0;
+    let bestIntent = null;
+    let bestResponse = null;
+    let componentUsed = null;
+
+    // Ensure input exists (avoids crashing)
+    const inputText = messageEnvelope.userInput?.toLowerCase() || "";
+
+    outerLoop:
+    for (const intent of intents) {
+        for (const pattern of intent.patterns) {
+
+            // 1) Full input similarity check
+            const exactScore = checkFullInput(pattern, messageEnvelope);
+
+            // 2) Composite similarity fallback
+            const compositeScore = exactScore < 0.75
+                ? compositeMatchScore(pattern, inputText)
+                : 0;
+
+            const score = Math.max(exactScore, compositeScore);
+
+            if (score > bestScore) {
+                bestScore = score;
+                bestIntent = intent.intent;
+                bestResponse = intent.responses[Math.floor(Math.random() * intent.responses.length)];
+                componentUsed = exactScore >= 0.75 ? "exact" : "composite";
+
+                if (bestScore === 1.0) break outerLoop;
+            }
+        }
+    }
+
+    // ---- FLAN fallback if no rule-based match ----
+    if (bestScore === 0) {
+        await loadFlan();
+        const intentObj = await flanClassifier(inputText);
+
+        if (intentObj.intent !== "unknown" && intentObj.confidence >= 0.85) {
+            bestIntent = intentObj.intent;
+            bestResponse = intentObj.response;
+            componentUsed = "flan";
+            bestScore = intentObj.confidence;
+        }
+    }
+
+    // ---- Build final output ----
+    messageEnvelope.intent = bestIntent;
+    messageEnvelope.response = bestResponse || "That's interesting, I'll need to think more about that.";
+    messageEnvelope.componentUsed = componentUsed;
+    messageEnvelope.score = bestScore;
+
+    return messageEnvelope;
+}

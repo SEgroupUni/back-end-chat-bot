@@ -1,23 +1,11 @@
-const { getResponse } = require('./chat_logic');
-const readline = require('readline');
+// ***** Expansion ideas:
+// intent can return 3 predicted questions to pipeline LLM and cache responses.
+// Record hit/miss for session manager and update predictions daily.
+// Certain intents may return media files (image.png) along with text.
 
-const readL = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-});
+import { getResponse } from "./dialogueSystem/intentEngine/getResponse.js";
+import readline from "readline";
+import Session from "./dialogueSystem/sessionManager/sessionManager.js"; // updated import
 
-function chat() {
-    readL.question('Enter your chitter chatter: ', (userInput) => {
-        let botResponse = getResponse(userInput);
-        console.log(botResponse.response);
-        console.log(`intent: ${botResponse.intent}`)
-        
-        if (botResponse.intent === 'farewell') {  // if intent returns farewell intent then close the chat function.
-            readL.close();
-        } else {
-            chat(); // recursivley call function to continue conversation
-        }
-    });
-}
 
-chat(); // Start the conversation
+
