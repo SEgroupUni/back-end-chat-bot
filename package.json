@@ -1,5 +1,14 @@
 {
+  "name": "back-end-chatbot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
   "type": "module",
+  "scripts": {
+    "start": "node main.js",
+    "dev": "nodemon main.js",
+    "test": "node test.js"
+  },
   "dependencies": {
     "@huggingface/inference": "^4.13.3",
     "@huggingface/transformers": "^3.8.0",
@@ -12,5 +21,8 @@
     "node-fetch": "^3.3.2",
     "string-similarity": "^4.0.4",
     "synonyms": "^1.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
   }
 }

@@ -1,24 +1,18 @@
 import { sendToExternalAI } from "./externalApiClient.js";
+import { getSession } from "../session/sessionState.js";
+//prompt in persona and in session manager for dynamic prompt, message envelope object so look at this.currentSessionObj for elements, 
+// when get posistibr message from llm use command update messageEnvelope response and flagstate to frontFlow
+// if you get catch up date message envelope error and update flag state to error. look at aiInputGateway for example
+// then run cmd session.processSessionObj(messageEnvelope) can litterall
+// ive commented out some parts we can keep i just dont know how to use them as dialogue system is auto pipeline and currently dont know how to use dynamic user data
+//if you look at test you can put quesion in more complicated than name or hello and will get to llm cant guarentee not bugs
 
-export async function processAiLogic(sessionInstance, userMessage) {
+
+
+export async function processAiLogic(messageEnvelope, setPrompt) {
     
-    const history = sessionInstance.sessionLog.slice(-5).map(entry => ({
-        role: entry.source === "User" ? "user" : "assistant",
-        content: entry.text || entry.reply
-    }));
-
-    // 2. Enforce JSON format
-    const systemPrompt = `
-        You are ${sessionInstance.persona.name}.
-        Respond in JSON format ONLY.
-        {
-            "sentiment": "positive|neutral|negative",
-            "reply": "Your response here",
-            "newFacts": { "topic": "detected topic" }
-        }
-    `;
-
-    const messages = [
+    const session = getSession()
+    const messages = [  
         { role: "system", content: systemPrompt },
         ...history,
         { role: "user", content: userMessage }
@@ -39,19 +33,12 @@ export async function processAiLogic(sessionInstance, userMessage) {
 
     // UPDATE THE SESSION 
     
-    // Log the interaction
-    sessionInstance.logSessionEnvelopes({
-        timestamp: new Date(),
-        source: "AI",
-        reply: parsedData.reply,
-        sentiment: parsedData.sentiment
-    });
 
-    // Update User Data if AI found new facts
-    if (parsedData.newFacts && Object.keys(parsedData.newFacts).length > 0) {
-        const currentData = sessionInstance.userData || {};
-        sessionInstance.setUserData({ ...currentData, ...parsedData.newFacts });
-    }
+    // // Update User Data if AI found new facts
+    // if (parsedData.newFacts && Object.keys(parsedData.newFacts).length > 0) {
+    //     const currentData = sessionInstance.userData || {};
+    //     sessionInstance.setUserData({ ...currentData, ...parsedData.newFacts });
+    // }
 
     return parsedData.reply;
 }
