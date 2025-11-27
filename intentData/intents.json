@@ -8,7 +8,8 @@
         "good afternoon", "good evening", "hello im", "hello my name is", 
         "hiya", "yo", "greetings", "sup", "hello there"
       ],
-      "responses": ["Hello!", "Hi there!", "Hey! How are you?"]
+      "responses": ["Hello!", "Hi there!", "Hey! How are you?"],
+      "semantic field": "pleasentries"
     },
     {
       "intent": "farewell",

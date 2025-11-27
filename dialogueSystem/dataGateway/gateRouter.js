@@ -20,12 +20,12 @@ export function backFlowGateRouter(userInput) {
     session.setFlagState("intEngine");
     session.setUserInput(userInput); // run AFTER flag is set
 }
-export async function frontFlowGateRouter(response) {
+//4 - Return response then flush session object so clean for next cycle
+export function frontFlowGateRouter(response) {
     const session = getSession();
-    console.log("Front flow stage running:", response);
+    console.log(response)
     session.flushSessionObject();
     session.testFlush()
-
-    return null;
+    return response.response
 }
 

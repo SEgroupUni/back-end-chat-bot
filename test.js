@@ -6,20 +6,19 @@ import { getSession } from "./session/sessionState.js";
 
 
 
-const userInput = 'hello'
+const userInput =  'hullo thare'
 
 const persona = 'ramasses'
 
 const testSessionStart = createSession(persona);
 console.log(testSessionStart);
-
-const session = getSession();
+const session = getSession()
 let sesh = null;
-
 if (session) {
-    sesh = true;
-}
+    sesh = true;}
 
 console.log(`session lives: ${sesh}`);
-
 backFlowGateRouter(userInput)
+
+
+

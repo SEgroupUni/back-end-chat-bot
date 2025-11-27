@@ -1,0 +1,188 @@
+{
+  "intents": [
+    {
+      "semantic_field": "group_1",
+      "intent": "intent_1",
+      "patterns": ["test"],
+      "responses": ["test"]
+    },
+    {
+      "semantic_field": "group_1",
+      "intent": "intent_2",
+      "patterns": ["test"],
+      "responses": ["test"]
+    },
+    {
+      "semantic_field": "group_1",
+      "intent": "intent_3",
+      "patterns": ["test"],
+      "responses": ["test"]
+    },
+    {
+      "semantic_field": "group_1",
+      "intent": "intent_4",
+      "patterns": ["test"],
+      "responses": ["test"]
+    },
+    {
+      "semantic_field": "group_1",
+      "intent": "intent_5",
+      "patterns": ["test"],
+      "responses": ["test"]
+    },
+    {
+      "semantic_field": "group_1",
+      "intent": "intent_6",
+      "patterns": ["test"],
+      "responses": ["test"]
+    },
+
+    {
+      "semantic_field": "group_2",
+      "intent": "intent_7",
+      "patterns": ["test"],
+      "responses": ["test"]
+    },
+    {
+      "semantic_field": "group_2",
+      "intent": "intent_8",
+      "patterns": ["test"],
+      "responses": ["test"]
+    },
+    {
+      "semantic_field": "group_2",
+      "intent": "intent_9",
+      "patterns": ["test"],
+      "responses": ["test"]
+    },
+    {
+      "semantic_field": "group_2",
+      "intent": "intent_10",
+      "patterns": ["test"],
+      "responses": ["test"]
+    },
+    {
+      "semantic_field": "group_2",
+      "intent": "intent_11",
+      "patterns": ["test"],
+      "responses": ["test"]
+    },
+    {
+      "semantic_field": "group_2",
+      "intent": "intent_12",
+      "patterns": ["test"],
+      "responses": ["test"]
+    },
+
+    {
+      "semantic_field": "group_3",
+      "intent": "intent_13",
+      "patterns": ["test"],
+      "responses": ["test"]
+    },
+    {
+      "semantic_field": "group_3",
+      "intent": "intent_14",
+      "patterns": ["test"],
+      "responses": ["test"]
+    },
+    {
+      "semantic_field": "group_3",
+      "intent": "intent_15",
+      "patterns": ["test"],
+      "responses": ["test"]
+    },
+    {
+      "semantic_field": "group_3",
+      "intent": "intent_16",
+      "patterns": ["test"],
+      "responses": ["test"]
+    },
+    {
+      "semantic_field": "group_3",
+      "intent": "intent_17",
+      "patterns": ["test"],
+      "responses": ["test"]
+    },
+    {
+      "semantic_field": "group_3",
+      "intent": "intent_18",
+      "patterns": ["test"],
+      "responses": ["test"]
+    },
+
+    {
+      "semantic_field": "group_4",
+      "intent": "intent_19",
+      "patterns": ["test"],
+      "responses": ["test"]
+    },
+    {
+      "semantic_field": "group_4",
+      "intent": "intent_20",
+      "patterns": ["test"],
+      "responses": ["test"]
+    },
+    {
+      "semantic_field": "group_4",
+      "intent": "intent_21",
+      "patterns": ["test"],
+      "responses": ["test"]
+    },
+    {
+      "semantic_field": "group_4",
+      "intent": "intent_22",
+      "patterns": ["test"],
+      "responses": ["test"]
+    },
+    {
+      "semantic_field": "group_4",
+      "intent": "intent_23",
+      "patterns": ["test"],
+      "responses": ["test"]
+    },
+    {
+      "semantic_field": "group_4",
+      "intent": "intent_24",
+      "patterns": ["test"],
+      "responses": ["test"]
+    },
+
+    {
+      "semantic_field": "group_5",
+      "intent": "intent_25",
+      "patterns": ["test"],
+      "responses": ["test"]
+    },
+    {
+      "semantic_field": "group_5",
+      "intent": "intent_26",
+      "patterns": ["test"],
+      "responses": ["test"]
+    },
+    {
+      "semantic_field": "group_5",
+      "intent": "intent_27",
+      "patterns": ["test"],
+      "responses": ["test"]
+    },
+    {
+      "semantic_field": "group_5",
+      "intent": "intent_28",
+      "patterns": ["test"],
+      "responses": ["test"]
+    },
+    {
+      "semantic_field": "group_5",
+      "intent": "intent_29",
+      "patterns": ["test"],
+      "responses": ["test"]
+    },
+    {
+      "semantic_field": "group_5",
+      "intent": "intent_30",
+      "patterns": ["test"],
+      "responses": ["test"]
+    }
+  ]
+}

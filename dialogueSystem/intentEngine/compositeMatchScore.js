@@ -1,17 +1,36 @@
 import stringSimilarity from "string-similarity";
-import levenshtein from "fast-levenshtein";
+import { levenshteinSimilarity } from "./levenshteinSimilarity.js";
 
-export function compositeMatchScore(userInput, pattern) {
-    // Split to token arrays
+export function compositeMatchScore(userInput, pattern, tolerance = 0.75) {
+
     const userTokens = userInput.toLowerCase().split(/\s+/);
     const patternTokens = pattern.toLowerCase().split(/\s+/);
 
-    return (
-        tokenSimilarity(userTokens, patternTokens) * 0.4 +
-        simpleLengthSimilarity(userTokens, patternTokens) * 0.3 +
-        wordIndexScore(userTokens, patternTokens) * 0.3
-    );
+    const sortWordScore = tokenSimilarity(userTokens, patternTokens);
+    const lengthScore = simpleLengthSimilarity(userTokens, patternTokens);
+    const indexMatchScore = wordIndexScore(userTokens, patternTokens);
+    const totalWordScore = totalWordMatchScore(userTokens, patternTokens);
+
+    let finalScore;
+
+    // --- Adaptive weighting logic,  low length score can create false negative so skip if too low
+    if (indexMatchScore <= 0.2) {
+        finalScore =
+            0.35 * sortWordScore +
+            0.20 * lengthScore +
+            0.45 * totalWordScore;
+    } else {
+        finalScore =
+            0.25 * sortWordScore +
+            0.10 * lengthScore +
+            0.30 * indexMatchScore +
+            0.35 * totalWordScore;
+    }
+
+    return finalScore >= tolerance ? finalScore : 0;
 }
+
+// --- Component scoring functions ---
 
 function tokenSimilarity(userTokens, patternTokens) {
     const sortedUser = [...userTokens].sort().join(" ");
@@ -31,13 +50,35 @@ function wordIndexScore(userTokens, patternTokens) {
     let score = 0;
 
     for (let i = 0; i < length; i++) {
-        const similarity =
-            1 -
-            levenshtein.get(patternTokens[i], userTokens[i]) /
-                Math.max(patternTokens[i].length, userTokens[i].length);
-
+        const similarity = levenshteinSimilarity(userTokens[i], patternTokens[i]);
         if (similarity > 0.5) score += similarity;
     }
 
     return score / length;
+}
+
+function totalWordMatchScore(userTokens, patternTokens) {
+    const uniqueUserTokens = [...new Set(userTokens)];
+    const uniquePatternTokens = [...new Set(patternTokens)];
+
+    let totalScore = 0;
+
+    for (const patternToken of uniquePatternTokens) {
+        let bestMatch = 0;
+
+        for (const userToken of uniqueUserTokens) {
+            const similarity = levenshteinSimilarity(userToken, patternToken);
+            if (similarity > bestMatch) {
+                bestMatch = similarity;
+            }
+        }
+
+        if (bestMatch >= 0.3) {
+            totalScore += bestMatch;
+        }
+    }
+
+    return uniquePatternTokens.length > 0
+        ? totalScore / uniquePatternTokens.length
+        : 0;
 }

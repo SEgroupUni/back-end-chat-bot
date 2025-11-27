@@ -12,6 +12,7 @@ class Session {
         this.id = new Date().toISOString();
         this.userData = null;
         this.sessionLog = [];
+        this.sessionPrompt;
         this.persona = initialData;
 
         this.currentSessionObj = {
@@ -22,7 +23,7 @@ class Session {
             sessionData: null
         };
 
-        /** @type {Array<{step: (...args:any[]) => Promise<any>, flagState:string}>} */
+        /** @type {Array<{ step: (obj: any) => Promise<void>, flagState: string }>} */
         this.pipeline = [
             { step: intentController, flagState: "intEngine" },
             { step: frontFlowGateRouter, flagState: "frontFlow" }

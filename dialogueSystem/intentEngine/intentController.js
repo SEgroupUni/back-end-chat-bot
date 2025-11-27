@@ -5,7 +5,6 @@ export async function intentController(messageEnvelope) {
     console.log('intent controller')
     const session = getSession()
     const tempEnvelope = await getResponse(messageEnvelope);
-    console.log(tempEnvelope)
     tempEnvelope.flagState = tempEnvelope.componentUsed
         ? "frontFlow"
         : "frontFlow";

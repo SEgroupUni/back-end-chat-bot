@@ -37,7 +37,7 @@ export default async function getResponse(messageEnvelope) {
                 bestScore = score;
                 bestIntent = intent.intent;
                 bestResponse = intent.responses[Math.floor(Math.random() * intent.responses.length)];
-                componentUsed = exactScore >= 0.75 ? "exact" : "composite";
+                componentUsed = exactScore >= 0.63 ? "exact" : "composite";
 
                 if (bestScore === 1.0) break outerLoop;
             }
@@ -45,17 +45,17 @@ export default async function getResponse(messageEnvelope) {
     }
 
     // ---- FLAN fallback if no rule-based match ----
-    if (bestScore === 0) {
-        await loadFlan();
-        const intentObj = await flanClassifier(inputText);
+    // if (bestScore === 0) {
+    //     await loadFlan();
+    //     const intentObj = await flanClassifier(inputText);
 
-        if (intentObj.intent !== "unknown" && intentObj.confidence >= 0.85) {
-            bestIntent = intentObj.intent;
-            bestResponse = intentObj.response;
-            componentUsed = "flan";
-            bestScore = intentObj.confidence;
-        }
-    }
+    //     if (intentObj.intent !== "unknown" && intentObj.confidence >= 0.8) {
+    //         bestIntent = intentObj.intent;
+    //         bestResponse = intentObj.response;
+    //         componentUsed = "flan";
+    //         bestScore = intentObj.confidence;
+    //     }
+    // }
 
     // ---- Build final output ----
     messageEnvelope.intent = bestIntent;
