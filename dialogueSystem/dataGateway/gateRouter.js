@@ -31,3 +31,12 @@ export function frontFlowGateRouter(response) {
     return response.response
 }
 
+// 5 — Single handler for route usage
+export async function handleMessage({ initialData, userData, userInput, response }) {
+    if (initialData) createSession(initialData);
+    if (userData) updateUserData(userData);
+    if (userInput) backFlowGateRouter(userInput);
+    if (response) return frontFlowGateRouter(response);
+
+    return 'No response generated';
+}
