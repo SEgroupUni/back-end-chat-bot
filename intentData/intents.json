@@ -636,6 +636,150 @@
         "His inscriptions and temples reflect a desire to be remembered for power, stability, and divine kingship."
       ],
       "semantic field": "achievements"
+    },
+
+    {
+      "intent": "ramses_preparations_for_burial",
+      "patterns": [
+        "what burial preparations were made for Ramses II",
+        "how was Ramses II prepared for burial",
+        "preparations for Ramses the Great’s burial",
+        "how did they prepare Ramses II’s body",
+        "burial preparation of Ramses II",
+        "what was done before Ramses II was buried"
+      ],
+      "responses": [
+        "Ramses II underwent elaborate mummification, accompanied by rituals to preserve his body for eternity.",
+        "His burial preparations included embalming, purification rites, and placement in multiple protective coffins.",
+        "Priests performed complex funerary ceremonies to secure his passage into the afterlife."
+      ],
+      "semantic field": "death"
+    },
+
+    {
+      "intent": "ramses_items_placed_in_tomb",
+      "patterns": [
+        "what items were placed in Ramses II’s tomb",
+        "what objects were buried with Ramses II",
+        "what was in Ramses the Great’s tomb",
+        "things included in Ramses II’s burial chamber",
+        "grave goods of Ramses II",
+        "what belongings did Ramses II take to the afterlife"
+      ],
+      "responses": [
+        "Ramses II’s tomb contained amulets, jewelry, statues, and ritual objects meant to protect him in the afterlife.",
+        "His burial included food offerings, symbolic items, and treasures to sustain him beyond death.",
+        "Priests placed sacred objects and equipment intended to support his eternal existence."
+      ],
+      "semantic field": "death"
+    },
+
+    {
+      "intent": "ramses_style_of_sarcophagus",
+      "patterns": [
+        "what was the style of Ramses II’s sarcophagus",
+        "describe Ramses II’s sarcophagus",
+        "what did Ramses the Great’s sarcophagus look like",
+        "style of the pharaoh’s sarcophagus",
+        "design of Ramses II’s coffin",
+        "details of Ramses II’s burial container"
+      ],
+      "responses": [
+        "Ramses II’s sarcophagus featured traditional royal iconography and protective inscriptions.",
+        "It reflected New Kingdom artistic style, emphasizing divine symbolism and elaborate decoration.",
+        "His sarcophagus was crafted to evoke royal authority and safeguard his body for eternity."
+      ],
+      "semantic field": "death"
+    },
+
+    {
+      "intent": "ramses_burial_rituals_performed",
+      "patterns": [
+        "what burial rituals were performed for Ramses II",
+        "describe the rituals used in Ramses II’s burial",
+        "what ceremonies were done for Ramses II",
+        "funerary rites for Ramses the Great",
+        "rituals in Ramses II’s burial",
+        "what sacred rituals accompanied his burial"
+      ],
+      "responses": [
+        "Ramses II’s burial involved the Opening of the Mouth ceremony, purification rites, and prayers to guide his spirit.",
+        "Priests conducted elaborate liturgies ensuring his transformation into an eternal divine being.",
+        "His funerary rituals emphasized resurrection, protection, and entry into the realm of the gods."
+      ],
+      "semantic field": "death"
+    },
+
+    {
+      "intent": "ramses_treasures_added_to_tomb",
+      "patterns": [
+        "what treasures were added to Ramses II’s tomb",
+        "treasures buried with Ramses the Great",
+        "what riches did Ramses II take into the afterlife",
+        "gold and treasures in Ramses II’s tomb",
+        "objects of value placed in his tomb",
+        "valuable items buried with Ramses II"
+      ],
+      "responses": [
+        "Ramses II’s tomb contained treasures such as gold ornaments, ceremonial objects, and precious amulets.",
+        "Items of great value were included to honor his status and support him in the afterlife.",
+        "His burial goods reflected wealth, power, and the divine role attributed to Egypt’s pharaoh."
+      ],
+      "semantic field": "death"
+    },
+
+    {
+      "intent": "ramses_belief_in_afterlife_journey",
+      "patterns": [
+        "what was Ramses II’s belief in the afterlife journey",
+        "how did Ramses II view the afterlife",
+        "beliefs of Ramses the Great about life after death",
+        "did Ramses II believe in an afterlife journey",
+        "how did Ramses II see the path after death",
+        "afterlife journey of the pharaoh"
+      ],
+      "responses": [
+        "Ramses II believed in a journey through the underworld requiring protection, guidance, and divine favor.",
+        "He viewed the afterlife as a transformation where the soul united with the gods and achieved eternal life.",
+        "Texts and rituals in his tomb reflect belief in navigating trials before reaching the Field of Reeds."
+      ],
+      "semantic field": "death"
+    },
+
+    {
+      "intent": "ramses_belief_in_judgement",
+      "patterns": [
+        "did Ramses II believe in judgment before the gods",
+        "what were Ramses II’s beliefs about judgment after death",
+        "judgement before the gods for Ramses II",
+        "how did Ramses the Great view divine judgment",
+        "weighing of the heart and Ramses II",
+        "beliefs about being judged in the afterlife"
+      ],
+      "responses": [
+        "Ramses II believed in the Weighing of the Heart, where his soul would be judged before Osiris and the gods.",
+        "He expected that living according to maat would secure a favorable judgment and eternal life.",
+        "Egyptian texts emphasize a moral evaluation that Ramses II would have anticipated in his afterlife journey."
+      ],
+      "semantic field": "death"
+    },
+
+    {
+      "intent": "ramses_expected_honor_from_future_generations",
+      "patterns": [
+        "what honor did Ramses II expect from future Egyptians",
+        "how did Ramses II expect later generations to view him",
+        "how Ramses the Great hoped Egyptians would honor him",
+        "did Ramses II expect future respect",
+        "how he expected to be honored after death",
+        "what Ramses II hoped future Egyptians would remember"
+      ],
+      "responses": [
+        "Ramses II expected future Egyptians to honor him as a mighty ruler and protector of Egypt.",
+        "He believed his monuments and achievements would secure eternal reverence from later generations.",
+        "Ramses II sought to be remembered for power, stability, and devotion to the gods."
+      ],
+      "semantic field": "death"
     }
   ]
   }
