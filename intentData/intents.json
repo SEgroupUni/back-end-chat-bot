@@ -402,6 +402,148 @@
         "His leisure often involved ceremonial outings, recreation in palace gardens, and time with his large family."
       ],
       "semantic field": "biography"
+    },
+    {
+      "intent": "ramses_circumstances_of_accession",
+      "patterns": [
+        "what were the circumstances of Ramses II's accession",
+        "how did Ramses II become pharaoh",
+        "Ramses II rise to the throne",
+        "events surrounding his accession",
+        "how did Ramses II take power",
+        "Ramses II succession details",
+        "why did Ramses II become king"
+      ],
+      "responses": [
+        "Ramses II ascended the throne after the death of his father, Seti I, having been appointed crown prince during his youth.",
+        "His accession followed a clear royal succession, as he was groomed for kingship from an early age.",
+        "He became pharaoh under stable conditions, inheriting a strong and organized state from Seti I."
+      ],
+      "semantic field": "achievements"
+    },
+
+    {
+      "intent": "ramses_early_challenges",
+      "patterns": [
+        "what early challenges did Ramses II face",
+        "early difficulties in Ramses II's rule",
+        "problems Ramses II encountered at the start of his reign",
+        "initial challenges for Ramses II",
+        "issues during the early reign of Ramses the Great"
+      ],
+      "responses": [
+        "Early in his reign, Ramses II contended with Hittite pressure in the Levant and the need to secure Egypt’s borders.",
+        "He faced the challenge of maintaining stability in Canaan and reaffirming Egypt’s military presence.",
+        "His early rule required consolidating authority, continuing large projects, and addressing foreign threats."
+      ],
+      "semantic field": "achievements"
+    },
+
+    {
+      "intent": "ramses_major_achievements",
+      "patterns": [
+        "what were Ramses II's major achievements",
+        "Ramses II accomplishments",
+        "greatest achievements of Ramses the Great",
+        "what did Ramses II accomplish",
+        "Ramses II major successes",
+        "important achievements of Ramses II"
+      ],
+      "responses": [
+        "Ramses II achieved military victories, monumental building projects, and a long, stable reign.",
+        "His accomplishments include expanding Egypt’s influence, constructing iconic temples, and securing diplomatic success.",
+        "He is remembered for military campaigns, vast architectural works, and shaping Egypt’s cultural legacy."
+      ],
+      "semantic field": "achievements"
+    },
+
+    {
+      "intent": "ramses_first_peace_treaty",
+      "patterns": [
+        "what was the first recorded peace treaty",
+        "Ramses II peace treaty",
+        "first peace treaty in history",
+        "what treaty did Ramses II sign",
+        "details of Ramses II’s peace treaty",
+        "peace treaty with the Hittites"
+      ],
+      "responses": [
+        "Ramses II signed the first known recorded peace treaty with the Hittites after years of conflict.",
+        "The treaty, established with Hittite King Hattušili III, formalized peace and mutual alliance.",
+        "This historic agreement marked a diplomatic breakthrough following the Battle of Kadesh."
+      ],
+      "semantic field": "achievements"
+    },
+
+    {
+      "intent": "ramses_infrastructure_projects",
+      "patterns": [
+        "what infrastructure projects did Ramses II build",
+        "Ramses II infrastructure projects",
+        "notable construction under Ramses the Great",
+        "major building projects of Ramses II",
+        "what structures did Ramses II create",
+        "Ramses II major constructions"
+      ],
+      "responses": [
+        "Ramses II oversaw massive projects including the Ramesseum, Abu Simbel, and expansions at Karnak and Luxor.",
+        "His infrastructure works included temples, palaces, and monumental statues across Egypt and Nubia.",
+        "He launched grand construction efforts reflecting power, religion, and royal legacy."
+      ],
+      "semantic field": "achievements"
+    },
+
+    {
+      "intent": "ramses_public_works",
+      "patterns": [
+        "what public works did Ramses II establish",
+        "public works of Ramses II",
+        "what improvements did Ramses II make for the people",
+        "Ramses II civic projects",
+        "public constructions under Ramses II",
+        "infrastructure for the population by Ramses II"
+      ],
+      "responses": [
+        "Ramses II developed public works such as roads, storehouses, and water-management systems.",
+        "He commissioned improvements to cities, labor settlements, and agricultural infrastructure.",
+        "His reign included civic construction benefiting trade, administration, and daily life."
+      ],
+      "semantic field": "achievements"
+    },
+
+    {
+      "intent": "ramses_administrative_reforms",
+      "patterns": [
+        "what administrative reforms did Ramses II introduce",
+        "Ramses II administrative reforms",
+        "did Ramses II change the government",
+        "what reforms were made under Ramses II",
+        "changes Ramses II brought to administration",
+        "how Ramses II reorganized administration"
+      ],
+      "responses": [
+        "Ramses II reinforced centralized power, strengthening the roles of viziers and provincial officials.",
+        "He refined administrative oversight, improving record-keeping and resource distribution.",
+        "His reforms enhanced state control and efficiency across Egypt’s bureaucracy."
+      ],
+      "semantic field": "achievements"
+    },
+
+    {
+      "intent": "ramses_changes_in_governance",
+      "patterns": [
+        "what changes in governance occurred under Ramses II",
+        "how did governance change during Ramses II's reign",
+        "government changes under Ramses the Great",
+        "Ramses II modifications to governance",
+        "how did Ramses II manage government differently"
+      ],
+      "responses": [
+        "Ramses II expanded the role of the central government, reinforcing royal authority over regional officials.",
+        "His governance emphasized strong centralized control, large-scale state projects, and organized bureaucracy.",
+        "He increased the coordination between military, religious, and administrative institutions."
+      ],
+      "semantic field": "achievements"
     }
   ]
   }
