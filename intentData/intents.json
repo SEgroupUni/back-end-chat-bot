@@ -1248,6 +1248,168 @@
         "His philosophy emphasized glory, resilience, and the sacred duty to safeguard Egypt."
       ],
       "semantic field": "warfare"
+    }.
+
+    {
+      "intent": "ramses_temples_commissioned",
+      "patterns": [
+        "what temples did Ramses II commission",
+        "temples built by Ramses the Great",
+        "which temples were constructed under Ramses II",
+        "major temples of Ramses II",
+        "religious buildings Ramses II created",
+        "Ramses II temple projects"
+      ],
+      "responses": [
+        "Ramses II commissioned numerous temples across Egypt and Nubia, including Abu Simbel and major expansions to existing sanctuaries.",
+        "His building program emphasized devotion to the gods and the display of royal power.",
+        "Many temples constructed under Ramses II served both religious and political purposes."
+      ],
+      "semantic field": "monuments"
+    },
+
+    {
+      "intent": "ramses_statues_commissioned",
+      "patterns": [
+        "what statues did Ramses II commission",
+        "statues created under Ramses the Great",
+        "how many statues did Ramses II build",
+        "colossal statues of Ramses II",
+        "royal statues of Ramses II",
+        "Ramses II sculpture projects"
+      ],
+      "responses": [
+        "Ramses II commissioned countless statues, including colossal seated and standing figures displayed in temples and public spaces.",
+        "His statues emphasized his divine authority and eternal presence.",
+        "The abundance of statues from his reign reflects his desire to immortalize his image throughout Egypt."
+      ],
+      "semantic field": "monuments"
+    },
+
+    {
+      "intent": "ramses_significance_of_abu_simbel",
+      "patterns": [
+        "why is Abu Simbel important",
+        "significance of Abu Simbel",
+        "meaning of Abu Simbel",
+        "why Ramses II built Abu Simbel",
+        "purpose of the Abu Simbel temples",
+        "importance of Abu Simbel in his reign"
+      ],
+      "responses": [
+        "Abu Simbel symbolized Ramses II’s dominion over Nubia and his divine connection to the gods.",
+        "The temple’s alignment with the rising sun reinforced the king’s sacred status.",
+        "Its colossal statues projected Egyptian power to allies and rivals alike."
+      ],
+      "semantic field": "monuments"
+    },
+
+    {
+      "intent": "ramses_significance_of_ramesseum",
+      "patterns": [
+        "what is the significance of the Ramesseum",
+        "purpose of the Ramesseum",
+        "why Ramses II built the Ramesseum",
+        "importance of the Ramesseum",
+        "meaning of the Ramesseum",
+        "Ramses II mortuary temple significance"
+      ],
+      "responses": [
+        "The Ramesseum served as Ramses II’s mortuary temple, commemorating his reign and achievements.",
+        "It showcased his military victories, religious devotion, and royal power.",
+        "The Ramesseum was intended to preserve his legacy for eternity."
+      ],
+      "semantic field": "monuments"
+    },
+
+    {
+      "intent": "ramses_construction_of_pi_ramesses",
+      "patterns": [
+        "what was Pi-Ramesses",
+        "why Ramses II built Pi-Ramesses",
+        "purpose of Pi-Ramesses",
+        "construction of the capital Pi-Ramesses",
+        "importance of Pi-Ramesses",
+        "details about Pi-Ramesses city"
+      ],
+      "responses": [
+        "Pi-Ramesses was a grand royal capital built by Ramses II in the Nile Delta.",
+        "It functioned as a political, military, and administrative center of the empire.",
+        "The city symbolized royal power, innovation, and Egypt’s growing influence."
+      ],
+      "semantic field": "monuments"
+    },
+
+    {
+      "intent": "ramses_purpose_of_monumental_architecture",
+      "patterns": [
+        "why did Ramses II build monumental structures",
+        "purpose of monumental architecture under Ramses II",
+        "reason for massive buildings in his reign",
+        "why so many monuments by Ramses II",
+        "importance of Ramses II’s architecture",
+        "meaning behind his large constructions"
+      ],
+      "responses": [
+        "Ramses II used monumental architecture to demonstrate divine authority and strengthen national unity.",
+        "Large structures served religious purposes while projecting political might.",
+        "His monuments reinforced Egypt’s stability and immortalized his reign."
+      ],
+      "semantic field": "monuments"
+    },
+
+    {
+      "intent": "ramses_methods_of_building",
+      "patterns": [
+        "how did Ramses II build his monuments",
+        "construction methods under Ramses II",
+        "building techniques of Ramses the Great",
+        "how Egyptians built temples in Ramses II’s time",
+        "methods of construction used by Ramses II",
+        "techniques used to build his monuments"
+      ],
+      "responses": [
+        "Construction under Ramses II relied on skilled laborers, ramps, sledges, and precise stone-cutting techniques.",
+        "Stones were quarried in distant regions and transported by river to building sites.",
+        "His architects used organized labor forces and advanced planning to complete massive projects."
+      ],
+      "semantic field": "monuments"
+    },
+
+    {
+      "intent": "ramses_symbolism_in_decoration",
+      "patterns": [
+        "what was the symbolism in Ramses II’s decorations",
+        "symbolic meaning of temple carvings",
+        "meaning of artwork under Ramses II",
+        "religious symbolism in Ramses II’s monuments",
+        "what symbols did Ramses II use",
+        "symbolism in Egyptian reliefs of his reign"
+      ],
+      "responses": [
+        "Decorations featured scenes of divine protection, military power, and ritual offering.",
+        "Symbols like the sun disk, lotus, and falcon conveyed religious authority and cosmic order.",
+        "Reliefs reinforced the pharaoh’s role as protector of Egypt and chosen of the gods."
+      ],
+      "semantic field": "monuments"
+    },
+
+    {
+      "intent": "ramses_artistic_style_used",
+      "patterns": [
+        "what artistic style did Ramses II use",
+        "art style of Ramses the Great",
+        "Egyptian art in Ramses II’s reign",
+        "characteristics of Ramses II artwork",
+        "style of carvings under Ramses II",
+        "features of Ramses II artistic style"
+      ],
+      "responses": [
+        "Art from Ramses II’s reign emphasized idealized proportions, detailed reliefs, and expressions of divine kingship.",
+        "His monuments featured crisp lines, balanced compositions, and vibrant pigments.",
+        "The style blended realism with religious symbolism to elevate the image of the pharaoh."
+      ],
+      "semantic field": "monuments"
     }
   ]
   }
