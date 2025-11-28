@@ -59,6 +59,491 @@
         "In the halucinations of an LLM",
         "In the anguish of a madmans howl"
       ]
+    },
+    {
+      "intent": "ramses_birth_date",
+      "patterns": [
+        "when was Ramses II born",
+        "Ramses II birth date",
+        "date of birth of Ramses the Great",
+        "tell me his birth date",
+        "what year did Ramses II come into the world",
+        "Ramses II birthday",
+        "when did Ramses the Great live",
+        "exact birth date of Ramses II"
+      ],
+      "responses": [
+        "Ramses II was born in 1303 BCE.",
+        "He was born around 1303 BCE.",
+        "Ramses II’s birth date is generally accepted as 1303 BCE."
+      ],
+      "semantic field": "biographical data"
+    },
+
+    {
+      "intent": "ramses_birthplace",
+      "patterns": [
+        "where was Ramses II born",
+        "Ramses II birthplace",
+        "birthplace of Ramses the Great",
+        "where did Ramses II come from",
+        "where did Ramses II enter the world",
+        "where was the pharaoh Ramses II born"
+      ],
+      "responses": [
+        "Ramses II was born in the Nile Delta region, likely at Avaris or Pi-Ramesses.",
+        "His birthplace is believed to be in the eastern Nile Delta.",
+        "Ramses II was born in what would later become the city of Pi-Ramesses."
+      ],
+      "semantic field": "biography"
+    },
+
+    {
+      "intent": "ramses_childhood_environment",
+      "patterns": [
+        "what was Ramses II’s childhood environment like",
+        "describe Ramses II’s early environment",
+        "how did Ramses grow up",
+        "where did Ramses II grow up",
+        "Ramses II childhood environment",
+        "conditions of his childhood surroundings"
+      ],
+      "responses": [
+        "Ramses II grew up in the royal court, surrounded by wealth, political power, and military influence.",
+        "His childhood environment was that of an elite Egyptian prince, with access to education, training, and the royal household.",
+        "He was raised in a palace environment centered on administration, warfare, and religious ceremony."
+      ],
+      "semantic field": "biography"
+    },
+
+    {
+      "intent": "ramses_childhood_upbringing",
+      "patterns": [
+        "how was Ramses II raised",
+        "Ramses II upbringing",
+        "what was Ramses II’s childhood like",
+        "how did Ramses the Great grow up",
+        "details about Ramses II’s upbringing",
+        "was Ramses II trained as a child"
+      ],
+      "responses": [
+        "Ramses II was trained from a young age in leadership, military skills, diplomacy, and religious duties.",
+        "He received a royal education, preparing him to eventually succeed his father Seti I.",
+        "His upbringing included military training, administrative instruction, and participation in ritual life."
+      ],
+      "semantic field": "biography"
+    },
+
+    {
+      "intent": "ramses_titles",
+      "patterns": [
+        "what titles did Ramses II hold",
+        "Ramses II official titles",
+        "titles of Ramses the Great",
+        "what was Ramses II called as a ruler",
+        "pharaonic titles of Ramses II",
+        "list Ramses II’s titles"
+      ],
+      "responses": [
+        "Ramses II held titles such as 'Pharaoh of Egypt', 'Lord of the Two Lands', and 'Son of Ra'.",
+        "His official titles emphasized kingship, divine authority, and military leadership.",
+        "Ramses II was known by many royal titles, reflecting his status as Egypt’s ruler and god-king."
+      ],
+      "semantic field": "biography"
+    },
+
+    {
+      "intent": "ramses_names_epithets",
+      "patterns": [
+        "what names did Ramses II use",
+        "epithets of Ramses II",
+        "names and titles of Ramses the Great",
+        "what was Ramses II also called",
+        "Ramses II throne name",
+        "meaning of Ramses II’s names"
+      ],
+      "responses": [
+        "Ramses II used names such as 'Usermaatre Setepenre' and 'Ramesses Meriamun'.",
+        "He was often called 'Ramses the Great' because of his long reign and achievements.",
+        "His royal epithets emphasized power, divine favor, and eternal rule."
+      ],
+      "semantic field": "biography"
+    },
+
+    {
+      "intent": "ramses_personality_traits",
+      "patterns": [
+        "what was Ramses II like",
+        "describe Ramses II’s personality",
+        "personality traits of Ramses the Great",
+        "was Ramses II arrogant",
+        "was Ramses II brave",
+        "how did Ramses II behave as a ruler"
+      ],
+      "responses": [
+        "Ramses II is often portrayed as ambitious, confident, and highly self-promotional.",
+        "He demonstrated strong leadership, military boldness, and a flair for monument-building.",
+        "His personality is viewed as authoritative, strategic, and deeply concerned with legacy."
+      ],
+      "semantic field": "biography"
+    },
+    {
+      "intent": "ramses_lifestyle_habits",
+      "patterns": [
+        "what were Ramses II's lifestyle habits",
+        "describe Ramses II's lifestyle",
+        "how did Ramses II live day to day",
+        "daily habits of Ramses II",
+        "what was Ramses II's routine",
+        "Ramses II lifestyle",
+        "what did Ramses II do regularly",
+        "how did the pharaoh live"
+      ],
+      "responses": [
+        "Ramses II maintained a royal lifestyle focused on ceremony, governance, and military oversight.",
+        "His daily habits included religious rituals, administrative meetings, and inspections of construction or military activities.",
+        "He lived a structured life surrounded by attendants, advisors, and the formalities of the royal court."
+      ],
+      "semantic field": "biography"
+    },
+
+    {
+      "intent": "ramses_age_at_accession",
+      "patterns": [
+        "how old was Ramses II when he became pharaoh",
+        "Ramses II age at accession",
+        "what age did Ramses become king",
+        "how old was Ramses when he took the throne",
+        "age of Ramses II when he started ruling",
+        "Ramses II throne age"
+      ],
+      "responses": [
+        "Ramses II became pharaoh at about 24 years old.",
+        "He ascended the throne in his early twenties, traditionally around age 24.",
+        "Ramses II took power as a young adult, roughly at the age of 24."
+      ],
+      "semantic field": "biography"
+    },
+
+    {
+      "intent": "ramses_length_of_reign",
+      "patterns": [
+        "how long did Ramses II reign",
+        "length of reign of Ramses II",
+        "how many years did Ramses the Great rule",
+        "duration of Ramses II's rule",
+        "how long was Ramses II pharaoh",
+        "Ramses II years in power"
+      ],
+      "responses": [
+        "Ramses II reigned for approximately 66 years.",
+        "His reign lasted about 66 years, one of the longest in Egyptian history.",
+        "Ramses the Great ruled Egypt for around six and a half decades."
+      ],
+      "semantic field": "biography"
+    },
+
+    {
+      "intent": "ramses_education",
+      "patterns": [
+        "what education did Ramses II receive",
+        "how was Ramses II educated",
+        "Ramses II education",
+        "what did Ramses II learn as a child",
+        "training and education of Ramses the Great",
+        "skills Ramses II was taught"
+      ],
+      "responses": [
+        "Ramses II received a royal education that included reading, writing, mathematics, and religious doctrine.",
+        "His training covered military strategy, diplomacy, administration, and ritual duties.",
+        "As a prince, he was educated by tutors, priests, and military officers to prepare him for leadership."
+      ],
+      "semantic field": "biography"
+    },
+
+    {
+      "intent": "ramses_languages_spoken",
+      "patterns": [
+        "what languages did Ramses II speak",
+        "languages spoken by Ramses II",
+        "did Ramses II know multiple languages",
+        "which language did Ramses the Great use",
+        "what language did Ramses II communicate in"
+      ],
+      "responses": [
+        "Ramses II primarily spoke Late Egyptian, the administrative and spoken language of his time.",
+        "He likely understood some Hieratic and Hieroglyphic forms used for writing and religious texts.",
+        "As pharaoh, he may have encountered foreign languages diplomatically, but his main language was Egyptian."
+      ],
+      "semantic field": "biography"
+    },
+
+    {
+      "intent": "ramses_typical_wardrobe",
+      "patterns": [
+        "what did Ramses II wear",
+        "typical clothing of Ramses II",
+        "how did Ramses II dress",
+        "wardrobe of Ramses the Great",
+        "describe Ramses II's attire",
+        "what clothes did the pharaoh wear"
+      ],
+      "responses": [
+        "Ramses II typically wore ornate linen garments, often finely pleated and decorated.",
+        "His wardrobe included ceremonial crowns, gold jewelry, and symbolic regalia representing divine kingship.",
+        "As pharaoh, he dressed in elaborate attire during rituals and official events, emphasizing status and authority."
+      ],
+      "semantic field": "biography"
+    },
+    {
+      "intent": "ramses_foods_commonly_eaten",
+      "patterns": [
+        "what foods did Ramses II eat",
+        "what did Ramses II commonly eat",
+        "diet of Ramses II",
+        "what meals did Ramses the Great have",
+        "what kind of food did the pharaoh eat",
+        "Ramses II typical diet",
+        "what foods were common for Ramses II"
+      ],
+      "responses": [
+        "Ramses II ate foods typical of the Egyptian elite, including bread, beer, fruits, vegetables, and meats such as beef, poultry, and fish.",
+        "His meals often included fine breads, honey, dates, and well-prepared meats.",
+        "The pharaoh’s diet was rich and varied, reflecting the agricultural abundance of the Nile Valley."
+      ],
+      "semantic field": "biography"
+    },
+
+    {
+      "intent": "ramses_daily_routine",
+      "patterns": [
+        "what was Ramses II’s daily routine",
+        "describe the daily routine of Ramses II",
+        "how did Ramses II spend his days",
+        "daily schedule of Ramses II",
+        "what did the pharaoh do each day",
+        "Ramses II daily activities"
+      ],
+      "responses": [
+        "Ramses II’s day typically included religious rituals, administrative meetings, and overseeing state affairs.",
+        "His routine involved addressing officials, reviewing reports, and participating in ceremonial duties.",
+        "Much of his day was structured around governance, temple obligations, and maintaining royal presence."
+      ],
+      "semantic field": "biography"
+    },
+
+    {
+      "intent": "ramses_administrative_duties",
+      "patterns": [
+        "what administrative duties did Ramses II have",
+        "Ramses II administrative responsibilities",
+        "how did Ramses II govern",
+        "what were Ramses II's duties as ruler",
+        "administration under Ramses the Great",
+        "role of Ramses II in government"
+      ],
+      "responses": [
+        "Ramses II oversaw taxation, justice, construction projects, and the management of officials and provinces.",
+        "He reviewed reports from viziers, supervised building works, and ensured stability across Egypt.",
+        "His administrative duties centered on maintaining order, infrastructure, and the functioning of the state."
+      ],
+      "semantic field": "biography"
+    },
+
+    {
+      "intent": "ramses_religious_duties",
+      "patterns": [
+        "what religious duties did Ramses II have",
+        "Ramses II religious responsibilities",
+        "role of Ramses II in religion",
+        "what rituals did Ramses II perform",
+        "pharaoh’s religious duties",
+        "Ramses II and religious ceremonies"
+      ],
+      "responses": [
+        "Ramses II took part in temple rituals, offerings to the gods, and festivals that reinforced divine kingship.",
+        "He performed ceremonial duties meant to maintain maat, the divine order of the world.",
+        "As pharaoh, he acted as high priest, symbolically connecting Egypt with the gods."
+      ],
+      "semantic field": "biography"
+    },
+
+    {
+      "intent": "ramses_military_duties",
+      "patterns": [
+        "what military duties did Ramses II have",
+        "Ramses II military responsibilities",
+        "role of Ramses II in the army",
+        "how did Ramses II lead the military",
+        "military actions of Ramses the Great",
+        "Ramses II as a military leader"
+      ],
+      "responses": [
+        "Ramses II led campaigns, commanded armies, and oversaw Egypt’s defense and expansion.",
+        "His duties included planning military strategies, reviewing troops, and leading forces in battle.",
+        "He played a central role in warfare, diplomacy, and maintaining Egypt’s borders."
+      ],
+      "semantic field": "biography"
+    },
+
+    {
+      "intent": "ramses_leisure_activities",
+      "patterns": [
+        "what did Ramses II do for leisure",
+        "Ramses II leisure activities",
+        "how did Ramses II relax",
+        "what were the pharaoh’s hobbies",
+        "Ramses the Great free time activities",
+        "describe Ramses II’s leisure"
+      ],
+      "responses": [
+        "Ramses II enjoyed hunting, especially big-game hunts that displayed royal prowess.",
+        "He participated in festivals, musical performances, and royal celebrations.",
+        "His leisure often involved ceremonial outings, recreation in palace gardens, and time with his large family."
+      ],
+      "semantic field": "biography"
+    },
+    {
+      "intent": "ramses_circumstances_of_accession",
+      "patterns": [
+        "what were the circumstances of Ramses II's accession",
+        "how did Ramses II become pharaoh",
+        "Ramses II rise to the throne",
+        "events surrounding his accession",
+        "how did Ramses II take power",
+        "Ramses II succession details",
+        "why did Ramses II become king"
+      ],
+      "responses": [
+        "Ramses II ascended the throne after the death of his father, Seti I, having been appointed crown prince during his youth.",
+        "His accession followed a clear royal succession, as he was groomed for kingship from an early age.",
+        "He became pharaoh under stable conditions, inheriting a strong and organized state from Seti I."
+      ],
+      "semantic field": "achievements"
+    },
+
+    {
+      "intent": "ramses_early_challenges",
+      "patterns": [
+        "what early challenges did Ramses II face",
+        "early difficulties in Ramses II's rule",
+        "problems Ramses II encountered at the start of his reign",
+        "initial challenges for Ramses II",
+        "issues during the early reign of Ramses the Great"
+      ],
+      "responses": [
+        "Early in his reign, Ramses II contended with Hittite pressure in the Levant and the need to secure Egypt’s borders.",
+        "He faced the challenge of maintaining stability in Canaan and reaffirming Egypt’s military presence.",
+        "His early rule required consolidating authority, continuing large projects, and addressing foreign threats."
+      ],
+      "semantic field": "achievements"
+    },
+
+    {
+      "intent": "ramses_major_achievements",
+      "patterns": [
+        "what were Ramses II's major achievements",
+        "Ramses II accomplishments",
+        "greatest achievements of Ramses the Great",
+        "what did Ramses II accomplish",
+        "Ramses II major successes",
+        "important achievements of Ramses II"
+      ],
+      "responses": [
+        "Ramses II achieved military victories, monumental building projects, and a long, stable reign.",
+        "His accomplishments include expanding Egypt’s influence, constructing iconic temples, and securing diplomatic success.",
+        "He is remembered for military campaigns, vast architectural works, and shaping Egypt’s cultural legacy."
+      ],
+      "semantic field": "achievements"
+    },
+
+    {
+      "intent": "ramses_first_peace_treaty",
+      "patterns": [
+        "what was the first recorded peace treaty",
+        "Ramses II peace treaty",
+        "first peace treaty in history",
+        "what treaty did Ramses II sign",
+        "details of Ramses II’s peace treaty",
+        "peace treaty with the Hittites"
+      ],
+      "responses": [
+        "Ramses II signed the first known recorded peace treaty with the Hittites after years of conflict.",
+        "The treaty, established with Hittite King Hattušili III, formalized peace and mutual alliance.",
+        "This historic agreement marked a diplomatic breakthrough following the Battle of Kadesh."
+      ],
+      "semantic field": "achievements"
+    },
+
+    {
+      "intent": "ramses_infrastructure_projects",
+      "patterns": [
+        "what infrastructure projects did Ramses II build",
+        "Ramses II infrastructure projects",
+        "notable construction under Ramses the Great",
+        "major building projects of Ramses II",
+        "what structures did Ramses II create",
+        "Ramses II major constructions"
+      ],
+      "responses": [
+        "Ramses II oversaw massive projects including the Ramesseum, Abu Simbel, and expansions at Karnak and Luxor.",
+        "His infrastructure works included temples, palaces, and monumental statues across Egypt and Nubia.",
+        "He launched grand construction efforts reflecting power, religion, and royal legacy."
+      ],
+      "semantic field": "achievements"
+    },
+
+    {
+      "intent": "ramses_public_works",
+      "patterns": [
+        "what public works did Ramses II establish",
+        "public works of Ramses II",
+        "what improvements did Ramses II make for the people",
+        "Ramses II civic projects",
+        "public constructions under Ramses II",
+        "infrastructure for the population by Ramses II"
+      ],
+      "responses": [
+        "Ramses II developed public works such as roads, storehouses, and water-management systems.",
+        "He commissioned improvements to cities, labor settlements, and agricultural infrastructure.",
+        "His reign included civic construction benefiting trade, administration, and daily life."
+      ],
+      "semantic field": "achievements"
+    },
+
+    {
+      "intent": "ramses_administrative_reforms",
+      "patterns": [
+        "what administrative reforms did Ramses II introduce",
+        "Ramses II administrative reforms",
+        "did Ramses II change the government",
+        "what reforms were made under Ramses II",
+        "changes Ramses II brought to administration",
+        "how Ramses II reorganized administration"
+      ],
+      "responses": [
+        "Ramses II reinforced centralized power, strengthening the roles of viziers and provincial officials.",
+        "He refined administrative oversight, improving record-keeping and resource distribution.",
+        "His reforms enhanced state control and efficiency across Egypt’s bureaucracy."
+      ],
+      "semantic field": "achievements"
+    },
+
+    {
+      "intent": "ramses_changes_in_governance",
+      "patterns": [
+        "what changes in governance occurred under Ramses II",
+        "how did governance change during Ramses II's reign",
+        "government changes under Ramses the Great",
+        "Ramses II modifications to governance",
+        "how did Ramses II manage government differently"
+      ],
+      "responses": [
+        "Ramses II expanded the role of the central government, reinforcing royal authority over regional officials.",
+        "His governance emphasized strong centralized control, large-scale state projects, and organized bureaucracy.",
+        "He increased the coordination between military, religious, and administrative institutions."
+      ],
+      "semantic field": "achievements"
     }
   ]
-}
+  }

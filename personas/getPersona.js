@@ -11,8 +11,18 @@ const personas = [
 export function getPersona(initialData) {
   if (!initialData) return null;
 
-  return personas.find(
-    p => p.name.toLowerCase() === initialData.toLowerCase()
-  ) || null;
-}
+  // Determine the name string
+  let name;
+  if (typeof initialData === "string") {
+    name = initialData;
+  } else if (typeof initialData === "object" && initialData.name) {
+    name = initialData.name;
+  } else {
+    return null; // Invalid input
+  }
 
+  // Find persona by name (case-insensitive)
+  return (
+    personas.find(p => p.name.toLowerCase() === name.toLowerCase()) || null
+  );
+}
