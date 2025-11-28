@@ -95,7 +95,7 @@
         "His birthplace is believed to be in the eastern Nile Delta.",
         "Ramses II was born in what would later become the city of Pi-Ramesses."
       ],
-      "semantic field": "biographical data"
+      "semantic field": "biography"
     },
 
     {
@@ -113,7 +113,7 @@
         "His childhood environment was that of an elite Egyptian prince, with access to education, training, and the royal household.",
         "He was raised in a palace environment centered on administration, warfare, and religious ceremony."
       ],
-      "semantic field": "historical context"
+      "semantic field": "biography"
     },
 
     {
@@ -131,7 +131,7 @@
         "He received a royal education, preparing him to eventually succeed his father Seti I.",
         "His upbringing included military training, administrative instruction, and participation in ritual life."
       ],
-      "semantic field": "historical biography"
+      "semantic field": "biography"
     },
 
     {
@@ -149,7 +149,7 @@
         "His official titles emphasized kingship, divine authority, and military leadership.",
         "Ramses II was known by many royal titles, reflecting his status as Egypt’s ruler and god-king."
       ],
-      "semantic field": "royal authority"
+      "semantic field": "biography"
     },
 
     {
@@ -167,7 +167,7 @@
         "He was often called 'Ramses the Great' because of his long reign and achievements.",
         "His royal epithets emphasized power, divine favor, and eternal rule."
       ],
-      "semantic field": "onomastics"
+      "semantic field": "biography"
     },
 
     {
@@ -185,7 +185,7 @@
         "He demonstrated strong leadership, military boldness, and a flair for monument-building.",
         "His personality is viewed as authoritative, strategic, and deeply concerned with legacy."
       ],
-      "semantic field": "character traits"
+      "semantic field": "biography"
     },
     {
       "intent": "ramses_lifestyle_habits",
@@ -204,7 +204,7 @@
         "His daily habits included religious rituals, administrative meetings, and inspections of construction or military activities.",
         "He lived a structured life surrounded by attendants, advisors, and the formalities of the royal court."
       ],
-      "semantic field": "historical lifestyle"
+      "semantic field": "biography"
     },
 
     {
@@ -222,7 +222,7 @@
         "He ascended the throne in his early twenties, traditionally around age 24.",
         "Ramses II took power as a young adult, roughly at the age of 24."
       ],
-      "semantic field": "biographical chronology"
+      "semantic field": "biography"
     },
 
     {
@@ -240,7 +240,7 @@
         "His reign lasted about 66 years, one of the longest in Egyptian history.",
         "Ramses the Great ruled Egypt for around six and a half decades."
       ],
-      "semantic field": "historical duration"
+      "semantic field": "biography"
     },
 
     {
@@ -258,7 +258,7 @@
         "His training covered military strategy, diplomacy, administration, and ritual duties.",
         "As a prince, he was educated by tutors, priests, and military officers to prepare him for leadership."
       ],
-      "semantic field": "historical education"
+      "semantic field": "biography"
     },
 
     {
@@ -275,7 +275,7 @@
         "He likely understood some Hieratic and Hieroglyphic forms used for writing and religious texts.",
         "As pharaoh, he may have encountered foreign languages diplomatically, but his main language was Egyptian."
       ],
-      "semantic field": "linguistic history"
+      "semantic field": "biography"
     },
 
     {
@@ -293,7 +293,115 @@
         "His wardrobe included ceremonial crowns, gold jewelry, and symbolic regalia representing divine kingship.",
         "As pharaoh, he dressed in elaborate attire during rituals and official events, emphasizing status and authority."
       ],
-      "semantic field": "material culture"
+      "semantic field": "biography"
+    },
+    {
+      "intent": "ramses_foods_commonly_eaten",
+      "patterns": [
+        "what foods did Ramses II eat",
+        "what did Ramses II commonly eat",
+        "diet of Ramses II",
+        "what meals did Ramses the Great have",
+        "what kind of food did the pharaoh eat",
+        "Ramses II typical diet",
+        "what foods were common for Ramses II"
+      ],
+      "responses": [
+        "Ramses II ate foods typical of the Egyptian elite, including bread, beer, fruits, vegetables, and meats such as beef, poultry, and fish.",
+        "His meals often included fine breads, honey, dates, and well-prepared meats.",
+        "The pharaoh’s diet was rich and varied, reflecting the agricultural abundance of the Nile Valley."
+      ],
+      "semantic field": "biography"
+    },
+
+    {
+      "intent": "ramses_daily_routine",
+      "patterns": [
+        "what was Ramses II’s daily routine",
+        "describe the daily routine of Ramses II",
+        "how did Ramses II spend his days",
+        "daily schedule of Ramses II",
+        "what did the pharaoh do each day",
+        "Ramses II daily activities"
+      ],
+      "responses": [
+        "Ramses II’s day typically included religious rituals, administrative meetings, and overseeing state affairs.",
+        "His routine involved addressing officials, reviewing reports, and participating in ceremonial duties.",
+        "Much of his day was structured around governance, temple obligations, and maintaining royal presence."
+      ],
+      "semantic field": "biography"
+    },
+
+    {
+      "intent": "ramses_administrative_duties",
+      "patterns": [
+        "what administrative duties did Ramses II have",
+        "Ramses II administrative responsibilities",
+        "how did Ramses II govern",
+        "what were Ramses II's duties as ruler",
+        "administration under Ramses the Great",
+        "role of Ramses II in government"
+      ],
+      "responses": [
+        "Ramses II oversaw taxation, justice, construction projects, and the management of officials and provinces.",
+        "He reviewed reports from viziers, supervised building works, and ensured stability across Egypt.",
+        "His administrative duties centered on maintaining order, infrastructure, and the functioning of the state."
+      ],
+      "semantic field": "biography"
+    },
+
+    {
+      "intent": "ramses_religious_duties",
+      "patterns": [
+        "what religious duties did Ramses II have",
+        "Ramses II religious responsibilities",
+        "role of Ramses II in religion",
+        "what rituals did Ramses II perform",
+        "pharaoh’s religious duties",
+        "Ramses II and religious ceremonies"
+      ],
+      "responses": [
+        "Ramses II took part in temple rituals, offerings to the gods, and festivals that reinforced divine kingship.",
+        "He performed ceremonial duties meant to maintain maat, the divine order of the world.",
+        "As pharaoh, he acted as high priest, symbolically connecting Egypt with the gods."
+      ],
+      "semantic field": "biography"
+    },
+
+    {
+      "intent": "ramses_military_duties",
+      "patterns": [
+        "what military duties did Ramses II have",
+        "Ramses II military responsibilities",
+        "role of Ramses II in the army",
+        "how did Ramses II lead the military",
+        "military actions of Ramses the Great",
+        "Ramses II as a military leader"
+      ],
+      "responses": [
+        "Ramses II led campaigns, commanded armies, and oversaw Egypt’s defense and expansion.",
+        "His duties included planning military strategies, reviewing troops, and leading forces in battle.",
+        "He played a central role in warfare, diplomacy, and maintaining Egypt’s borders."
+      ],
+      "semantic field": "biography"
+    },
+
+    {
+      "intent": "ramses_leisure_activities",
+      "patterns": [
+        "what did Ramses II do for leisure",
+        "Ramses II leisure activities",
+        "how did Ramses II relax",
+        "what were the pharaoh’s hobbies",
+        "Ramses the Great free time activities",
+        "describe Ramses II’s leisure"
+      ],
+      "responses": [
+        "Ramses II enjoyed hunting, especially big-game hunts that displayed royal prowess.",
+        "He participated in festivals, musical performances, and royal celebrations.",
+        "His leisure often involved ceremonial outings, recreation in palace gardens, and time with his large family."
+      ],
+      "semantic field": "biography"
     }
   ]
   }
