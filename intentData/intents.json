@@ -1068,6 +1068,186 @@
         "Religious festivals strengthened his bond with the gods and the Egyptian people."
       ],
       "semantic field": "religion"
+    },
+
+    {
+      "intent": "ramses_primary_enemies",
+      "patterns": [
+        "who were Ramses II’s main enemies",
+        "primary enemies of Ramses the Great",
+        "nations Ramses II fought against",
+        "who did Ramses II battle most",
+        "enemies of Egypt during Ramses II’s reign",
+        "which peoples opposed Ramses II"
+      ],
+      "responses": [
+        "Ramses II’s primary enemies included the Hittites, Libyans, and various groups in Canaan and Nubia.",
+        "His reign was marked by conflicts with powerful foreign kingdoms, particularly the Hittite Empire.",
+        "Egypt faced ongoing military threats that Ramses II worked to repel and control."
+      ],
+      "semantic field": "warfare"
+    },
+
+    {
+      "intent": "ramses_primary_allies",
+      "patterns": [
+        "who were Ramses II’s allies",
+        "primary allies of Ramses the Great",
+        "which nations supported Ramses II",
+        "foreign allies of Egypt under Ramses II",
+        "who cooperated with Ramses II",
+        "alliances formed by Ramses II"
+      ],
+      "responses": [
+        "Ramses II maintained alliances with various vassal states in Canaan and with loyal Nubian territories.",
+        "Later in his reign, the Hittites themselves became allies through a formal peace treaty.",
+        "Diplomatic marriages strengthened ties with foreign powers."
+      ],
+      "semantic field": "warfare"
+    },
+
+    {
+      "intent": "ramses_major_battles_fought",
+      "patterns": [
+        "what major battles did Ramses II fight",
+        "list battles fought by Ramses the Great",
+        "military campaigns of Ramses II",
+        "Ramses II battles",
+        "which battles was Ramses II known for",
+        "great battles of his reign"
+      ],
+      "responses": [
+        "Ramses II is most famous for the Battle of Kadesh, one of the largest chariot battles in history.",
+        "He fought campaigns in Canaan, Nubia, and against Libyan tribes.",
+        "His military record emphasized expansion, defense, and assertion of Egyptian power."
+      ],
+      "semantic field": "warfare"
+    },
+
+    {
+      "intent": "ramses_military_tactics_used",
+      "patterns": [
+        "what military tactics did Ramses II use",
+        "tactics of Ramses the Great",
+        "how Ramses II fought battles",
+        "Egyptian military strategy under Ramses II",
+        "what strategies Ramses II used in war",
+        "tactical approach of Ramses II"
+      ],
+      "responses": [
+        "Ramses II employed large-scale chariot divisions, strategic ambushes, and rapid mobilization of troops.",
+        "He favored displays of overwhelming force combined with disciplined infantry formations.",
+        "His tactics emphasized mobility, coordination, and commanding presence."
+      ],
+      "semantic field": "warfare"
+    },
+
+    {
+      "intent": "ramses_use_of_chariots_in_warfare",
+      "patterns": [
+        "did Ramses II use chariots in warfare",
+        "use of chariots by Ramses the Great",
+        "how chariots were used in Ramses II’s battles",
+        "role of chariots in his military strategy",
+        "Egyptian chariot warfare under Ramses II",
+        "importance of chariots to Ramses II"
+      ],
+      "responses": [
+        "Chariots were central to Ramses II’s warfare, serving as fast-moving platforms for archers.",
+        "He used chariot corps to break enemy formations and control the battlefield.",
+        "The Battle of Kadesh showcased the extensive use of chariots by both Egyptian and Hittite forces."
+      ],
+      "semantic field": "warfare"
+    },
+
+    {
+      "intent": "ramses_typical_weaponry_used",
+      "patterns": [
+        "what weapons did Ramses II use",
+        "typical weapons in Ramses II’s army",
+        "weaponry of Ramses the Great",
+        "what did Egyptian soldiers use under Ramses II",
+        "tools of war in Ramses II’s reign",
+        "ancient Egyptian weapons of Ramses II"
+      ],
+      "responses": [
+        "Ramses II’s forces used bows, spears, bronze swords, shields, and chariot-mounted weapons.",
+        "Soldiers were equipped with composite bows and khopesh swords for close combat.",
+        "His armies combined traditional weapons with improved chariot technology."
+      ],
+      "semantic field": "warfare"
+    },
+
+    {
+      "intent": "ramses_leadership_style_in_war",
+      "patterns": [
+        "what was Ramses II’s leadership style in war",
+        "how did Ramses the Great lead in battle",
+        "was Ramses II a strong military leader",
+        "describe Ramses II’s command style",
+        "how he led his troops",
+        "leadership qualities of Ramses II in war"
+      ],
+      "responses": [
+        "Ramses II led with boldness, personal presence on the battlefield, and strong command over his troops.",
+        "He promoted loyalty through charisma, ceremony, and displays of bravery.",
+        "His leadership combined authority, discipline, and symbolic representation of divine power."
+      ],
+      "semantic field": "warfare"
+    },
+
+    {
+      "intent": "ramses_diplomatic_negotiations",
+      "patterns": [
+        "what diplomatic negotiations did Ramses II engage in",
+        "Ramses the Great diplomacy",
+        "foreign negotiations of Ramses II",
+        "how Ramses II handled diplomacy",
+        "did Ramses II negotiate with other kingdoms",
+        "Ramses II’s diplomatic efforts"
+      ],
+      "responses": [
+        "Ramses II engaged in diplomatic negotiations with the Hittites, Canaanite states, and neighboring regions.",
+        "He used diplomacy to secure alliances, trade, and political stability.",
+        "His negotiations emphasized maintaining Egypt’s influence and avoiding prolonged conflict."
+      ],
+      "semantic field": "warfare"
+    },
+
+    {
+      "intent": "ramses_peace_treaty_with_hittites",
+      "patterns": [
+        "what was the peace treaty between Ramses II and the Hittites",
+        "details of the treaty with the Hittites",
+        "Ramses II peace agreement",
+        "how Ramses II made peace with the Hittites",
+        "Hittite treaty under Ramses II",
+        "terms of the earliest known peace treaty"
+      ],
+      "responses": [
+        "Ramses II and the Hittites agreed to the world’s earliest known peace treaty, establishing mutual non-aggression and alliance.",
+        "The treaty ensured cooperation, extradition agreements, and support in times of need.",
+        "It marked a diplomatic turning point, transforming rivals into long-term allies."
+      ],
+      "semantic field": "warfare"
+    },
+
+    {
+      "intent": "ramses_philosophy_on_strength_and_kingship",
+      "patterns": [
+        "what was Ramses II’s philosophy on strength and kingship",
+        "how Ramses the Great viewed power",
+        "pharaoh’s beliefs about ruling with strength",
+        "leadership philosophy of Ramses II",
+        "how Ramses II saw kingship",
+        "his ideas about power and ruling"
+      ],
+      "responses": [
+        "Ramses II believed kingship required strength, divine favor, and the protection of Egypt through both war and order.",
+        "He viewed the pharaoh as a warrior-king whose power upheld Ma’at and ensured national stability.",
+        "His philosophy emphasized glory, resilience, and the sacred duty to safeguard Egypt."
+      ],
+      "semantic field": "warfare"
     }
   ]
   }
