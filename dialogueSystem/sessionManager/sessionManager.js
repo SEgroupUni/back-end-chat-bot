@@ -1,5 +1,6 @@
 import { intentController } from "../intentEngine/intentController.js";
 import { frontFlowGateRouter } from "../dataGateway/gateRouter.js";
+import { handleAiRequest } from "../../externalAiIntegration/aiInputGateway.js";
 
 class Session {
 
@@ -15,8 +16,9 @@ class Session {
             visitor: 'casual'
         };
         this.sessionLog = [];
-        this.sessionPrompt = {};
-        this.persona = initialData;
+        this.sessionPrompt = initialData;
+        this.setSessionPrompt()
+        
 
         this.currentSessionObj = {
             userInput: null,
@@ -31,7 +33,7 @@ class Session {
         this.pipeline = [
             { step: intentController, flagState: "intEngine" },
             { step: frontFlowGateRouter, flagState: "frontFlow" },
-            //{step: handleAiRequest, flagState: 'aiRequest'} Commented out to prevent a crash I was having
+            {step: handleAiRequest, flagState: 'aiRequest'} 
         ];
     }
 
@@ -46,6 +48,7 @@ class Session {
 
     setUserData(userData) {
         this.userData = userData;
+        this.setSessionPrompt()
         
     }
 
@@ -56,14 +59,12 @@ class Session {
     logSessionEnvelopes(messageEnvelope) {
         this.sessionLog.push(messageEnvelope);
     }
-    setSessionPrompt(personaPrompt) {
+    setSessionPrompt() {
 
     // update dynamic fields inside the object
-    personaPrompt.currentSpecific = this.userData.visitor;
-    personaPrompt.currentAge = this.userData.age;
+    this.sessionPrompt.currentSpecific = this.userData.visitor;
+    this.sessionPrompt.currentAge = this.userData.age;
 
-    // store as object in session
-    this.sessionPrompt = personaPrompt;
 }
 
     // --- Core Conversation Pipeline Engine ---
@@ -82,7 +83,7 @@ class Session {
                 break;
             }
 
-            await stage.step(this.currentSessionObj);
+            await stage.step(this.currentSessionObj, this.sessionPrompt, this);
         }
     }
 

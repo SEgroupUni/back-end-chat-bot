@@ -6,7 +6,7 @@ export async function handleAiRequest(messageEnvelope, sessionPrompt) {
 
     // === 1 Validation ===
     if (!messageEnvelope?.userInput || !sessionPrompt || !messageEnvelope?.history) {
-
+        
         messageEnvelope.error = true;
         messageEnvelope.flagState = "error";
         messageEnvelope.response =
@@ -22,9 +22,9 @@ export async function handleAiRequest(messageEnvelope, sessionPrompt) {
 
     // === 2 Execute AI Logic ===
     try {
-        await processAiLogic(messageEnvelope, sessionPrompt);
-
-        session.processSessionObj(messageEnvelope);
+        const tempEnvelope = await processAiLogic(messageEnvelope, sessionPrompt);
+        console.log(messageEnvelope)
+        session.processSessionObj(tempEnvelope);
 
     } catch (error) {
 
@@ -35,7 +35,7 @@ export async function handleAiRequest(messageEnvelope, sessionPrompt) {
         messageEnvelope.flagState = "error";
         messageEnvelope.response =
             "AI processing failed — try again soon.";
-
+        
         session.processSessionObj(messageEnvelope);
     }
 }

@@ -1,3 +1,5 @@
+import pkg from "synonyms/dictionary.js";
+const { mess } = pkg;
 import { sendToExternalAI } from "./externalApiClient.js";
 // ive done aiInPut gateway updated the code for error and what it passes
 //prompt in persona and in session manager for dynamic prompt, you can convert this to a script then pass as message along with user msg or what ever u think to llm, message envelope is an object so look at this.currentSessionObj for elements in session manager, 
@@ -63,15 +65,24 @@ export async function processAiLogic(messageEnvelope, sessionPrompt) {
     // PARSE RESPONSE 
     let finalReply = rawResponse;
 
-    try {
-        if (rawResponse.trim().startsWith("{") || rawResponse.includes("```json")) {
-            const cleanJson = rawResponse.replace(/```json|```/g, '').trim();
-            const parsedData = JSON.parse(cleanJson);
-            finalReply = parsedData.reply || parsedData.message || rawResponse;
-        }
+   try {
+    if (rawResponse.trim().startsWith("{") || rawResponse.includes("```json")) {
+        const cleanJson = rawResponse.replace(/```json|```/g, '').trim();
+        const parsedData = JSON.parse(cleanJson);
+        finalReply = parsedData.reply || parsedData.message || rawResponse;
+    }
+
+    // ✅ Always update envelope no matter what
+    messageEnvelope.response = finalReply;
+    messageEnvelope.flagState = "frontFlow";
+    messageEnvelope.error = false;
+
     } catch (e) {
-        console.warn("[AI Logic] JSON Parse failed, using raw text response.");
-        finalReply = rawResponse;
+    console.warn("[AI Logic] JSON Parse failed, using raw text response.");
+
+    messageEnvelope.response = rawResponse;
+    messageEnvelope.flagState = "error";
+    messageEnvelope.error = false;
     }
     // UPDATE THE SESSION 
     
@@ -79,12 +90,12 @@ export async function processAiLogic(messageEnvelope, sessionPrompt) {
     // // Update User Data if AI found new facts
     // if (parsedData.newFacts && Object.keys(parsedData.newFacts).length > 0) {
     //     const currentData = sessionInstance.userData || {};
-    //     sessionInstance.setUserData({ ...currentData, ...parsedData.newFacts });
+    //     sessionInstance.setUserData({ ...currentData, ...parsedData.newFacts });A
     // }
 
-    messageEnvelope.response = finalReply;
-    messageEnvelope.flagState = "frontFlow";
-    messageEnvelope.error = false;
+    
+    
 
     console.log ("Envolope Updated. Flag set to frontFlow");
+    return messageEnvelope
 }

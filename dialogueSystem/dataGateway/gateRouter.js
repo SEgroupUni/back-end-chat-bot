@@ -1,10 +1,12 @@
 import { getSession } from "../../session/sessionState.js";
+import { getPersona } from "../../personas/getPersona.js";
 import { validatePersona } from "./gateValidation.js";
 
 // 1 — Create session
 export function createSession(initialData) {
     if (!validatePersona(initialData)) return false;
-    getSession(initialData);
+    const personaObject = getPersona(initialData);
+    getSession(personaObject); 
     return true;
 }
 
