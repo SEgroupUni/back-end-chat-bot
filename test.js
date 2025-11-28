@@ -6,7 +6,7 @@ import { getSession } from "./session/sessionState.js";
 
 
 
-const userInput =  'hullo thare'
+const userInput =  'Tell me something about your first wife'
 
 const persona = 'ramasses'
 

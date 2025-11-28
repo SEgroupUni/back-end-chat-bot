@@ -1,6 +1,5 @@
 import { intentController } from "../intentEngine/intentController.js";
 import { frontFlowGateRouter } from "../dataGateway/gateRouter.js";
-import { handleAiRequest } from '../externalAiIntegration/aiInputGateway.js'
 
 class Session {
 
@@ -25,14 +24,14 @@ class Session {
             userPrompt: null,
             flagState: null,
             error: false,
-            history, 
+            history: [], 
         };
 
         /** @type {Array<{ step: (obj: any) => Promise<void>, flagState: string }>} */
         this.pipeline = [
             { step: intentController, flagState: "intEngine" },
             { step: frontFlowGateRouter, flagState: "frontFlow" },
-            {step: handleAiRequest, flagState: 'aiRequest'}
+            //{step: handleAiRequest, flagState: 'aiRequest'} Commented out to prevent a crash I was having
         ];
     }
 
@@ -130,3 +129,5 @@ class Session {
 
 
 export default Session;
+
+
