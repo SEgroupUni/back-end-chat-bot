@@ -1,7 +1,7 @@
 import stringSimilarity from "string-similarity";
 
 // ****** Check if whole sentence is similar ******
-function checkFullInput(pattern, messageEnvelope, tolerance = 0.63) {
+function checkFullInput(pattern, messageEnvelope, tolerance = 0.7) {
     const match = stringSimilarity.compareTwoStrings(
         messageEnvelope.userInput.toLowerCase(),
         pattern.toLowerCase()

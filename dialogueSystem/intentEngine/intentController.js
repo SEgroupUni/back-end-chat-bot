@@ -7,7 +7,7 @@ export async function intentController(messageEnvelope) {
     const tempEnvelope = await getResponse(messageEnvelope);
     console.log("Local Match Score:", tempEnvelope.score);
     tempEnvelope.flagState = tempEnvelope.componentUsed
-        ? "frontFlow"
+        ? "prompt"
         : "aiRequest";
     session.processSessionObj(tempEnvelope)
 }

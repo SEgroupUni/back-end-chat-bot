@@ -1,188 +1,38 @@
 {
   "intents": [
-    {
-      "semantic_field": "group_1",
-      "intent": "intent_1",
-      "patterns": ["test"],
-      "responses": ["test"]
-    },
-    {
-      "semantic_field": "group_1",
-      "intent": "intent_2",
-      "patterns": ["test"],
-      "responses": ["test"]
-    },
-    {
-      "semantic_field": "group_1",
-      "intent": "intent_3",
-      "patterns": ["test"],
-      "responses": ["test"]
-    },
-    {
-      "semantic_field": "group_1",
-      "intent": "intent_4",
-      "patterns": ["test"],
-      "responses": ["test"]
-    },
-    {
-      "semantic_field": "group_1",
-      "intent": "intent_5",
-      "patterns": ["test"],
-      "responses": ["test"]
-    },
-    {
-      "semantic_field": "group_1",
-      "intent": "intent_6",
-      "patterns": ["test"],
-      "responses": ["test"]
-    },
+    { "semantic_field": "group_1", "intent": "greeting", "patterns": ["test"], "responses": ["test"], "score": [0, 0.18, 0.77, 0.33, 0.91, 0.26], "promptMsg": "would you like to talk about " },
+    { "semantic_field": "group_1", "intent": "intent_2", "patterns": ["test"], "responses": ["test"], "score": [0.42, 0, 0.77, 0.33, 0.91, 0.26], "promptMsg": "would you like to talk about intent_2 "},
+    { "semantic_field": "group_1", "intent": "intent_3", "patterns": ["test"], "responses": ["test"], "score": [0.42, 0.18, 0, 0.33, 0.91, 0.26], "promptMsg": "would you like to talk about intent_3" },
+    { "semantic_field": "group_1", "intent": "intent_4", "patterns": ["test"], "responses": ["test"], "score": [0.42, 0.18, 0.77, 0, 0.91, 0.26], "promptMsg": "would you like to talk about intent_4" },
+    { "semantic_field": "group_1", "intent": "intent_5", "patterns": ["test"], "responses": ["test"], "score": [0.42, 0.18, 0.77, 0.33, 0, 0.26], "promptMsg": "would you like to talk about intent _5" },
+    { "semantic_field": "group_1", "intent": "intent_6", "patterns": ["test"], "responses": ["test"], "score": [0.42, 0.18, 0.77, 0.33, 0.91, 0], "promptMsg": "would you like to talk about intent_6" },
 
-    {
-      "semantic_field": "group_2",
-      "intent": "intent_7",
-      "patterns": ["test"],
-      "responses": ["test"]
-    },
-    {
-      "semantic_field": "group_2",
-      "intent": "intent_8",
-      "patterns": ["test"],
-      "responses": ["test"]
-    },
-    {
-      "semantic_field": "group_2",
-      "intent": "intent_9",
-      "patterns": ["test"],
-      "responses": ["test"]
-    },
-    {
-      "semantic_field": "group_2",
-      "intent": "intent_10",
-      "patterns": ["test"],
-      "responses": ["test"]
-    },
-    {
-      "semantic_field": "group_2",
-      "intent": "intent_11",
-      "patterns": ["test"],
-      "responses": ["test"]
-    },
-    {
-      "semantic_field": "group_2",
-      "intent": "intent_12",
-      "patterns": ["test"],
-      "responses": ["test"]
-    },
+    { "semantic_field": "group_2", "intent": "intent_7", "patterns": ["test"], "responses": ["test"], "score": [0, 0.12, 0.69, 0.55, 0.09, 0.82] },
+    { "semantic_field": "group_2", "intent": "intent_8", "patterns": ["test"], "responses": ["test"], "score": [0.50, 0, 0.69, 0.55, 0.09, 0.82] },
+    { "semantic_field": "group_2", "intent": "intent_9", "patterns": ["test"], "responses": ["test"], "score": [0.50, 0.12, 0, 0.55, 0.09, 0.82] },
+    { "semantic_field": "group_2", "intent": "intent_10", "patterns": ["test"], "responses": ["test"], "score": [0.50, 0.12, 0.69, 0, 0.09, 0.82] },
+    { "semantic_field": "group_2", "intent": "intent_11", "patterns": ["test"], "responses": ["test"], "score": [0.50, 0.12, 0.69, 0.55, 0, 0.82] },
+    { "semantic_field": "group_2", "intent": "intent_12", "patterns": ["test"], "responses": ["test"], "score": [0.50, 0.12, 0.69, 0.55, 0.09, 0] },
 
-    {
-      "semantic_field": "group_3",
-      "intent": "intent_13",
-      "patterns": ["test"],
-      "responses": ["test"]
-    },
-    {
-      "semantic_field": "group_3",
-      "intent": "intent_14",
-      "patterns": ["test"],
-      "responses": ["test"]
-    },
-    {
-      "semantic_field": "group_3",
-      "intent": "intent_15",
-      "patterns": ["test"],
-      "responses": ["test"]
-    },
-    {
-      "semantic_field": "group_3",
-      "intent": "intent_16",
-      "patterns": ["test"],
-      "responses": ["test"]
-    },
-    {
-      "semantic_field": "group_3",
-      "intent": "intent_17",
-      "patterns": ["test"],
-      "responses": ["test"]
-    },
-    {
-      "semantic_field": "group_3",
-      "intent": "intent_18",
-      "patterns": ["test"],
-      "responses": ["test"]
-    },
+    { "semantic_field": "group_3", "intent": "intent_13", "patterns": ["test"], "responses": ["test"], "score": [0, 0.35, 0.66, 0.22, 0.73, 0.38] },
+    { "semantic_field": "group_3", "intent": "intent_14", "patterns": ["test"], "responses": ["test"], "score": [0.48, 0, 0.66, 0.22, 0.73, 0.38] },
+    { "semantic_field": "group_3", "intent": "intent_15", "patterns": ["test"], "responses": ["test"], "score": [0.48, 0.35, 0, 0.22, 0.73, 0.38] },
+    { "semantic_field": "group_3", "intent": "intent_16", "patterns": ["test"], "responses": ["test"], "score": [0.48, 0.35, 0.66, 0, 0.73, 0.38] },
+    { "semantic_field": "group_3", "intent": "intent_17", "patterns": ["test"], "responses": ["test"], "score": [0.48, 0.35, 0.66, 0.22, 0, 0.38] },
+    { "semantic_field": "group_3", "intent": "intent_18", "patterns": ["test"], "responses": ["test"], "score": [0.48, 0.35, 0.66, 0.22, 0.73, 0] },
 
-    {
-      "semantic_field": "group_4",
-      "intent": "intent_19",
-      "patterns": ["test"],
-      "responses": ["test"]
-    },
-    {
-      "semantic_field": "group_4",
-      "intent": "intent_20",
-      "patterns": ["test"],
-      "responses": ["test"]
-    },
-    {
-      "semantic_field": "group_4",
-      "intent": "intent_21",
-      "patterns": ["test"],
-      "responses": ["test"]
-    },
-    {
-      "semantic_field": "group_4",
-      "intent": "intent_22",
-      "patterns": ["test"],
-      "responses": ["test"]
-    },
-    {
-      "semantic_field": "group_4",
-      "intent": "intent_23",
-      "patterns": ["test"],
-      "responses": ["test"]
-    },
-    {
-      "semantic_field": "group_4",
-      "intent": "intent_24",
-      "patterns": ["test"],
-      "responses": ["test"]
-    },
+    { "semantic_field": "group_4", "intent": "intent_19", "patterns": ["test"], "responses": ["test"], "score": [0, 0.31, 0.81, 0.27, 0.62, 0.15] },
+    { "semantic_field": "group_4", "intent": "intent_20", "patterns": ["test"], "responses": ["test"], "score": [0.57, 0, 0.81, 0.27, 0.62, 0.15] },
+    { "semantic_field": "group_4", "intent": "intent_21", "patterns": ["test"], "responses": ["test"], "score": [0.57, 0.31, 0, 0.27, 0.62, 0.15] },
+    { "semantic_field": "group_4", "intent": "intent_22", "patterns": ["test"], "responses": ["test"], "score": [0.57, 0.31, 0.81, 0, 0.62, 0.15] },
+    { "semantic_field": "group_4", "intent": "intent_23", "patterns": ["test"], "responses": ["test"], "score": [0.57, 0.31, 0.81, 0.27, 0, 0.15] },
+    { "semantic_field": "group_4", "intent": "intent_24", "patterns": ["test"], "responses": ["test"], "score": [0.57, 0.31, 0.81, 0.27, 0.62, 0] },
 
-    {
-      "semantic_field": "group_5",
-      "intent": "intent_25",
-      "patterns": ["test"],
-      "responses": ["test"]
-    },
-    {
-      "semantic_field": "group_5",
-      "intent": "intent_26",
-      "patterns": ["test"],
-      "responses": ["test"]
-    },
-    {
-      "semantic_field": "group_5",
-      "intent": "intent_27",
-      "patterns": ["test"],
-      "responses": ["test"]
-    },
-    {
-      "semantic_field": "group_5",
-      "intent": "intent_28",
-      "patterns": ["test"],
-      "responses": ["test"]
-    },
-    {
-      "semantic_field": "group_5",
-      "intent": "intent_29",
-      "patterns": ["test"],
-      "responses": ["test"]
-    },
-    {
-      "semantic_field": "group_5",
-      "intent": "intent_30",
-      "patterns": ["test"],
-      "responses": ["test"]
-    }
+    { "semantic_field": "group_5", "intent": "intent_25", "patterns": ["test"], "responses": ["test"], "score": [0, 0.51, 0.96, 0.07, 0.20, 0.88] },
+    { "semantic_field": "group_5", "intent": "intent_26", "patterns": ["test"], "responses": ["test"], "score": [0.44, 0, 0.96, 0.07, 0.20, 0.88] },
+    { "semantic_field": "group_5", "intent": "intent_27", "patterns": ["test"], "responses": ["test"], "score": [0.44, 0.51, 0, 0.07, 0.20, 0.88] },
+    { "semantic_field": "group_5", "intent": "intent_28", "patterns": ["test"], "responses": ["test"], "score": [0.44, 0.51, 0.96, 0, 0.20, 0.88] },
+    { "semantic_field": "group_5", "intent": "intent_29", "patterns": ["test"], "responses": ["test"], "score": [0.44, 0.51, 0.96, 0.07, 0, 0.88] },
+    { "semantic_field": "group_5", "intent": "intent_30", "patterns": ["test"], "responses": ["test"], "score": [0.44, 0.51, 0.96, 0.07, 0.20, 0] }
   ]
 }

@@ -1,4 +1,4 @@
-import { createSession, updateUserData, backFlowGateRouter } 
+import { createSession, backFlowGateRouter } 
 from "./dialogueSystem/dataGateway/gateRouter.js";
 import { getSession } from "./session/sessionState.js";
 
@@ -6,7 +6,7 @@ import { getSession } from "./session/sessionState.js";
 
 
 
-const userInput =  'Tell me something about your first wife'
+const userInput =  'hello'
 
 const persona = 'ramasses'
 

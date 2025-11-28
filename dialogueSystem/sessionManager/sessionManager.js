@@ -1,6 +1,7 @@
 import { intentController } from "../intentEngine/intentController.js";
 import { frontFlowGateRouter } from "../dataGateway/gateRouter.js";
 import { handleAiRequest } from "../../externalAiIntegration/aiInputGateway.js";
+import { promptGateway } from "../dialogueGuide/promptGateWay.js";
 
 class Session {
 
@@ -11,15 +12,8 @@ class Session {
         }
 
         this.id = new Date().toISOString();
-        this.userData = {
-            age : '18+',
-            visitor: 'casual'
-        };
         this.sessionLog = [];
         this.sessionPrompt = initialData;
-        this.setSessionPrompt()
-        
-
         this.currentSessionObj = {
             userInput: null,
             response: null,
@@ -33,7 +27,8 @@ class Session {
         this.pipeline = [
             { step: intentController, flagState: "intEngine" },
             { step: frontFlowGateRouter, flagState: "frontFlow" },
-            {step: handleAiRequest, flagState: 'aiRequest'} 
+            {step: handleAiRequest, flagState: 'aiRequest'},
+            {step: promptGateway, flagState: 'prompt'} 
         ];
     }
 
@@ -44,13 +39,7 @@ class Session {
         this.runPipeline();
     }
 
-    // --- Runtime session methods ---
 
-    setUserData(userData) {
-        this.userData = userData;
-        this.setSessionPrompt()
-        
-    }
 
     setFlagState(flagState) {
         this.currentSessionObj.flagState = flagState;
@@ -104,28 +93,15 @@ class Session {
         this.currentSessionObj.flagState = messageEnvelope.flagState;
         this.currentSessionObj.response = messageEnvelope.response;
         this.currentSessionObj.error = messageEnvelope.error
-            
+        this.userPrompt = messageEnvelope.userPrompt
         };
     
     testFlush(){
         console.log(this.currentSessionObj)
     }
-    setHistory() {
-    // Filter sessionLog to only entries that contain both userInput and response
-    const pairs = this.sessionLog.filter(entry => entry.userInput && entry.response);
-
-    // Take last 3 pairs
-    const lastThree = pairs.slice(-3);
-
-    // Create simplified objects
-    const formatted = lastThree.map(pair => ({
-        user: pair.userInput,
-        bot: pair.response
-    }));
-
-    // Store as JSON string
-    this.currentSessionObj.history = JSON.stringify(formatted);
-}
+    setHistory(){
+        this.currentSessionObj.history = this.sessionLog.slice(-5)
+    }
 }
 
 

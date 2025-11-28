@@ -1,7 +1,7 @@
 import stringSimilarity from "string-similarity";
 import { levenshteinSimilarity } from "./levenshteinSimilarity.js";
 
-export function compositeMatchScore(userInput, pattern, tolerance = 0.75) {
+export function compositeMatchScore(userInput, pattern, tolerance = 0.8) {
 
     const userTokens = userInput.toLowerCase().split(/\s+/);
     const patternTokens = pattern.toLowerCase().split(/\s+/);
@@ -11,23 +11,27 @@ export function compositeMatchScore(userInput, pattern, tolerance = 0.75) {
     const indexMatchScore = wordIndexScore(userTokens, patternTokens);
     const totalWordScore = totalWordMatchScore(userTokens, patternTokens);
 
-    let finalScore;
+ let finalScore;
 
-    // --- Adaptive weighting logic,  low length score can create false negative so skip if too low
-    if (indexMatchScore <= 0.2) {
-        finalScore =
-            0.35 * sortWordScore +
-            0.20 * lengthScore +
-            0.45 * totalWordScore;
-    } else {
-        finalScore =
-            0.25 * sortWordScore +
-            0.10 * lengthScore +
-            0.30 * indexMatchScore +
-            0.35 * totalWordScore;
-    }
+if (indexMatchScore <= 0.2) {
+    finalScore =
+        0.3 * sortWordScore +
+        0.20 * lengthScore +
+        0.5 * totalWordScore;
 
-    return finalScore >= tolerance ? finalScore : 0;
+    console.log(`\n[DEBUG — NORMAL MODE] ${userInput}: score ${finalScore}`);
+} else {
+    finalScore =
+        0.22 * sortWordScore +
+        0.10 * lengthScore +
+        0.28 * indexMatchScore +
+        0.4 * totalWordScore;
+
+    console.log(`\n[DEBUG — NORMAL MODE] ${userInput}: score ${finalScore}`
+);
+}
+
+return finalScore >= tolerance ? finalScore : 0;
 }
 
 // --- Component scoring functions ---
@@ -73,7 +77,7 @@ function totalWordMatchScore(userTokens, patternTokens) {
             }
         }
 
-        if (bestMatch >= 0.3) {
+        if (bestMatch >= 0.7) {
             totalScore += bestMatch;
         }
     }
@@ -82,3 +86,5 @@ function totalWordMatchScore(userTokens, patternTokens) {
         ? totalScore / uniquePatternTokens.length
         : 0;
 }
+
+

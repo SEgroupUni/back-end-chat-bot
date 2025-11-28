@@ -2,7 +2,6 @@
 import { compositeMatchScore } from "./compositeMatchScore.js";
 import checkFullInput from "./checkFullInput.js";
 import { flanClassifier, loadFlan } from "./flanClassifier.js";
-
 import { createRequire } from "module";
 const require = createRequire(import.meta.url);
 const intentsData = require("../../intentData/intents.json");

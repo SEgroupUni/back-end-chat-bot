@@ -10,11 +10,6 @@ export function createSession(initialData) {
     return true;
 }
 
-// 2 — Update user data (optional)
-export function updateUserData(userData) {
-    const session = getSession();
-    session.setUserData(userData);
-}
 
 // 3 — Process user input
 export function backFlowGateRouter(userInput) {
@@ -22,7 +17,9 @@ export function backFlowGateRouter(userInput) {
     session.setFlagState("intEngine");
     session.setUserInput(userInput); // run AFTER flag is set
 }
-//4 - Return response then flush session object so clean for next cycle
+
+
+
 export function frontFlowGateRouter(response) {
     const session = getSession();
     console.log(response)
