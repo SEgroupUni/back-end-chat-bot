@@ -20,7 +20,7 @@ export async function sendToExternalAI(messages) {
             body: JSON.stringify({
                 model: "deepseek-ai/DeepSeek-R1-Distill-Qwen-32B",
                 messages: messages,
-                max_tokens: 500
+                max_tokens: 2000,
             }),
         });
 
