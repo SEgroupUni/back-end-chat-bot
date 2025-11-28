@@ -544,6 +544,98 @@
         "He increased the coordination between military, religious, and administrative institutions."
       ],
       "semantic field": "achievements"
+    },
+    
+    {
+      "intent": "ramses_trade_expansions",
+      "patterns": [
+        "what trade expansions did Ramses II pursue",
+        "how did Ramses II expand trade",
+        "Ramses II trade policies",
+        "did Ramses II increase trade",
+        "trade under Ramses the Great",
+        "how did Egypt trade during Ramses II’s reign",
+        "Ramses II commercial expansions",
+        "economic trade routes under Ramses II"
+      ],
+      "responses": [
+        "Ramses II expanded trade networks with regions such as Nubia, Canaan, and the Levant.",
+        "His reign strengthened long-distance trade, contributing to the flow of luxury goods, metals, and agricultural products.",
+        "Ramses II fostered commercial ties through diplomacy and stable borders, enhancing Egypt’s economic reach."
+      ],
+      "semantic field": "achievements"
+    },
+
+    {
+      "intent": "ramses_economic_policies",
+      "patterns": [
+        "what were Ramses II’s economic policies",
+        "how did Ramses II manage the economy",
+        "economic strategies of Ramses II",
+        "did Ramses II change the economy",
+        "how Ramses the Great handled economic affairs",
+        "Egyptian economy under Ramses II"
+      ],
+      "responses": [
+        "Ramses II invested heavily in construction, agriculture, and labor systems to sustain economic strength.",
+        "His economic policies relied on centralized resource management, taxation, and state-supported building projects.",
+        "He promoted stability through efficient distribution of goods, improved storage facilities, and state oversight."
+      ],
+      "semantic field": "achievements"
+    },
+
+    {
+      "intent": "ramses_diplomatic_strategies",
+      "patterns": [
+        "what diplomatic strategies did Ramses II use",
+        "how did Ramses II handle diplomacy",
+        "Ramses II diplomatic tactics",
+        "how did Ramses the Great deal with foreign powers",
+        "diplomatic approach of Ramses II",
+        "Egypt’s diplomacy under Ramses II"
+      ],
+      "responses": [
+        "Ramses II used diplomacy alongside military strength, forming alliances and maintaining stable borders.",
+        "His strategies included treaty-making, royal marriages, and high-level correspondence with foreign rulers.",
+        "He balanced force with negotiation, exemplified by the peace treaty with the Hittites."
+      ],
+      "semantic field": "achievements"
+    },
+
+    {
+      "intent": "ramses_personal_view_of_legacy",
+      "patterns": [
+        "what was Ramses II’s personal view of his legacy",
+        "how did Ramses II see his own legacy",
+        "what did Ramses the Great think of his reign",
+        "how did Ramses II view his achievements",
+        "what did Ramses II want to be known for",
+        "Ramses II thoughts about his legacy"
+      ],
+      "responses": [
+        "Ramses II saw himself as a divine ruler whose achievements would endure for eternity.",
+        "He viewed his legacy through monumental architecture and inscriptions meant to immortalize his greatness.",
+        "Ramses II believed his reign represented order, prosperity, and divine favor."
+      ],
+      "semantic field": "achievements"
+    },
+
+    {
+      "intent": "ramses_how_he_wishes_to_be_remembered",
+      "patterns": [
+        "how did Ramses II wish to be remembered",
+        "how he wanted future generations to remember him",
+        "what legacy did Ramses II want",
+        "how Ramses the Great hoped history would see him",
+        "what memory Ramses II wanted to leave",
+        "how he wished later generations to view him"
+      ],
+      "responses": [
+        "Ramses II wished to be remembered as a mighty ruler, protector of Egypt, and builder of eternal monuments.",
+        "He hoped future generations would see him as a victorious king favored by the gods and guardian of maat.",
+        "His inscriptions and temples reflect a desire to be remembered for power, stability, and divine kingship."
+      ],
+      "semantic field": "achievements"
     }
   ]
   }
