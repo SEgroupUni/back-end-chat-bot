@@ -942,6 +942,132 @@
         "The royal family formed a political network that reinforced dynastic authority and stability."
       ],
       "semantic field": "family"
+    },
+
+    {
+      "intent": "ramses_major_gods_worshipped",
+      "patterns": [
+        "what gods did Ramses II worship",
+        "major gods worshipped by Ramses the Great",
+        "which deities were important to Ramses II",
+        "Ramses II and the gods he honored",
+        "who were the main gods in Ramses II’s religion",
+        "deities Ramses II prayed to"
+      ],
+      "responses": [
+        "Ramses II worshipped major deities such as Amun-Ra, Ptah, Ra-Horakhty, and Osiris.",
+        "He honored a wide pantheon, emphasizing the gods who granted kingship and cosmic order.",
+        "The pharaoh paid special devotion to Amun, seeking divine support for his rule."
+      ],
+      "semantic field": "religion"
+    },
+
+    {
+      "intent": "ramses_view_of_pharaoh_as_divine",
+      "patterns": [
+        "how did Ramses II view his own divinity",
+        "was Ramses the Great considered divine",
+        "divine status of Ramses II",
+        "did Egyptians see Ramses II as a god",
+        "pharaoh as divine ruler in Ramses II’s time",
+        "Ramses II’s belief in his divine nature"
+      ],
+      "responses": [
+        "Ramses II was regarded as a divine intermediary, embodying the power of the gods on earth.",
+        "He embraced the traditional belief that the pharaoh was both a mortal king and a living god.",
+        "His monuments emphasize his divine role as protector and upholder of cosmic order."
+      ],
+      "semantic field": "religion"
+    },
+
+    {
+      "intent": "ramses_role_in_maintaining_maat",
+      "patterns": [
+        "what was Ramses II’s role in maintaining Ma’at",
+        "how did Ramses the Great uphold Ma’at",
+        "responsibilities of Ramses II regarding Ma’at",
+        "pharaoh’s duty to maintain cosmic order",
+        "did Ramses II enforce Ma’at",
+        "how did he preserve balance and justice"
+      ],
+      "responses": [
+        "Ramses II was responsible for preserving Ma’at, the cosmic order governing truth and harmony.",
+        "He upheld Ma’at through just rule, military protection, and religious devotion.",
+        "Egyptians believed that the pharaoh’s actions directly maintained balance in the world."
+      ],
+      "semantic field": "religion"
+    },
+
+    {
+      "intent": "ramses_ritual_offerings_performed",
+      "patterns": [
+        "what ritual offerings did Ramses II perform",
+        "describe the offerings Ramses II made to the gods",
+        "ritual acts of Ramses the Great",
+        "offerings given by Ramses II",
+        "what sacred offerings did the pharaoh perform",
+        "ceremonial gifts to the gods by Ramses II"
+      ],
+      "responses": [
+        "Ramses II performed ritual offerings of incense, food, wine, and precious goods to honor the gods.",
+        "He participated in daily temple ceremonies meant to renew the gods' favor.",
+        "Offerings symbolized the pharaoh’s duty to nourish the gods and sustain divine harmony."
+      ],
+      "semantic field": "religion"
+    },
+
+    {
+      "intent": "ramses_temple_responsibilities",
+      "patterns": [
+        "what were Ramses II’s temple responsibilities",
+        "role of Ramses the Great in temple life",
+        "duties of the pharaoh in temples",
+        "how Ramses II supported temples",
+        "religious responsibilities of Ramses II",
+        "what Ramses II did for the temples"
+      ],
+      "responses": [
+        "Ramses II oversaw temple construction, funding, and maintenance throughout Egypt.",
+        "He appointed priests, maintained sacred rituals, and ensured temples remained centers of spiritual power.",
+        "His temple responsibilities reinforced the bond between kingship and the divine world."
+      ],
+      "semantic field": "religion"
+    },
+
+    {
+      "intent": "ramses_views_on_afterlife",
+      "patterns": [
+        "what were Ramses II’s views on the afterlife",
+        "how did Ramses the Great view life after death",
+        "beliefs of Ramses II about the afterlife",
+        "did Ramses II believe in an afterlife",
+        "afterlife beliefs in Ramses II’s reign",
+        "how he saw his fate after death"
+      ],
+      "responses": [
+        "Ramses II believed in a complex afterlife journey that required protection and divine guidance.",
+        "He expected to be reborn with the gods and live eternally in the Field of Reeds.",
+        "His tomb inscriptions reflect deep belief in resurrection and spiritual triumph."
+      ],
+      "semantic field": "religion"
+    },
+
+    {
+      "intent": "ramses_religious_festivals_participated_in",
+      "patterns": [
+        "what religious festivals did Ramses II participate in",
+        "festivals celebrated by Ramses the Great",
+        "major rituals Ramses II joined",
+        "did Ramses II attend religious festivals",
+        "pharaoh’s role in festivals",
+        "festivals held during Ramses II’s reign"
+      ],
+      "responses": [
+        "Ramses II took part in major festivals such as Opet, the Beautiful Feast of the Valley, and Sed festivals.",
+        "His participation symbolized renewal of kingship and divine blessing.",
+        "Religious festivals strengthened his bond with the gods and the Egyptian people."
+      ],
+      "semantic field": "religion"
     }
   ]
   }
