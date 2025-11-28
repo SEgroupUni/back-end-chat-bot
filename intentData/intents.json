@@ -780,6 +780,168 @@
         "Ramses II sought to be remembered for power, stability, and devotion to the gods."
       ],
       "semantic field": "death"
+    },
+    
+    {
+      "intent": "ramses_parent_names",
+      "patterns": [
+        "who were Ramses II’s parents",
+        "names of Ramses the Great’s parents",
+        "who was the father of Ramses II",
+        "who was the mother of Ramses II",
+        "parentage of Ramses II",
+        "Ramses II’s family origins"
+      ],
+      "responses": [
+        "Ramses II’s parents were Seti I and Queen Tuya, both highly respected figures of the 19th Dynasty.",
+        "He was born into a powerful royal lineage through Pharaoh Seti I and Queen Tuya.",
+        "His parentage strengthened his legitimacy and elevated his early status within the royal court."
+      ],
+      "semantic field": "family"
+    },
+
+    {
+      "intent": "ramses_sibling_relationships",
+      "patterns": [
+        "did Ramses II have siblings",
+        "who were the siblings of Ramses II",
+        "Ramses the Great’s brothers and sisters",
+        "what was Ramses II’s relationship with his siblings",
+        "siblings in Ramses II’s family",
+        "family dynamics of Ramses II"
+      ],
+      "responses": [
+        "Ramses II had siblings who held ceremonial and administrative roles within the royal household.",
+        "His relationships with siblings supported his early rise in court life and reinforced dynastic unity.",
+        "Royal brothers and sisters often assisted in rituals, diplomacy, and governance."
+      ],
+      "semantic field": "family"
+    },
+
+    {
+      "intent": "ramses_number_of_wives",
+      "patterns": [
+        "how many wives did Ramses II have",
+        "did Ramses the Great have multiple wives",
+        "number of Ramses II’s wives",
+        "who were the wives of Ramses II",
+        "how many queens did Ramses II marry",
+        "marriages of Ramses II"
+      ],
+      "responses": [
+        "Ramses II had numerous wives, including both political unions and beloved consorts.",
+        "His marriages strengthened diplomacy and affirmed his royal prestige.",
+        "The Great Royal Wife held the highest honor among his many partners."
+      ],
+      "semantic field": "family"
+    },
+
+    {
+      "intent": "ramses_marriage_customs",
+      "patterns": [
+        "what were the marriage customs for Ramses II",
+        "how did Ramses the Great marry his queens",
+        "royal marriage traditions in Ramses II’s time",
+        "customs of pharaonic marriage",
+        "marriage rituals for Ramses II",
+        "how pharaohs conducted marriage ceremonies"
+      ],
+      "responses": [
+        "Royal marriage customs involved elaborate ceremonies, offerings, and public processions.",
+        "Ramses II’s marriages reflected both sacred duty and political strategy.",
+        "Marriages strengthened alliances, secured heirs, and reinforced divine kingship."
+      ],
+      "semantic field": "family"
+    },
+
+    {
+      "intent": "ramses_number_of_children",
+      "patterns": [
+        "how many children did Ramses II have",
+        "did Ramses the Great have many children",
+        "number of Ramses II’s sons and daughters",
+        "how many heirs did Ramses II father",
+        "children of Ramses II",
+        "Ramses II’s large royal family"
+      ],
+      "responses": [
+        "Ramses II was known for having over a hundred children, symbolizing divine favor and prosperity.",
+        "His sons and daughters held important positions across the kingdom.",
+        "A large royal family strengthened political stability during his long reign."
+      ],
+      "semantic field": "family"
+    },
+
+    {
+      "intent": "ramses_heirs_to_the_throne",
+      "patterns": [
+        "who were the heirs of Ramses II",
+        "who succeeded Ramses the Great",
+        "heir to Ramses II’s throne",
+        "which son was chosen as successor",
+        "line of succession after Ramses II",
+        "sons considered heirs by Ramses II"
+      ],
+      "responses": [
+        "Ramses II’s successors were chosen from among his many sons, with Merenptah ultimately inheriting the throne.",
+        "His heirs were trained from childhood in leadership, warfare, and ritual.",
+        "A clear line of succession helped maintain stability after his reign."
+      ],
+      "semantic field": "family"
+    },
+
+    {
+      "intent": "ramses_role_of_royal_consorts",
+      "patterns": [
+        "what was the role of Ramses II’s consorts",
+        "duties of royal wives under Ramses II",
+        "role of queens in Ramses II’s court",
+        "importance of consorts to Ramses the Great",
+        "influence of royal wives in the 19th Dynasty",
+        "what did Ramses II’s wives do"
+      ],
+      "responses": [
+        "Royal consorts supported the pharaoh through diplomacy, ceremonial duties, and religious roles.",
+        "They represented the ideals of womanhood, fertility, and divine protection.",
+        "Some consorts held significant influence within court politics and royal decision-making."
+      ],
+      "semantic field": "family"
+    },
+
+    {
+      "intent": "ramses_relationship_with_nefertari",
+      "patterns": [
+        "what was Ramses II’s relationship with Nefertari",
+        "why was Nefertari important to Ramses the Great",
+        "how did Ramses II honor Nefertari",
+        "did Ramses II love Nefertari",
+        "relationship between Ramses II and his Great Royal Wife",
+        "Nefertari and Ramses II"
+      ],
+      "responses": [
+        "Ramses II deeply revered Nefertari, honoring her with grand monuments and inscriptions.",
+        "Their relationship is remembered as one of great affection and political significance.",
+        "Nefertari held the title of Great Royal Wife and played a major role in diplomacy and ceremony."
+      ],
+      "semantic field": "family"
+    },
+
+    {
+      "intent": "ramses_family_influence_on_politics",
+      "patterns": [
+        "how did Ramses II’s family influence politics",
+        "role of Ramses the Great’s family in government",
+        "how his family shaped the kingdom",
+        "political power of Ramses II’s relatives",
+        "influence of his children and wives on politics",
+        "family involvement in Ramses II’s rule"
+      ],
+      "responses": [
+        "Ramses II placed family members in key religious and administrative roles to strengthen his rule.",
+        "His wives, children, and siblings acted as trusted representatives throughout Egypt.",
+        "The royal family formed a political network that reinforced dynastic authority and stability."
+      ],
+      "semantic field": "family"
     }
   ]
   }
