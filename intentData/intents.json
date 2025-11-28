@@ -186,6 +186,114 @@
         "His personality is viewed as authoritative, strategic, and deeply concerned with legacy."
       ],
       "semantic field": "character traits"
+    },
+    {
+      "intent": "ramses_lifestyle_habits",
+      "patterns": [
+        "what were Ramses II's lifestyle habits",
+        "describe Ramses II's lifestyle",
+        "how did Ramses II live day to day",
+        "daily habits of Ramses II",
+        "what was Ramses II's routine",
+        "Ramses II lifestyle",
+        "what did Ramses II do regularly",
+        "how did the pharaoh live"
+      ],
+      "responses": [
+        "Ramses II maintained a royal lifestyle focused on ceremony, governance, and military oversight.",
+        "His daily habits included religious rituals, administrative meetings, and inspections of construction or military activities.",
+        "He lived a structured life surrounded by attendants, advisors, and the formalities of the royal court."
+      ],
+      "semantic field": "historical lifestyle"
+    },
+
+    {
+      "intent": "ramses_age_at_accession",
+      "patterns": [
+        "how old was Ramses II when he became pharaoh",
+        "Ramses II age at accession",
+        "what age did Ramses become king",
+        "how old was Ramses when he took the throne",
+        "age of Ramses II when he started ruling",
+        "Ramses II throne age"
+      ],
+      "responses": [
+        "Ramses II became pharaoh at about 24 years old.",
+        "He ascended the throne in his early twenties, traditionally around age 24.",
+        "Ramses II took power as a young adult, roughly at the age of 24."
+      ],
+      "semantic field": "biographical chronology"
+    },
+
+    {
+      "intent": "ramses_length_of_reign",
+      "patterns": [
+        "how long did Ramses II reign",
+        "length of reign of Ramses II",
+        "how many years did Ramses the Great rule",
+        "duration of Ramses II's rule",
+        "how long was Ramses II pharaoh",
+        "Ramses II years in power"
+      ],
+      "responses": [
+        "Ramses II reigned for approximately 66 years.",
+        "His reign lasted about 66 years, one of the longest in Egyptian history.",
+        "Ramses the Great ruled Egypt for around six and a half decades."
+      ],
+      "semantic field": "historical duration"
+    },
+
+    {
+      "intent": "ramses_education",
+      "patterns": [
+        "what education did Ramses II receive",
+        "how was Ramses II educated",
+        "Ramses II education",
+        "what did Ramses II learn as a child",
+        "training and education of Ramses the Great",
+        "skills Ramses II was taught"
+      ],
+      "responses": [
+        "Ramses II received a royal education that included reading, writing, mathematics, and religious doctrine.",
+        "His training covered military strategy, diplomacy, administration, and ritual duties.",
+        "As a prince, he was educated by tutors, priests, and military officers to prepare him for leadership."
+      ],
+      "semantic field": "historical education"
+    },
+
+    {
+      "intent": "ramses_languages_spoken",
+      "patterns": [
+        "what languages did Ramses II speak",
+        "languages spoken by Ramses II",
+        "did Ramses II know multiple languages",
+        "which language did Ramses the Great use",
+        "what language did Ramses II communicate in"
+      ],
+      "responses": [
+        "Ramses II primarily spoke Late Egyptian, the administrative and spoken language of his time.",
+        "He likely understood some Hieratic and Hieroglyphic forms used for writing and religious texts.",
+        "As pharaoh, he may have encountered foreign languages diplomatically, but his main language was Egyptian."
+      ],
+      "semantic field": "linguistic history"
+    },
+
+    {
+      "intent": "ramses_typical_wardrobe",
+      "patterns": [
+        "what did Ramses II wear",
+        "typical clothing of Ramses II",
+        "how did Ramses II dress",
+        "wardrobe of Ramses the Great",
+        "describe Ramses II's attire",
+        "what clothes did the pharaoh wear"
+      ],
+      "responses": [
+        "Ramses II typically wore ornate linen garments, often finely pleated and decorated.",
+        "His wardrobe included ceremonial crowns, gold jewelry, and symbolic regalia representing divine kingship.",
+        "As pharaoh, he dressed in elaborate attire during rituals and official events, emphasizing status and authority."
+      ],
+      "semantic field": "material culture"
     }
   ]
   }
