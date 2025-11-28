@@ -59,6 +59,132 @@
         "In the halucinations of an LLM",
         "In the anguish of a madmans howl"
       ]
+    },
+    {
+      "intent": "ramses_birth_date",
+      "patterns": [
+        "when was Ramses II born",
+        "Ramses II birth date",
+        "date of birth of Ramses the Great",
+        "tell me his birth date",
+        "what year did Ramses II come into the world",
+        "Ramses II birthday",
+        "when did Ramses the Great live",
+        "exact birth date of Ramses II"
+      ],
+      "responses": [
+        "Ramses II was born in 1303 BCE.",
+        "He was born around 1303 BCE.",
+        "Ramses II’s birth date is generally accepted as 1303 BCE."
+      ],
+      "semantic field": "biographical data"
+    },
+
+    {
+      "intent": "ramses_birthplace",
+      "patterns": [
+        "where was Ramses II born",
+        "Ramses II birthplace",
+        "birthplace of Ramses the Great",
+        "where did Ramses II come from",
+        "where did Ramses II enter the world",
+        "where was the pharaoh Ramses II born"
+      ],
+      "responses": [
+        "Ramses II was born in the Nile Delta region, likely at Avaris or Pi-Ramesses.",
+        "His birthplace is believed to be in the eastern Nile Delta.",
+        "Ramses II was born in what would later become the city of Pi-Ramesses."
+      ],
+      "semantic field": "biographical data"
+    },
+
+    {
+      "intent": "ramses_childhood_environment",
+      "patterns": [
+        "what was Ramses II’s childhood environment like",
+        "describe Ramses II’s early environment",
+        "how did Ramses grow up",
+        "where did Ramses II grow up",
+        "Ramses II childhood environment",
+        "conditions of his childhood surroundings"
+      ],
+      "responses": [
+        "Ramses II grew up in the royal court, surrounded by wealth, political power, and military influence.",
+        "His childhood environment was that of an elite Egyptian prince, with access to education, training, and the royal household.",
+        "He was raised in a palace environment centered on administration, warfare, and religious ceremony."
+      ],
+      "semantic field": "historical context"
+    },
+
+    {
+      "intent": "ramses_childhood_upbringing",
+      "patterns": [
+        "how was Ramses II raised",
+        "Ramses II upbringing",
+        "what was Ramses II’s childhood like",
+        "how did Ramses the Great grow up",
+        "details about Ramses II’s upbringing",
+        "was Ramses II trained as a child"
+      ],
+      "responses": [
+        "Ramses II was trained from a young age in leadership, military skills, diplomacy, and religious duties.",
+        "He received a royal education, preparing him to eventually succeed his father Seti I.",
+        "His upbringing included military training, administrative instruction, and participation in ritual life."
+      ],
+      "semantic field": "historical biography"
+    },
+
+    {
+      "intent": "ramses_titles",
+      "patterns": [
+        "what titles did Ramses II hold",
+        "Ramses II official titles",
+        "titles of Ramses the Great",
+        "what was Ramses II called as a ruler",
+        "pharaonic titles of Ramses II",
+        "list Ramses II’s titles"
+      ],
+      "responses": [
+        "Ramses II held titles such as 'Pharaoh of Egypt', 'Lord of the Two Lands', and 'Son of Ra'.",
+        "His official titles emphasized kingship, divine authority, and military leadership.",
+        "Ramses II was known by many royal titles, reflecting his status as Egypt’s ruler and god-king."
+      ],
+      "semantic field": "royal authority"
+    },
+
+    {
+      "intent": "ramses_names_epithets",
+      "patterns": [
+        "what names did Ramses II use",
+        "epithets of Ramses II",
+        "names and titles of Ramses the Great",
+        "what was Ramses II also called",
+        "Ramses II throne name",
+        "meaning of Ramses II’s names"
+      ],
+      "responses": [
+        "Ramses II used names such as 'Usermaatre Setepenre' and 'Ramesses Meriamun'.",
+        "He was often called 'Ramses the Great' because of his long reign and achievements.",
+        "His royal epithets emphasized power, divine favor, and eternal rule."
+      ],
+      "semantic field": "onomastics"
+    },
+
+    {
+      "intent": "ramses_personality_traits",
+      "patterns": [
+        "what was Ramses II like",
+        "describe Ramses II’s personality",
+        "personality traits of Ramses the Great",
+        "was Ramses II arrogant",
+        "was Ramses II brave",
+        "how did Ramses II behave as a ruler"
+      ],
+      "responses": [
+        "Ramses II is often portrayed as ambitious, confident, and highly self-promotional.",
+        "He demonstrated strong leadership, military boldness, and a flair for monument-building.",
+        "His personality is viewed as authoritative, strategic, and deeply concerned with legacy."
+      ],
+      "semantic field": "character traits"
     }
-  ]
-}
+  }
