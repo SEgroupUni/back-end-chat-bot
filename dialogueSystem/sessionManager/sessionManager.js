@@ -63,7 +63,7 @@ class Session {
             sessionLog: currentSession.sessionLog
         };
         //appends the current session data to all previous sessions
-        savedSessions[this.id] = sessionData;
+        savedSessions[currentSession.id] = sessionData;
         //writes everything into the JSON file
         fs.writeFileSync(sessionFilePath, JSON.stringify(savedSessions, null, 2), 'utf-8')
         sessionData = {
