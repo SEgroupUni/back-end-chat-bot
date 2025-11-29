@@ -1,8 +1,8 @@
 import express from 'express';
-import { 
-    backFlowGateRouter, 
-    frontFlowGateRouter 
-} from '../dialogueSystem/dataGateway/gateRouter.js';
+import {
+    backFlowGateRouter,
+    frontFlowGateRouter
+} from '../../dialogueSystem/dataGateway/gateRouter.js';
 
 const router = express.Router();
 

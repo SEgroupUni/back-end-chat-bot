@@ -1,4 +1,4 @@
-import { getSession } from "../../session/sessionState.js";
+import { getSession } from "../../liveSessionState/sessionState.js";
 import { promptLogic } from "./promptLogic.js";
 
 export function promptGateway(messageEvelope){

@@ -1,5 +1,5 @@
 import express from 'express';
-import { createSession } from '../dialogueSystem/dataGateway/gateRouter.js';
+import { createSession } from '../../dialogueSystem/dataGateway/gateRouter.js';
 
 const router = express.Router();
 

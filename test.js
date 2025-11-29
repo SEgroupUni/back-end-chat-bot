@@ -1,6 +1,7 @@
 import { createSession, backFlowGateRouter } 
 from "./dialogueSystem/dataGateway/gateRouter.js";
-import { getSession } from "./session/sessionState.js";
+import { getSession } from "./liveSessionState/sessionState.js";
+
 
 
 

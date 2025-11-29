@@ -1,4 +1,4 @@
-import { getSession } from "../../session/sessionState.js";
+import { getSession } from "../../liveSessionState/sessionState.js";
 import { getPersona } from "../../personas/getPersona.js";
 import { validatePersona } from "./gateValidation.js";
 

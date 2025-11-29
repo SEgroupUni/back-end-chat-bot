@@ -1,5 +1,5 @@
 import { processAiLogic } from "./aiLogicManager.js";
-import { getSession } from "../session/sessionState.js";
+import { getSession } from "../liveSessionState/sessionState.js";
 
 export async function handleAiRequest(messageEnvelope, sessionPrompt) {
     const session = getSession();

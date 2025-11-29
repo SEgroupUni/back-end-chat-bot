@@ -1,5 +1,5 @@
 import getResponse from "./getResponse.js";
-import { getSession } from "../../session/sessionState.js";
+import { getSession } from "../../liveSessionState/sessionState.js";
 
 export async function intentController(messageEnvelope) {
     console.log('intent controller')
