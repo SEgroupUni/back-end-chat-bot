@@ -2,10 +2,7 @@ import { intentController } from "../intentEngine/intentController.js";
 import { frontFlowGateRouter } from "../dataGateway/gateRouter.js";
 import { handleAiRequest } from "../../externalAiIntegration/aiInputGateway.js";
 import { promptGateway } from "../dialogueGuide/promptGateWay.js";
-import { getSession } from "../../liveSessionState/sessionState.js";
-import path from 'path';
-import fs from 'fs';
-
+import { fileSaver } from "../endSessionManager/fileSaver.js";
 class Session {
 
     constructor(initialData) {
@@ -43,33 +40,8 @@ class Session {
     }
 
 
-    SessionSave(){
-        // finds the file to save the data into
-        const sessionFilePath = path.join(process.cwd(),'log.json');
-        let savedSessions = {};
-        if (fs.existsSync(sessionFilePath)){
-            const fileData = fs.readFileSync(sessionFilePath, 'utf-8')
-            if (fileData.trim().length > 0){
-                //downloads all previous sessions so they don't get cleared on file save
-                savedSessions = JSON.parse(fileData)
-            }
-        }
-        //gets the current session
-        const currentSession = getSession()
-
-
-        const sessionData = {
-            id: currentSession.id,
-            sessionLog: currentSession.sessionLog
-        };
-        //appends the current session data to all previous sessions
-        savedSessions[currentSession.id] = sessionData;
-        //writes everything into the JSON file
-        fs.writeFileSync(sessionFilePath, JSON.stringify(savedSessions, null, 2), 'utf-8')
-        sessionData = {
-            id: null,
-            sessionLog: null
-        };
+    SessionSave() {
+        fileSaver()
     }
 
 
@@ -135,6 +107,7 @@ class Session {
         this.currentSessionObj.history = this.sessionLog.slice(-5)
     }
 }
+import fileSaver from "../endSessionManager/fileSaver.js";
 
 
 export default Session;
