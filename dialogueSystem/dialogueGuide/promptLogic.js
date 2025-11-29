@@ -1,10 +1,9 @@
 import { semInnerModel } from "./semInnerModel.js";
-
 export function promptLogic(messageEnvelope) {
   
   const prediction = semInnerModel(messageEnvelope.intent, messageEnvelope.history);
 
-  if (prediction) {
+  if (prediction && prediction.promptMsg) {
     // Model found a meaningful next intent
     messageEnvelope.userPrompt = prediction.promptMsg;
     messageEnvelope.flagState = "frontFlow";
@@ -16,3 +15,4 @@ export function promptLogic(messageEnvelope) {
 
   return messageEnvelope;
 }
+

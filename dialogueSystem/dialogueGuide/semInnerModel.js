@@ -6,7 +6,7 @@ import { fileURLToPath } from "url";
 // File path setup
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const jsonPath = path.join(__dirname, "../../intentData/testIntents.json");
+const jsonPath = path.join(__dirname, "../../intentData/intents.json");
 
 // Load JSON
 const intentsData = JSON.parse(fs.readFileSync(jsonPath, "utf8"));
@@ -36,7 +36,7 @@ function buildModel(semanticIntents) {
   const subset = intentsData.intents.filter(i => semanticIntents.includes(i.intent));
 
   // Build matrix based on stored scores
-  const matrix = subset.map(i => i.score);
+  const matrix = subset.map(i => i.transition_scores);
 
   return {
     intents: semanticIntents,
@@ -71,7 +71,7 @@ function semanticFieldHistory(intentName, history) {
       return record && record.semantic_field === targetField;
     })
     .map(entry => entry.intent);
-
+    
   return matchingHistory;
 }
 
@@ -101,7 +101,8 @@ export function semInnerModel(intentName, history) {
       return {
         intent: name,
         score: value * semanticDecay,
-        promptMsg: full?.promptMsg || null
+        promptMsg: full.msgPrompt ?? null
+
       };
     })
     .filter(item => item.intent !== intentName)
@@ -110,7 +111,7 @@ export function semInnerModel(intentName, history) {
   if (!scoredIntents.length || scoredIntents[0].score <= 0.2) {
     return null;
   }
-
+  
   return scoredIntents[0] || null; // <-- single object or null
 }
 
