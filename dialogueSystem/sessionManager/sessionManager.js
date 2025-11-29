@@ -2,7 +2,8 @@ import { intentController } from "../intentEngine/intentController.js";
 import { frontFlowGateRouter } from "../dataGateway/gateRouter.js";
 import { handleAiRequest } from "../../externalAiIntegration/aiInputGateway.js";
 import { promptGateway } from "../dialogueGuide/promptGateWay.js";
-import { fileSaver } from "../endSessionManager/fileSaver.js";
+import fileSaver from "../endSessionManager/fileSaver.js";
+
 class Session {
 
     constructor(initialData) {
@@ -28,7 +29,8 @@ class Session {
             { step: intentController, flagState: "intEngine" },
             { step: frontFlowGateRouter, flagState: "frontFlow" },
             {step: handleAiRequest, flagState: 'aiRequest'},
-            {step: promptGateway, flagState: 'prompt'} 
+            {step: promptGateway, flagState: 'prompt'},
+            {step : fileSaver, flagState: 'endSession'}
         ];
     }
 
@@ -107,7 +109,7 @@ class Session {
         this.currentSessionObj.history = this.sessionLog.slice(-5)
     }
 }
-import fileSaver from "../endSessionManager/fileSaver.js";
+
 
 
 export default Session;
