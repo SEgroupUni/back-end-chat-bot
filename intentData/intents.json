@@ -1410,6 +1410,222 @@
         "The style blended realism with religious symbolism to elevate the image of the pharaoh."
       ],
       "semantic field": "monuments"
+    },
+
+    {
+      "intent": "ramses_social_class_structure",
+      "patterns": [
+        "what was the social class structure under Ramses II",
+        "social hierarchy in Ramses the Great’s time",
+        "how society was organized during Ramses II’s reign",
+        "Egyptian social classes under Ramses II",
+        "class system in his era",
+        "structure of society during Ramses II"
+      ],
+      "responses": [
+        "Egyptian society under Ramses II was highly stratified, with the pharaoh at the top followed by nobles, priests, scribes, craftsmen, and peasants.",
+        "Social structure emphasized hierarchy, duty, and the central authority of the pharaoh.",
+        "Most Egyptians were farmers or laborers, while elite groups managed religious, political, and administrative duties."
+      ],
+      "semantic field": "daily life"
+    },
+
+    {
+      "intent": "ramses_role_of_priests",
+      "patterns": [
+        "what was the role of priests under Ramses II",
+        "duties of priests in Ramses the Great’s time",
+        "how priests served in ancient Egypt during Ramses II",
+        "priestly responsibilities in his reign",
+        "role of temple priests under Ramses II",
+        "what priests did in his era"
+      ],
+      "responses": [
+        "Priests oversaw temple rituals, maintained sacred spaces, and acted as intermediaries between the gods and the people.",
+        "They managed temple estates, conducted daily offerings, and preserved religious traditions.",
+        "Priests held significant influence due to their role in sustaining divine order and Ma’at."
+      ],
+      "semantic field": "daily life"
+    },
+
+    {
+      "intent": "ramses_role_of_craftsmen",
+      "patterns": [
+        "what was the role of craftsmen under Ramses II",
+        "craftsmen in Ramses the Great’s time",
+        "what did artisans do during Ramses II’s reign",
+        "Egyptian craftsmen jobs under Ramses II",
+        "work of artisans in his era",
+        "importance of craftsmen to Egypt"
+      ],
+      "responses": [
+        "Craftsmen created tools, jewelry, pottery, sculptures, and temple decorations essential to daily life and royal projects.",
+        "Skilled artisans worked in workshops attached to temples, palaces, and major building sites.",
+        "Their craftsmanship contributed to the grandeur of Ramses II’s monuments and religious structures."
+      ],
+      "semantic field": "daily life"
+    },
+
+    {
+      "intent": "ramses_role_of_peasants",
+      "patterns": [
+        "what was the role of peasants under Ramses II",
+        "peasant life in Ramses the Great’s time",
+        "what did Egyptian peasants do during Ramses II",
+        "role of farmers in his reign",
+        "lower class responsibilities under Ramses II",
+        "Egyptian peasant duties"
+      ],
+      "responses": [
+        "Peasants formed the backbone of society, working the land, producing food, and supporting large-scale agricultural output.",
+        "They paid taxes in grain and labor, contributing to temple and state projects.",
+        "Though low in status, peasants were essential for sustaining Egypt’s economy and stability."
+      ],
+      "semantic field": "daily life"
+    },
+
+    {
+      "intent": "ramses_typical_food_sources",
+      "patterns": [
+        "what were the main food sources in Ramses II’s time",
+        "typical Egyptian food during Ramses the Great’s reign",
+        "what did people eat under Ramses II",
+        "common foods of ancient Egyptians in his era",
+        "diet in Ramses II’s time",
+        "food sources for Egyptians under Ramses II"
+      ],
+      "responses": [
+        "Common food sources included bread, beer, vegetables, fish, and occasionally meat.",
+        "The Nile’s fertile banks provided grains, fruits, and legumes essential to the Egyptian diet.",
+        "Food varied by class, with wealthier Egyptians enjoying more variety and imported goods."
+      ],
+      "semantic field": "daily life"
+    },
+
+    {
+      "intent": "ramses_farming_methods",
+      "patterns": [
+        "what farming methods were used under Ramses II",
+        "Egyptian agriculture in Ramses the Great’s time",
+        "how farming was done during Ramses II’s reign",
+        "agricultural techniques in his era",
+        "methods of farming in ancient Egypt",
+        "how Egyptians grew crops under Ramses II"
+      ],
+      "responses": [
+        "Farming relied on the annual Nile flood, basin irrigation, and manual labor with simple tools.",
+        "Farmers used canals, dikes, and shaduf devices to manage water distribution.",
+        "Agricultural cycles followed predictable patterns tied to the river’s inundation and retreat."
+      ],
+      "semantic field": "daily life"
+    },
+
+    {
+      "intent": "ramses_importance_of_the_nile",
+      "patterns": [
+        "why was the Nile important during Ramses II’s reign",
+        "importance of the Nile in Ramses the Great’s time",
+        "role of the Nile under Ramses II",
+        "how Egyptians used the Nile in his era",
+        "why the Nile was vital to Egypt",
+        "meaning of the Nile during Ramses II"
+      ],
+      "responses": [
+        "The Nile was the lifeline of Egypt, providing water, fertile soil, transportation, and food.",
+        "Its annual flood sustained agriculture and ensured stability throughout Ramses II’s reign.",
+        "The river also served as a key trade route and cultural symbol of life and renewal."
+      ],
+      "semantic field": "daily life"
+    },
+
+    {
+      "intent": "ramses_medical_practices",
+      "patterns": [
+        "what medical practices existed under Ramses II",
+        "medicine in Ramses the Great’s time",
+        "how Egyptians treated illnesses during Ramses II",
+        "ancient Egyptian healing practices",
+        "medical knowledge in his reign",
+        "healing techniques used in ancient Egypt"
+      ],
+      "responses": [
+        "Medical practices combined herbal remedies, surgical techniques, and incantations.",
+        "Physicians specialized in treating specific body parts, using both observation and ritual.",
+        "Egyptian medicine under Ramses II was advanced for its time, with documented procedures and remedies."
+      ],
+      "semantic field": "daily life"
+    },
+
+    {
+      "intent": "ramses_health_beliefs",
+      "patterns": [
+        "what were health beliefs in Ramses II’s time",
+        "how Egyptians viewed illness during Ramses the Great",
+        "health beliefs under Ramses II",
+        "why Egyptians became sick in his era",
+        "religious views on illness in ancient Egypt",
+        "Egyptian beliefs about health and disease"
+      ],
+      "responses": [
+        "Egyptians believed illness could stem from natural causes, spiritual imbalance, or displeasure of the gods.",
+        "Healing involved both medical treatments and religious rituals to restore harmony.",
+        "Protective amulets and prayers were commonly used to safeguard health."
+      ],
+      "semantic field": "daily life"
+    },
+
+    {
+      "intent": "ramses_music_traditions",
+      "patterns": [
+        "what music traditions existed under Ramses II",
+        "music in Ramses the Great’s time",
+        "what instruments Egyptians used during Ramses II’s reign",
+        "Egyptian musical culture in his era",
+        "role of music under Ramses II",
+        "typical music of ancient Egypt"
+      ],
+      "responses": [
+        "Music was an important part of religious ceremonies, celebrations, and daily entertainment.",
+        "Common instruments included harps, flutes, drums, sistrums, and lyres.",
+        "Musicians played roles in temples, festivals, and royal events."
+      ],
+      "semantic field": "daily life"
+    },
+
+    {
+      "intent": "ramses_games_and_entertainment",
+      "patterns": [
+        "what games did Egyptians play during Ramses II’s time",
+        "entertainment in Ramses the Great’s era",
+        "common games under Ramses II",
+        "what people did for fun during his reign",
+        "Egyptian leisure activities in his time",
+        "recreation in ancient Egypt"
+      ],
+      "responses": [
+        "Popular games included senet, stick fighting, wrestling, and ball games.",
+        "Entertainment involved music, storytelling, banquets, and public festivals.",
+        "Both adults and children enjoyed recreational activities reflecting cultural traditions."
+      ],
+      "semantic field": "daily life"
+    },
+
+    {
+      "intent": "ramses_religious_or_civic_festivals",
+      "patterns": [
+        "what festivals existed under Ramses II",
+        "religious festivals in Ramses the Great’s time",
+        "civic celebrations under Ramses II",
+        "festivals celebrated during his reign",
+        "major Egyptian festivals in Ramses II’s era",
+        "public rituals and festivals of his time"
+      ],
+      "responses": [
+        "Major festivals included the Opet Festival, the Sed Festival, and celebrations honoring various gods.",
+        "Festivals involved processions, offerings, music, and community gatherings.",
+        "These events reinforced social unity, religious devotion, and loyalty to the king."
+      ],
+      "semantic field": "daily life"
     }
   ]
   }
