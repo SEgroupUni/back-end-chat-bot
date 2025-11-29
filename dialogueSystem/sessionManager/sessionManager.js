@@ -66,6 +66,10 @@ class Session {
         savedSessions[this.id] = sessionData;
         //writes everything into the JSON file
         fs.writeFileSync(sessionFilePath, JSON.stringify(savedSessions, null, 2), 'utf-8')
+        sessionData = {
+            id: null,
+            sessionLog: null
+        };
     }
 
 
