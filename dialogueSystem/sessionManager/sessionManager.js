@@ -43,16 +43,12 @@ class Session {
     this.currentSessionObj.flagState = "intEngine";
 
     return await this.runPipeline();
-}   logSessionEnvelopes(messageEnvelope) {
+}   
+
+logSessionEnvelopes(messageEnvelope) {
         this.sessionLog.push(messageEnvelope);
     }
-    setSessionPrompt() {
-
-    // update dynamic fields inside the object
-    this.sessionPrompt.currentSpecific = this.userData.visitor;
-    this.sessionPrompt.currentAge = this.userData.age;
-
-}
+ 
 
     // --- Core Conversation Pipeline Engine ---
     async runPipeline() {

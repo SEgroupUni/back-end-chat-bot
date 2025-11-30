@@ -19,16 +19,13 @@ if (indexMatchScore <= 0.2) {
         0.20 * lengthScore +
         0.5 * totalWordScore;
 
-    console.log(`\n[DEBUG — NORMAL MODE] ${userInput}: score ${finalScore}`);
+    
 } else {
     finalScore =
         0.22 * sortWordScore +
         0.10 * lengthScore +
         0.28 * indexMatchScore +
         0.4 * totalWordScore;
-
-    console.log(`\n[DEBUG — NORMAL MODE] ${userInput}: score ${finalScore}`
-);
 }
 
 return finalScore >= tolerance ? finalScore : 0;

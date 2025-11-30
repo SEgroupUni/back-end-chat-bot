@@ -1,6 +1,6 @@
 import pkg from "synonyms/dictionary.js";
 const { mess } = pkg;
-import { sendToExternalAI } from "./externalApiClient.js";
+import { sendToExternalAI } from "./externalApiGateway.js";
 
 export async function processAiLogic(messageEnvelope, sessionPrompt) {
     
@@ -18,6 +18,7 @@ export async function processAiLogic(messageEnvelope, sessionPrompt) {
         - ABSOLUTE LIMIT: Do not exceed 40 words.
         - Stop immediately after 2 or 3 sentences.
         - Never write long paragraphs.
+        - Greetings and farewells must be no longer than 2 short sentences (maximum 2 lines).
         - When asked a simple question, DO NOT add unnecessary details
         `;
     }
@@ -25,29 +26,46 @@ export async function processAiLogic(messageEnvelope, sessionPrompt) {
             cleanPrompt = sessionPrompt;
     }
 
-    // CLEAN THE HISTORY 
-    let cleanHistory = [];
-    
-    try {
-        let rawHistory = messageEnvelope.history;
-        if (typeof rawHistory === 'string') rawHistory = JSON.parse(rawHistory);
+    // --- CLEAN HISTORY ---
+let cleanHistory = [];
 
-        if (Array.isArray(rawHistory)) {
-            for (const entry of rawHistory) {
-                if (entry.user) cleanHistory.push({role: "user", content: String(entry.user)});
+try {
+    let rawHistory = messageEnvelope.history;
 
-                if (entry.bot) cleanHistory.push({role: "assistant", content: String(entry.bot)});  
-            }
-        }
-    } catch (e) {
-        console.warn("[AI Logic] Could not parse history. Ignoring context.", e);
+    // Parse if stored as JSON string
+    if (typeof rawHistory === 'string') {
+        rawHistory = JSON.parse(rawHistory);
     }
 
-    const messages = [
-        { role: "system", content: cleanPrompt }, 
-        ...cleanHistory, 
-        { role: "user", content: String(messageEnvelope.userInput) }
-    ];
+    // Convert stored history into LLM-friendly structure
+    if (Array.isArray(rawHistory)) {
+        for (const entry of rawHistory) {
+            if (entry.userInput?.trim()) {
+                cleanHistory.push({
+                    role: "user",
+                    content: entry.userInput.trim()
+                });
+            }
+
+            if (entry.response?.trim()) {
+                cleanHistory.push({
+                    role: "assistant",
+                    content: entry.response.trim()
+                });
+            }
+        }
+    }
+
+} catch (err) {
+    console.warn("[AI Logic] Could not parse history. Ignoring context.", err);
+}
+
+// --- FINAL MESSAGE PAYLOAD SENT TO MODEL ---
+const messages = [
+    { role: "system", content: cleanPrompt },
+    ...cleanHistory,
+    { role: "user", content: String(messageEnvelope.userInput) }
+];
 
     console.log("[AI Logic] Sending request to API...");
 
@@ -71,14 +89,7 @@ if (finalReply.includes("```json")) {
     messageEnvelope.response = finalReply;
     messageEnvelope.flagState = "frontFlow";
     messageEnvelope.error = false;
-
-    // UPDATE THE SESSION 
-
-    // // Update User Data if AI found new facts
-    // if (parsedData.newFacts && Object.keys(parsedData.newFacts).length > 0) {
-    //     const currentData = sessionInstance.userData || {};
-    //     sessionInstance.setUserData({ ...currentData, ...parsedData.newFacts });A
-    // }
+    messageEnvelope.componentUsed = 'External LLM';
 
     console.log ("Envolope Updated. Flag set to frontFlow");
     return messageEnvelope;

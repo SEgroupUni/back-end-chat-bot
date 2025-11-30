@@ -3,11 +3,7 @@ from "./dialogueSystem/dataGateway/gateRouter.js";
 import { getSession } from "./liveSessionState/sessionState.js";
 
 
-
-
-
-
-const userInput =  'Tell me about egyption food'
+const userInput =  'hello'
 
 const persona = 'ramasses'
 

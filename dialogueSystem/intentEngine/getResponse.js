@@ -1,7 +1,6 @@
 
 import { compositeMatchScore } from "./compositeMatchScore.js";
 import checkFullInput from "./checkFullInput.js";
-import { flanClassifier, loadFlan } from "./flanClassifier.js";
 import { createRequire } from "module";
 const require = createRequire(import.meta.url);
 const intentsData = require("../../intentData/intents.json");
@@ -43,18 +42,6 @@ export default async function getResponse(messageEnvelope) {
         }
     }
 
-    // ---- FLAN fallback if no rule-based match ----
-    // if (bestScore === 0) {
-    //     await loadFlan();
-    //     const intentObj = await flanClassifier(inputText);
-
-    //     if (intentObj.intent !== "unknown" && intentObj.confidence >= 0.8) {
-    //         bestIntent = intentObj.intent;
-    //         bestResponse = intentObj.response;
-    //         componentUsed = "flan";
-    //         bestScore = intentObj.confidence;
-    //     }
-    // }
 
     // ---- Build final output ----
     messageEnvelope.intent = bestIntent;

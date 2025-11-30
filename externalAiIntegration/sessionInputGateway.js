@@ -3,6 +3,7 @@ import { getSession } from "../liveSessionState/sessionState.js";
 
 export async function handleAiRequest(messageEnvelope, sessionPrompt) {
     const session = getSession();
+    console.log('sesssion  gateway')
 
     // Validation 
     if (!messageEnvelope?.userInput) {
@@ -12,6 +13,7 @@ export async function handleAiRequest(messageEnvelope, sessionPrompt) {
         messageEnvelope.error = true;
         messageEnvelope.flagState = "error";
         messageEnvelope.response = "Error: Missing user input.";
+        messageEnvelope.componentUsed = 'External LLM'
         
         if(session) session.processSessionObj(messageEnvelope);
         return; 
@@ -29,6 +31,7 @@ export async function handleAiRequest(messageEnvelope, sessionPrompt) {
         //  Fallback in case AI logic fails unexpectedly
         messageEnvelope.error = true;
         messageEnvelope.flagState = "error";
+        messageEnvelope.componentUsed = 'External LLM'
         
         messageEnvelope.response = `AI Connection Failed: ${error.message}`;
         

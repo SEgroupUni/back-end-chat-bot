@@ -14,6 +14,7 @@ export function createSession(initialData) {
 // 2 — Process user input
 export async function sessionGateRouter(userInput) {
     const session = getSession();
+    console.log('gaterouter')
     // Run pipeline and wait for completion
     await session.setUserInput(userInput);
 
@@ -29,15 +30,7 @@ export function finishCycle(response) {
     response.flagState = null;
     session.processSessionObj(response)
     console.log(response)
+
     
 }
 
-// // 5 — Single handler for route usage
-// export async function handleMessage({ initialData, userData, userInput, response }) {
-//     if (initialData) createSession(initialData);
-//     if (userData) updateUserData(userData);
-//     if (userInput) backFlowGateRouter(userInput);
-//     if (response) return frontFlowGateRouter(response);
-
-//     return 'No response generated';
-// }
