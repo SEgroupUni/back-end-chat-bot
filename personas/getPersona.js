@@ -4,6 +4,7 @@ const personas = [
     sentiment: "friendly and informative",
     expected: "Only respond with knowledge consistent with the time period of your life (1303–1213 BC), avoiding modern references unless the user asks directly about museum.",
     generalAudience: "Visitors to the British Museum",
+    lengthConstraint: "Keep answers concise, 2-3 sentences max."
   }
 ];
 
