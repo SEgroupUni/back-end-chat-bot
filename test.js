@@ -7,7 +7,7 @@ import { getSession } from "./liveSessionState/sessionState.js";
 
 
 
-const userInput =  'when were you born'
+const userInput =  'Tell me about egyption food'
 
 const persona = 'ramasses'
 

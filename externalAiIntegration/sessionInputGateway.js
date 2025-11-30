@@ -4,39 +4,35 @@ import { getSession } from "../liveSessionState/sessionState.js";
 export async function handleAiRequest(messageEnvelope, sessionPrompt) {
     const session = getSession();
 
-    // === 1 Validation ===
-    if (!messageEnvelope?.userInput || !sessionPrompt || !messageEnvelope?.history) {
-        
+    // Validation 
+    if (!messageEnvelope?.userInput) {
+        console.warn("[AI Gateway] Missing userInput.");
+
+        // Pass error back to system
         messageEnvelope.error = true;
         messageEnvelope.flagState = "error";
-        messageEnvelope.response =
-            "Missing required chatbot data: userInput or sessionPrompt or history.";
-
-        console.warn("[AI Gateway] Rejected payload →", messageEnvelope);
-
-        // Commit error state to session
-        session.processSessionObj(messageEnvelope);
-
-        return; // stop execution here
+        messageEnvelope.response = "Error: Missing user input.";
+        
+        if(session) session.processSessionObj(messageEnvelope);
+        return; 
     }
 
-    // === 2 Execute AI Logic ===
+    // Execute AI Logic 
     try {
-        const tempEnvelope = await processAiLogic(messageEnvelope, sessionPrompt);
-        console.log(messageEnvelope)
-        session.processSessionObj(tempEnvelope);
+        await processAiLogic(messageEnvelope, sessionPrompt);
+        if(session) session.processSessionObj(messageEnvelope);
 
     } catch (error) {
 
-        console.error("[AI Gateway] Failed:", error);
+        console.error("[AI Gateway] Failed:", error.message);
 
-        //  fallback in case AI logic fails unexpectedly
+        //  Fallback in case AI logic fails unexpectedly
         messageEnvelope.error = true;
         messageEnvelope.flagState = "error";
-        messageEnvelope.response =
-            "AI processing failed — try again soon.";
         
-        session.processSessionObj(messageEnvelope);
+        messageEnvelope.response = `AI Connection Failed: ${error.message}`;
+        
+        if(session) session.processSessionObj(messageEnvelope);
     }
 }
 
