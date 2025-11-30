@@ -30,6 +30,7 @@ async function sendMessage(text) {
 
     const data = await res.json();
     console.log("🤖 Bot:", data.reply);
+    console.log()
 }
 
 async function startChat() {

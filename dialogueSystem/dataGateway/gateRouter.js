@@ -11,29 +11,33 @@ export function createSession(initialData) {
 }
 
 
-// 3 — Process user input
-export function backFlowGateRouter(userInput) {
+// 2 — Process user input
+export async function sessionGateRouter(userInput) {
     const session = getSession();
-    session.setFlagState("intEngine");
-    session.setUserInput(userInput); // run AFTER flag is set
-}
+    // Run pipeline and wait for completion
+    await session.setUserInput(userInput);
 
-
-
-export function frontFlowGateRouter(response) {
-    const session = getSession();
-    console.log(response)
+    // Once pipeline finishes, extract final output
+    const { response, userPrompt } = session.currentSessionObj;
     session.flushSessionObject();
-    session.testFlush()
-    return response.response
+
+    return { response, userPrompt };
 }
 
-// 5 — Single handler for route usage
-export async function handleMessage({ initialData, userData, userInput, response }) {
-    if (initialData) createSession(initialData);
-    if (userData) updateUserData(userData);
-    if (userInput) backFlowGateRouter(userInput);
-    if (response) return frontFlowGateRouter(response);
-
-    return 'No response generated';
+export function finishCycle(response) {
+    const session = getSession();
+    response.flagState = null;
+    session.processSessionObj(response)
+    console.log(response)
+    
 }
+
+// // 5 — Single handler for route usage
+// export async function handleMessage({ initialData, userData, userInput, response }) {
+//     if (initialData) createSession(initialData);
+//     if (userData) updateUserData(userData);
+//     if (userInput) backFlowGateRouter(userInput);
+//     if (response) return frontFlowGateRouter(response);
+
+//     return 'No response generated';
+// }

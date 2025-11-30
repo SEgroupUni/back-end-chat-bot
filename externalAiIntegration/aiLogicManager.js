@@ -1,6 +1,6 @@
 import pkg from "synonyms/dictionary.js";
 const { mess } = pkg;
-import { sendToExternalAI } from "./externalApiClient.js";
+import { sendToExternalAI } from "./externalApiGateway.js";
 // ive done aiInPut gateway updated the code for error and what it passes
 //prompt in persona and in session manager for dynamic prompt, you can convert this to a script then pass as message along with user msg or what ever u think to llm, message envelope is an object so look at this.currentSessionObj for elements in session manager, 
 // history is now a set of user and bot respones as json made in session manager before you were sending a list of objects full of all sorts

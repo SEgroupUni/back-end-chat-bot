@@ -1,26 +1,25 @@
 import express from 'express';
 import {
-    backFlowGateRouter,
-    frontFlowGateRouter
+    sessionGateRouter,
+    finishCycle
 } from '../../dialogueSystem/dataGateway/gateRouter.js';
 
 const router = express.Router();
 
-// POST / — handle user messages
 router.post('/', async (req, res, next) => {
     try {
-        const { userInput } = req.body; // extract user message from request
+        const { userInput } = req.body;
 
-        // Process the input through the backend session pipeline
-        backFlowGateRouter(userInput);
+        // Await the async gateway
+        const response = await sessionGateRouter(userInput);
 
-        // Generate a response and clean session state
-        const response = frontFlowGateRouter({ response: `You said: ${userInput}` });
+        res.json({
+            reply: response.response,
+            next: response.userPrompt ?? null
+        });
 
-        // Send the reply back to the frontend as JSON
-        res.json({ reply: response });
     } catch (err) {
-        next(err); // pass any errors to Express error handler
+        next(err);
     }
 });
 

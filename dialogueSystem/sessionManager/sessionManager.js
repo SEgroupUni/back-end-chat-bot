@@ -1,6 +1,6 @@
 import { intentController } from "../intentEngine/intentController.js";
-import { frontFlowGateRouter } from "../dataGateway/gateRouter.js";
-import { handleAiRequest } from "../../externalAiIntegration/aiInputGateway.js";
+import { finishCycle } from "../dataGateway/gateRouter.js";
+import { handleAiRequest } from "../../externalAiIntegration/sessionInputGateway.js";
 import { promptGateway } from "../dialogueGuide/promptGateWay.js";
 import fileSaver from "../endSessionManager/fileSaver.js";
 
@@ -24,34 +24,26 @@ class Session {
             history: [], 
         };
 
-        /** @type {Array<{ step: (obj: any) => Promise<void>, flagState: string }>} */
-        this.pipeline = [
-            { step: intentController, flagState: "intEngine" },
-            { step: frontFlowGateRouter, flagState: "frontFlow" },
-            {step: handleAiRequest, flagState: 'aiRequest'},
-            {step: promptGateway, flagState: 'prompt'},
-            {step : fileSaver, flagState: 'endSession'}
-        ];
+    /** @type {Array<{ step: (obj: any) => Promise<void>, flagState: string }>} */
+    this.pipeline = [
+    { step: intentController, flagState: "intEngine" },// stat at local intent classifier
+    { step: handleAiRequest, flagState: "aiRequest" }, // external api to LLM
+    { step: promptGateway, flagState: "prompt" },// get predicted next topic to suggest
+    { step: finishCycle, flagState: "frontFlow" }, // end cycle
+    { step: fileSaver, flagState: "endSession" }   // optional final persistence
+    ];
     }
 
     // --- User interaction entry point ---
-    setUserInput(userInput) {
-        this.currentSessionObj.userInput = userInput;
-        this.setHistory()
-        this.runPipeline();
-    }
+    async setUserInput(userInput) {
+    this.currentSessionObj.userInput = userInput;
+    this.setHistory();
 
+    // THIS starts the pipeline correctly
+    this.currentSessionObj.flagState = "intEngine";
 
-    SessionSave() {
-        fileSaver()
-    }
-
-
-    setFlagState(flagState) {
-        this.currentSessionObj.flagState = flagState;
-    }
-
-    logSessionEnvelopes(messageEnvelope) {
+    return await this.runPipeline();
+}   logSessionEnvelopes(messageEnvelope) {
         this.sessionLog.push(messageEnvelope);
     }
     setSessionPrompt() {

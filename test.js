@@ -1,4 +1,4 @@
-import { createSession, backFlowGateRouter } 
+import { createSession, sessionGateRouter } 
 from "./dialogueSystem/dataGateway/gateRouter.js";
 import { getSession } from "./liveSessionState/sessionState.js";
 
@@ -19,7 +19,7 @@ if (session) {
     sesh = true;}
 
 console.log(`session lives: ${sesh}`);
-backFlowGateRouter(userInput)
+sessionGateRouter(userInput)
 
 
 
