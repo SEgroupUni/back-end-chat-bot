@@ -21,9 +21,10 @@ export async function sendToExternalAI(messages) {
                 "x-wait-for-model": "true"
             },
             body: JSON.stringify({
-                model: "deepseek-ai/DeepSeek-R1-Distill-Qwen-7B",
+                model: "deepseek-ai/DeepSeek-R1-Distill-Qwen-14B",
                 messages: messages,
                 max_tokens: 2000,
+                //temperature: 0.6   Only use this if it starts waffling or saying gibberish
             }),
         });
 
