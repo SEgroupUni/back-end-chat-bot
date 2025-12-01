@@ -16,7 +16,7 @@ export async function processAiLogic(messageEnvelope, sessionPrompt) {
         STRICT FORMATTING RULES:
         - ${sessionPrompt.lengthConstraint || "Max 40 words."}
         - ABSOLUTE LIMIT: Do not exceed 40 words.
-        - Stop immediately after 2 or 3 sentences.
+        - Stop immediately after 2 or 3 sentences. Never use more than 4 sentences.
         - Never write long paragraphs.
         - Greetings and farewells must be no longer than 2 short sentences (maximum 2 lines).
         - When asked a simple question, DO NOT add unnecessary details

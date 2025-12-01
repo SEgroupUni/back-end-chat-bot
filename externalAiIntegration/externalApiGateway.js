@@ -10,6 +10,9 @@ export async function sendToExternalAI(messages) {
     if (!HF_TOKEN) throw new Error("Missing HUGGINGFACE_TOKEN in .env");
 
     try {
+
+        console.time("AI_Speed_Test");
+
         const resp = await fetch(HF_URL, {
             method: "POST",
             headers: {
@@ -18,9 +21,10 @@ export async function sendToExternalAI(messages) {
                 "x-wait-for-model": "true"
             },
             body: JSON.stringify({
-                model: "deepseek-ai/DeepSeek-R1-Distill-Qwen-32B",
+                model: "deepseek-ai/DeepSeek-R1-Distill-Qwen-14B",
                 messages: messages,
                 max_tokens: 2000,
+                //temperature: 0.6   Only use this if it starts waffling or saying gibberish
             }),
         });
 
@@ -31,6 +35,8 @@ export async function sendToExternalAI(messages) {
 
         const data = await resp.json();
         
+        console.timeEnd("AI_Speed_Test");
+
         // Safety check
         if (!data.choices || !data.choices[0]) return "Error: No AI response.";
 
