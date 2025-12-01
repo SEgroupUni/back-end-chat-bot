@@ -2,6 +2,7 @@
 import { compositeMatchScore } from "./compositeMatchScore.js";
 import checkFullInput from "./checkFullInput.js";
 import { createRequire } from "module";
+import { detectIntent } from "./detectIntent.js";
 const require = createRequire(import.meta.url);
 const intentsData = require("../../intentData/intents.json");
 const intents = Array.isArray(intentsData.intents) ? intentsData.intents : [];
@@ -41,11 +42,27 @@ export default async function getResponse(messageEnvelope) {
             }
         }
     }
+    // ---- If no pattern-based match, use AI intent detection ----
+    if (bestScore === 0) {
+        const detected = await detectIntent(messageEnvelope);
+
+    if (detected.intent) {
+        bestIntent = detected.intent;
+        
+        const matched = intents.find(i => i.intent === bestIntent);
+        bestResponse = matched
+            ? matched.responses[Math.floor(Math.random() * matched.responses.length)]
+            : null;
+
+        bestScore = detected.score;
+        componentUsed = "semantic-embedding";
+    }
+}
 
 
     // ---- Build final output ----
     messageEnvelope.intent = bestIntent;
-    messageEnvelope.response = bestResponse || "That's interesting, I'll need to think more about that.";
+    messageEnvelope.response = bestResponse || "Curious, let me consult the priests.";
     messageEnvelope.componentUsed = componentUsed;
     messageEnvelope.score = bestScore;
 
