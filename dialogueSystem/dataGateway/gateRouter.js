@@ -33,16 +33,24 @@ export async function sessionGateRouter(userInput) {
     return { response, userPrompt };
 }
 
+import { getSession } from "../../liveSessionState/sessionState.js";
+
 export function finishCycle(response) {
     const session = getSession();
-    if(!response.response){
-        response.flagState = 'error';
-        response.errorMsg = 'no return message';
-        session.processSessionObj(response)
+
+    // 1. Clone the incoming envelope 
+    const workingEnvelope = structuredClone(response);
+
+    // 2. Determine whether a valid response exists and set the next flag accordingly
+    if (!workingEnvelope.response) {
+        workingEnvelope.flagState = "error";
+        workingEnvelope.errorMsg = "no return message";
+    } else {
+        workingEnvelope.flagState = null;
+        console.log(workingEnvelope);
     }
-    else{
-        response.flagState = null;
-        session.processSessionObj(response)
-        console.log(response)}
+
+    // 3. Store the updated envelope back into the session state
+    session.processSessionObj(workingEnvelope);
 }
 

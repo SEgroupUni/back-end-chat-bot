@@ -3,7 +3,7 @@ import { finishCycle } from "../dataGateway/gateRouter.js";
 import { handleAiRequest } from "../../externalAiIntegration/sessionInputGateway.js";
 import { promptGateway } from "../dialogueGuide/promptGateWay.js";
 import fileSaver from "../endSessionManager/fileSaver.js";
-import  errorGateway  from "../errorHandler/errorGateway.js";
+import { errorGateway }  from "../errorHandler/errorGateway.js";
 
 class Session {
 
@@ -58,10 +58,14 @@ class Session {
     }
 
 
-    // --- Logging for persistence/debug ---
-    logSessionObj(messageEnvelope) {
-        this.sessionLog.push(messageEnvelope);
-    }
+    // Logging clone for persistence/debug 
+    logSessionObj() {
+    // 1. Store a copy, not the actual reference
+    const logObj = structuredClone(this.currentSessionObj);
+
+    // 2. Push that snapshot so history is frozen in time
+    this.sessionLog.push(logObj);
+}
 
 
     // --- Core Conversation Pipeline Engine ---
@@ -77,6 +81,7 @@ class Session {
 
             if (!stage) {
                 console.log("Pipeline ended — no matching stage.");
+                this.logSessionObj()
                 break;
             }
 
@@ -85,14 +90,12 @@ class Session {
     }
 
 
-    // --- Session State Management ---
+
 
     processSessionObj(messageEnvelope) {
-        this.currentSessionObj.flagState = messageEnvelope.flagState;
-        this.currentSessionObj.response = messageEnvelope.response;
-        this.currentSessionObj.error = messageEnvelope.error;
-        this.currentSessionObj.userPrompt = messageEnvelope.userPrompt;
-        //switch to pass this.logSessionObj
+        // replace current object with a the clone
+        this.currentSessionObj = messageEnvelope
+        
     }
 
     flushSessionObject() {

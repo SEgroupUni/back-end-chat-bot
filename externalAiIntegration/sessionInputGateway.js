@@ -3,40 +3,42 @@ import { getSession } from "../liveSessionState/sessionState.js";
 
 export async function handleAiRequest(messageEnvelope, sessionPrompt) {
     const session = getSession();
-    console.log('sesssion  gateway')
+    console.log('session gateway');
+
+    // Make a safe copy so the original state isn't mutated
+    const workingEnvelope = structuredClone(messageEnvelope);
 
     // Validation 
-    if (!messageEnvelope?.userInput) {
+    if (!workingEnvelope?.userInput) {
         console.warn("[AI Gateway] Missing userInput.");
 
-        // Pass error back to system
-        messageEnvelope.error = true;
-        messageEnvelope.flagState = "error";
-        messageEnvelope.response = "Error: Missing user input.";
-        messageEnvelope.componentUsed = 'External LLM'
-        
-        if(session) session.processSessionObj(messageEnvelope);
+        workingEnvelope.error = true;
+        workingEnvelope.flagState = "error";
+        workingEnvelope.response = "Error: Missing user input.";
+        workingEnvelope.componentUsed = "External LLM";
+
+        session.processSessionObj(workingEnvelope);
         return; 
     }
 
     // Execute AI Logic 
     try {
-        await processAiLogic(messageEnvelope, sessionPrompt);
-        if(session) session.processSessionObj(messageEnvelope);
+        await processAiLogic(workingEnvelope, sessionPrompt);
+
+        session.processSessionObj(workingEnvelope);
 
     } catch (error) {
 
         console.error("[AI Gateway] Failed:", error.message);
 
-        //  Fallback in case AI logic fails unexpectedly
-        messageEnvelope.error = true;
-        messageEnvelope.flagState = "error";
-        messageEnvelope.componentUsed = 'External LLM'
-        
-        messageEnvelope.response = `AI Connection Failed: ${error.message}`;
-        
-        if(session) session.processSessionObj(messageEnvelope);
+        workingEnvelope.error = true;
+        workingEnvelope.flagState = "error";
+        workingEnvelope.componentUsed = "External LLM";
+        workingEnvelope.response = `AI Connection Failed: ${error.message}`;
+
+        session.processSessionObj(workingEnvelope);
     }
 }
+
 
 

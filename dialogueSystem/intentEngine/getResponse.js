@@ -42,7 +42,7 @@ export default async function getResponse(messageEnvelope) {
             }
         }
     }
-    // ---- If no pattern-based match, use AI intent detection ----
+    // ---- If no pattern-based match, use transformer intent detection ----
     if (bestScore === 0) {
         const detected = await detectIntent(messageEnvelope);
 
