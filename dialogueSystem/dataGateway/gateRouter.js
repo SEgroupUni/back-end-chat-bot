@@ -33,8 +33,6 @@ export async function sessionGateRouter(userInput) {
     return { response, userPrompt };
 }
 
-import { getSession } from "../../liveSessionState/sessionState.js";
-
 export function finishCycle(response) {
     const session = getSession();
 

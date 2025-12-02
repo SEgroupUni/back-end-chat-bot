@@ -18,6 +18,5 @@ export async function intentController(sessionObj) {
 
     // 4) Apply final values intentionally to the real session object
     const session = getSession();
-    console.log(processEnvelope)
     session.processSessionObj(processEnvelope);
 }

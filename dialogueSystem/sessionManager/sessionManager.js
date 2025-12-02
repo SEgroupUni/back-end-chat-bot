@@ -47,7 +47,6 @@ class Session {
         this.currentSessionObj.userInput = userInput;
         this.setHistory();
 
-        // (KEEPING BEHAVIOR AS YOU REQUESTED)
         if (userInput !== 'no input') {
             this.currentSessionObj.flagState = "intEngine";
         } else {
@@ -69,34 +68,40 @@ class Session {
 
 
     // --- Core Conversation Pipeline Engine ---
-    async runPipeline() {
-        let lastFlag = null;
+   async runPipeline() {
+    let lastFlag = null;
 
-        while (lastFlag !== this.currentSessionObj.flagState) {
-            lastFlag = this.currentSessionObj.flagState;
+    while (lastFlag !== this.currentSessionObj.flagState) {
+        lastFlag = this.currentSessionObj.flagState;
 
-            const stage = this.pipeline.find(
-                s => s.flagState === this.currentSessionObj.flagState
-            );
+        if (this.currentSessionObj.flagState === "endSession") {
+            this.logSessionObj();
 
-            if (!stage) {
-                console.log("Pipeline ended — no matching stage.");
-                this.logSessionObj()
-                break;
-            }
-
-            await stage.step(this.currentSessionObj, this.sessionPrompt, this);
         }
+
+        const stage = this.pipeline.find(
+            s => s.flagState === this.currentSessionObj.flagState
+        );
+
+        if (!stage) {
+            console.log("Pipeline ended — no matching stage.");
+            this.logSessionObj();
+            break;
+        }
+
+        await stage.step(this.currentSessionObj, this.sessionPrompt, this);
     }
-
-
-
+}
 
     processSessionObj(messageEnvelope) {
-        // replace current object with a the clone
-        this.currentSessionObj = messageEnvelope
-        
+    // Replace current object with the clone
+    this.currentSessionObj = messageEnvelope;
+
+    // If it contains an error, log 
+    if (this.currentSessionObj.error) {
+        this.logSessionObj();
     }
+}
 
     flushSessionObject() {
         this.currentSessionObj = {
@@ -105,6 +110,10 @@ class Session {
             response: null,
             userPrompt: null,
             flagState: null,
+            error: false,
+            errorCount: 0,
+            errMsg: null,
+            history: [],
         };
     }
 
