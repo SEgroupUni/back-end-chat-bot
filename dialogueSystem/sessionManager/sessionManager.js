@@ -66,6 +66,12 @@ class Session {
     // 2. Push that snapshot so history is frozen in time
     this.sessionLog.push(logObj);
 }
+    //callum new code
+    ErrorLogSession(PastSessionLog = []) {
+        for (){
+            
+        }
+    }
 
 
     // --- Core Conversation Pipeline Engine ---
