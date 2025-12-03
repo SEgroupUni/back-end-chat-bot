@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import { getSession, deleteSession } from "../../liveSessionState/sessionState.js";
-import { sessionGateRouter } from "../dataGateway/gateRouter.js";
+import { ErrorCreateSession, sessionGateRouter } from "../dataGateway/gateRouter.js";
 
 
 export default function fileSaver() {
@@ -34,6 +34,6 @@ export function ErrorReload() {
   const data = JSON.parse(jsonData);
   const latestSave = data[data.length - 1];
   ErrorLogSession(latestSave.sessionLog);
-  sessionGateRouter(latestSave.sessionLog[sessionLog.length - 1])
-  
+  ErrorCreateSession();
+  sessionGateRouter(latestSave.sessionLog[sessionLog.length - 1].userInput);
 }

@@ -10,7 +10,12 @@ export function createSession(initialData) {
     getSession(personaObject); 
     return true;
 }
+export function ErrorCreateSession(){
+    const personaObject = this.sessionPersona;
+    getSession(personaObject);
+    return true;
 
+}
 
 // 2 — Process user input
 export async function sessionGateRouter(userInput) {

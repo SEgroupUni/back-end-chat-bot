@@ -68,14 +68,14 @@ class Session {
 }
     //callum new code
     ErrorLogSession(PastSessionLog = []) {
-        for (let i = 0; i < PastSessionLLog.length; i++){
+        for (let i = 0; i < PastSessionLog.length; i++){
             this.sessionLog.push(PastSessionLog[i]);
         }
     }
 
 
     // --- Core Conversation Pipeline Engine ---
-   async runPipeline() {
+    async runPipeline() {
     let lastFlag = null;
 
     while (lastFlag !== this.currentSessionObj.flagState) {
