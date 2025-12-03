@@ -1,4 +1,22 @@
 {"intents": [
+{
+  "intent": "yes",
+  "patterns": [
+    "yes",
+    "yeah",
+    "yep",
+    "yup",
+    "ok",
+    "okay",
+    "sure",
+    "alright",
+    "go on",
+    "continue",
+    "please do",
+    "affirmative"
+  ],
+  "responses": ["yes"]
+},
 
 {
   "intent": "birth_date",

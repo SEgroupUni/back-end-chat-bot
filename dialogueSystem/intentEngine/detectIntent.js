@@ -47,7 +47,7 @@ export async function detectIntent(sessionObj) {
     }
   }
 
-  if (best.score < 0.6) best.intent = null;
+  if (best.score < 0.8) best.intent = null;
 
   return {
     intent: best.intent,

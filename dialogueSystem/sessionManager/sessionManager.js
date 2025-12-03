@@ -22,6 +22,7 @@ class Session {
             userInput: null,
             response: null,
             userPrompt: null,
+            promptIntent: null,
             flagState: null,
             error: false,
             errorCount: 0,
@@ -143,6 +144,10 @@ async runPipeline() {
 
     testFlush() {
         console.log(this.currentSessionObj);
+    }
+    endSession(){
+        this.flagState = 'endSession'
+        this.runPipeline()
     }
 }
 

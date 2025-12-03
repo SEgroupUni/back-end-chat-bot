@@ -33,7 +33,10 @@ export async function sessionGateRouter(userInput) {
     return { response, userPrompt, error };
 }
 
-
+export function endSession(){
+    const session = createSession()
+    session.endSession()
+}
 
 
 // end the pipeline

@@ -20,7 +20,7 @@ async function createSession() {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
                 initialData: {
-                    name: "ramasses",
+                    name: "ramesses",
                     persona: "default persona"
                 }
             })

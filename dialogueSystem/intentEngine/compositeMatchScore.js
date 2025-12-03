@@ -10,24 +10,29 @@ export function compositeMatchScore(userInput, pattern, tolerance = 0.8) {
     const lengthScore = simpleLengthSimilarity(userTokens, patternTokens);
     const indexMatchScore = wordIndexScore(userTokens, patternTokens);
     const totalWordScore = totalWordMatchScore(userTokens, patternTokens);
-
+    
  let finalScore;
 
-if (indexMatchScore <= 0.2) {
+if (indexMatchScore <= 0.1) {
     finalScore =
-        0.3 * sortWordScore +
-        0.20 * lengthScore +
-        0.5 * totalWordScore;
+        0.35 * sortWordScore +
+        0.25 * lengthScore +
+        0.4 * totalWordScore;
 
     
 } else {
     finalScore =
-        0.22 * sortWordScore +
-        0.10 * lengthScore +
-        0.28 * indexMatchScore +
-        0.4 * totalWordScore;
+        0.2 * sortWordScore +
+        0.1 * lengthScore +
+        0.35 * indexMatchScore +
+        0.35 * totalWordScore;
 }
-
+if(finalScore>=tolerance){
+    // console.log(`soft score = ${sortWordScore}`)
+    // console.log(`length score = ${lengthScore}`)
+    // console.log(`index score = ${indexMatchScore}`)
+    // console.log(`total word score = ${totalWordScore}`)
+}
 return finalScore >= tolerance ? finalScore : 0;
 }
 
@@ -74,7 +79,7 @@ function totalWordMatchScore(userTokens, patternTokens) {
             }
         }
 
-        if (bestMatch >= 0.7) {
+        if (bestMatch >= 0.5) {
             totalScore += bestMatch;
         }
     }

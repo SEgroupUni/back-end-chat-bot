@@ -3,9 +3,9 @@ from "./dialogueSystem/dataGateway/gateRouter.js";
 import { getSession } from "./liveSessionState/sessionState.js";
 
 
-const userInput =  'How many donkeys did you own?'
+const userInput =  'when were you born'
 
-const persona = 'ramasses'
+const persona = 'ramesses'
 
 const testSessionStart = createSession(persona);
 console.log(testSessionStart);
