@@ -1,4 +1,5 @@
 import { getSession } from "../../liveSessionState/sessionState.js";
+import { errorSwitch } from "./errorSwitch.js";
 
 export function errorGateway(messageEnvelope, history) {
     const session = getSession();
