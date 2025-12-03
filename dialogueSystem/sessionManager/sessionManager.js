@@ -16,7 +16,7 @@ class Session {
         this.id = new Date().toISOString();
         this.sessionLog = [];
         this.sessionPrompt = initialData;
-        this.sessionPersona
+        this.sessionPersona = initialData.name
 
         this.currentSessionObj = {
             userInput: null,
