@@ -33,6 +33,7 @@ export function ErrorReload() {
   const jsonData = fs.readFileSync(sessionFilePath, 'utf-8');
   const data = JSON.parse(jsonData);
   const latestSave = data[data.length - 1];
+  deleteSession();
   ErrorCreateSession();
   loadSessionLog(latestSave.sessionLog);
   sessionGateRouter(latestSave.sessionLog[sessionLog.length - 1].userInput);
