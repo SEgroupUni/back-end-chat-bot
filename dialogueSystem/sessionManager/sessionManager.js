@@ -75,16 +75,11 @@ class Session {
 
 
     // --- Core Conversation Pipeline Engine ---
-    async runPipeline() {
+async runPipeline() {
     let lastFlag = null;
 
     while (lastFlag !== this.currentSessionObj.flagState) {
         lastFlag = this.currentSessionObj.flagState;
-
-        if (this.currentSessionObj.flagState === "endSession") {
-            this.logSessionObj();
-
-        }
 
         const stage = this.pipeline.find(
             s => s.flagState === this.currentSessionObj.flagState
@@ -96,7 +91,25 @@ class Session {
             break;
         }
 
-        await stage.step(this.currentSessionObj, this.sessionPrompt, this);
+        // Special handling for endSession
+        if (stage.flagState === "endSession") {
+            this.logSessionObj();
+            await stage.step(
+                this.currentSessionObj,
+                this.sessionPrompt,
+                this.sessionLog,
+                this.id,
+                this               
+            );
+            continue;  // optional: if endSession is terminal
+        }
+
+        //  Normal stages (no extra arg)
+        await stage.step(
+            this.currentSessionObj,
+            this.sessionPrompt,
+            this               // ← normal third arg
+        );
     }
 }
 

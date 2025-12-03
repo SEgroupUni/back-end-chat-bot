@@ -2,6 +2,7 @@ import { getSession } from "../../liveSessionState/sessionState.js";
 import { getPersona } from "../../personas/getPersona.js";
 import { validatePersona } from "./gateValidation.js";
 
+
 // 1 — Create session
 export function createSession(initialData) {
     if (!validatePersona(initialData)) return false;
@@ -10,12 +11,7 @@ export function createSession(initialData) {
     getSession(personaObject); 
     return true;
 }
-export function ErrorCreateSession(){
-    const personaObject = this.sessionPersona;
-    getSession(personaObject);
-    return true;
 
-}
 
 // 2 — Process user input
 export async function sessionGateRouter(userInput) {
@@ -30,14 +26,17 @@ export async function sessionGateRouter(userInput) {
         await session.setUserInput(userInput)
     }
     
-
     // Once pipeline finishes, extract final output
-    const { response, userPrompt } = session.currentSessionObj;
+    const { response, userPrompt, error} = session.currentSessionObj;
     session.flushSessionObject();
 
-    return { response, userPrompt };
+    return { response, userPrompt, error };
 }
 
+
+
+
+// end the pipeline
 export function finishCycle(response) {
     const session = getSession();
 

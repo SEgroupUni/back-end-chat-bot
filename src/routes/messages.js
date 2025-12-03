@@ -1,26 +1,30 @@
 import express from 'express';
 import {
     sessionGateRouter,
-    finishCycle
 } from '../../dialogueSystem/dataGateway/gateRouter.js';
+import { ErrorReload } from "../../dialogueSystem/endSessionManager/fileSaver.js";
 
 const router = express.Router();
 
-router.post('/', async (req, res, next) => {
-    try {
-        const { userInput } = req.body;
+router.post("/chat", async (req, res) => {
+    const userInput = req.body.message;
 
-        // Await the async gateway
-        const response = await sessionGateRouter(userInput);
+    const result = await sessionGateRouter(userInput);
 
-        res.json({
-            reply: response.response,
-            next: response.userPrompt ?? null
+    if (result.error) {
+        console.log("Restarting session after error…");
+
+        const restarted = await ErrorReload();
+
+        return res.json({
+            response: restarted.response,
+            userPrompt: restarted.userPrompt
         });
-
-    } catch (err) {
-        next(err);
     }
+
+    res.json({
+        response: result.response,
+        userPrompt: result.userPrompt
+    });
 });
 
-export default router;

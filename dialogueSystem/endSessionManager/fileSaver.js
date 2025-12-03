@@ -1,11 +1,11 @@
 import fs from "fs";
 import path from "path";
 import { getSession, deleteSession } from "../../liveSessionState/sessionState.js";
-import { ErrorCreateSession, sessionGateRouter } from "../dataGateway/gateRouter.js";
+import { createSession, sessionGateRouter } from "../dataGateway/gateRouter.js";
 
 
-export default function fileSaver() {
-  
+export default function fileSaver(messageEnvelope, history, sessionLog, id) {
+  const workingEnvelope = structuredClone(messageEnvelope)
   // finds the file to save the data into
   const sessionFilePath = path.join(process.cwd(), 'log.json');
 
@@ -13,11 +13,14 @@ export default function fileSaver() {
   const currentSession = getSession();
 
   const sessionData = {
-    id: currentSession.id,
-    sessionLog: currentSession.sessionLog
+    id: id,
+    sessionLog: sessionLog
   };
-  if (currentSession.error == true) {
-    ErrorReload();
+  if (messageEnvelope.error == true) {
+    workingEnvelope.errorMsg = 'new session required'
+    workingEnvelope.flagState = 'frontFlow'
+    workingEnvelope.response = 'req response'
+    currentSession.processSessionObj(workingEnvelope)
   }
   // appends the current session data to all previous sessions
   fs.appendFileSync(sessionFilePath, JSON.stringify(sessionData) + "\n", "utf-8");
@@ -28,13 +31,29 @@ export default function fileSaver() {
 }
 
 
-export function ErrorReload() {
-  const sessionFilePath = path.join(process.cwd(), 'log.json');
-  const jsonData = fs.readFileSync(sessionFilePath, 'utf-8');
-  const data = JSON.parse(jsonData);
+export async function ErrorReload() {
+
+  const sessionFilePath = path.join(process.cwd(), "log.json");
+
+  const lines = fs.readFileSync(sessionFilePath, "utf-8")
+    .trim()
+    .split("\n")
+    .filter(Boolean);
+
+  const data = lines.map(l => JSON.parse(l));
   const latestSave = data[data.length - 1];
+  const oldSession = getSession()
+  const persona = oldSession.persona
   deleteSession();
-  ErrorCreateSession();
-  loadSessionLog(latestSave.sessionLog);
-  sessionGateRouter(latestSave.sessionLog[sessionLog.length - 1].userInput);
+
+  const sessionLive = createSession(persona);
+  if (!sessionLive) return await ErrorReload();
+
+  const session = getSession();
+  session.loadSessionLog(latestSave.sessionLog);
+
+  const lastUserInput =
+    latestSave.sessionLog[latestSave.sessionLog.length - 1].userInput;
+
+  return await sessionGateRouter(lastUserInput);
 }
