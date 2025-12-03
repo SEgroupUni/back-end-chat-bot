@@ -68,8 +68,8 @@ class Session {
 }
     //callum new code
     ErrorLogSession(PastSessionLog = []) {
-        for (){
-            
+        for (let i = 0; i < PastSessionLLog.length; i++){
+            this.sessionLog.push(PastSessionLog[i]);
         }
     }
 
