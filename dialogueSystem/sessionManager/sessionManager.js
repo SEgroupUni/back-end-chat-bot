@@ -66,8 +66,8 @@ class Session {
     // 2. Push that snapshot so history is frozen in time
     this.sessionLog.push(logObj);
 }
-    //callum new code
-    ErrorLogSession(PastSessionLog = []) {
+    //restoring a past session log
+    loadSessionLog(PastSessionLog = []) {
         for (let i = 0; i < PastSessionLog.length; i++){
             this.sessionLog.push(PastSessionLog[i]);
         }
