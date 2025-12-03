@@ -1,40 +1,67 @@
 import readline from "readline";
 import fetch from "node-fetch";
 
-// Backend base URL
+// Your backend URL
 const BASE_URL = "http://localhost:3001/api";
 
-// CLI interface
+// CLI Interface
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 });
 
+//
+// 1 — Create a session
+//
 async function createSession() {
-    const res = await fetch(`${BASE_URL}/session/create`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ initialData: "ramasses" })
-    });
+    try {
+        const res = await fetch(`${BASE_URL}/session/create`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                initialData: {
+                    name: "ramasses",
+                    persona: "default persona"
+                }
+            })
+        });
 
-    const data = await res.json();
-    console.log("\n🟢 Session:", data);
+        const raw = await res.text();
+        console.log("\nRAW SESSION RESPONSE:", raw);
+
+        const data = JSON.parse(raw);
+        console.log("\n🟢 Session created:", data);
+    } catch (err) {
+        console.error("❌ Failed to create session:", err);
+    }
 }
 
+//
+// 2 — Send message to backend
+//
 async function sendMessage(text) {
-    const res = await fetch(`${BASE_URL}/messages`, {
+    const res = await fetch(`${BASE_URL}/messages/chat`, {   // FIXED
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ userInput: text })
+        body: JSON.stringify({ message: text })
     });
 
-    const data = await res.json();
-    console.log("🤖 Bot:", data.reply);
-    console.log()
+    const raw = await res.text();
+    console.log("\nRAW CHAT RESPONSE:", raw);
+
+    let data;
+    try {
+        data = JSON.parse(raw);
+        console.log("🤖 Bot:", data.response);
+    } catch (err) {
+        console.error("❌ JSON parse error:", err);
+    }
 }
 
+//
+// 3 — Start interactive CLI chat
+//
 async function startChat() {
-    // create backend session
     await createSession();
 
     console.log("\n💬 Type your messages below. Type `exit` to quit.\n");
