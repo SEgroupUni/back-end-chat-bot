@@ -28,7 +28,7 @@ async function embeddings(text) {
 
 // ---- STEP 2: Your simplified intent mapping ----
 
-intents = {
+const intents = {
   birth_date: {
     examples: [
       "When were you born?",
@@ -510,14 +510,25 @@ async function generateVectors() {
   console.log("\n⚙ Generating vectors...\n");
 
   for (const [name, intent] of Object.entries(intents)) {
-    const text = intent.examples[0];
-    intent.vector = await embeddings(text);
-    console.log(`✔ Embedded: ${name}`);
+      const allExampleVectors = [];
+
+      for (const example of intent.examples) {
+          const vector = await embeddings(example);
+          allExampleVectors.push(vector);
+      }
+
+      const meanVector = allExampleVectors[0].map((_, i) =>
+          allExampleVectors.reduce((sum, vec) => sum + vec[i], 0) / allExampleVectors.length
+      );
+
+      intent.vector = meanVector;
+
+      console.log(`✔ Embedded (averaged): ${name}`);
   }
 
-  fs.writeFileSync("../../intentData/intent_vectors.json", JSON.stringify(intents, null, 2));
+  fs.writeFileSync("./intentData/intent_vectors.json", JSON.stringify(intents, null, 2));
 
-  console.log("\n Done! Vectors saved to intent_vectors.json");
-}
+  console.log("\n Done! Vectors saved to intent_vectors.json\n");
+} // <--- THIS MUST BE HERE
 
-await generateVectors();
+await generateVectors(); // <--- After the function
