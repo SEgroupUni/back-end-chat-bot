@@ -109,7 +109,7 @@ async runPipeline() {
         await stage.step(
             this.currentSessionObj,
             this.sessionPrompt,
-            this               // ← normal third arg
+            this               
         );
     }
 }
@@ -130,6 +130,7 @@ async runPipeline() {
             userInput: null,
             response: null,
             userPrompt: null,
+            promptInent: null,
             flagState: null,
             error: false,
             errorCount: 0,

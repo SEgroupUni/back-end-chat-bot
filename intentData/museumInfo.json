@@ -1,0 +1,115 @@
+{
+  "intents": [
+    {
+      "intent": "museum_exhibit_list",
+      "patterns": [
+        "what exhibits do you have",
+        "what is on display"
+      ],
+      "response": [
+        "We currently have three exhibits on display: The Clockwork Leopard, The Whispering Map, and The Lantern of Echoes. Directions are listed below."
+      ]
+    },
+    {
+      "intent": "toilet_location_list",
+      "patterns": [
+        "where are nearest toilets",
+        "are there toilets nearby"
+      ],
+      "response": [
+        "Yes — the nearest toilets are directly behind you. Accessible toilets are located next to the gift shop."
+      ]
+    },
+    {
+      "intent": "find_exhibit_clockwork_leopard",
+      "patterns": [
+        "where is the clockwork leopard",
+        "clockwork leopard location"
+      ],
+      "response": [
+        "The Clockwork Leopard is located in the Celestial Hall on Floor 2."
+      ]
+    },
+    {
+      "intent": "find_exhibit_whispering_map",
+      "patterns": [
+        "where is the whispering map",
+        "whispering map location"
+      ],
+      "response": [
+        "The Whispering Map can be found in the Riverstone Wing on Floor 3."
+      ]
+    },
+    {
+      "intent": "find_exhibit_lantern_of_echoes",
+      "patterns": [
+        "where is the lantern of echoes",
+        "lantern of echoes location"
+      ],
+      "response": [
+        "The Lantern of Echoes is displayed in the Obsidian Chamber on the Basement Level."
+      ]
+    },
+    {
+      "intent": "find_location_horizon_gallery",
+      "patterns": [
+        "where is the horizon gallery",
+        "horizon gallery location"
+      ],
+      "response": [
+        "The Horizon Gallery is located on Floor 1."
+      ]
+    },
+    {
+      "intent": "find_location_celestial_hall",
+      "patterns": [
+        "where is the celestial hall",
+        "celestial hall floor"
+      ],
+      "response": [
+        "The Celestial Hall is on Floor 2."
+      ]
+    },
+    {
+      "intent": "find_location_riverstone_wing",
+      "patterns": [
+        "where is the riverstone wing",
+        "riverstone wing floor"
+      ],
+      "response": [
+        "The Riverstone Wing is located on Floor 3."
+      ]
+    },
+    {
+      "intent": "museum_hours",
+      "patterns": [
+        "what time do you open",
+        "when is the museum open"
+      ],
+      "response": [
+        "We are open daily from 9:00 AM to 6:00 PM."
+      ]
+    },
+    {
+      "intent": "museum_facilities",
+      "patterns": [
+        "what facilities do you have",
+        "is there a cafe"
+      ],
+      "response": [
+        "We offer a café, gift shop, accessible restrooms, and seating areas throughout the museum."
+      ]
+    },
+    {
+      "intent": "museum_accessibility",
+      "patterns": [
+        "is the museum accessible",
+        "wheelchair access"
+      ],
+      "response": [
+        "Yes — the museum is fully accessible, with lifts, ramps, and wheelchair-friendly routes on every floor."
+      ]
+    }
+  ]
+}
+

@@ -1,7 +1,7 @@
 import { processAiLogic } from "./aiLogicManager.js";
 import { getSession } from "../liveSessionState/sessionState.js";
 
-export async function handleAiRequest(messageEnvelope, sessionPrompt) {
+export async function handleAiRequest(messageEnvelope, sessionPrompt= personaPrompt) {
     const session = getSession();
     console.log('session gateway');
 

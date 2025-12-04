@@ -1,96 +1,152 @@
 import pkg from "synonyms/dictionary.js";
 const { mess } = pkg;
 import { sendToExternalAI } from "./externalApiGateway.js";
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Only museum info now
+const museumInfoPath = path.join(__dirname, "../intentData/museumInfo.json");
+
+const museumInfo = JSON.parse(
+  fs.readFileSync(museumInfoPath, "utf8")
+);
 
 export async function processAiLogic(messageEnvelope, sessionPrompt) {
     
+    // --- BUILD SYSTEM PROMPT ---
     let cleanPrompt = "You are a chatbot.";
 
-    if (typeof sessionPrompt === 'object') {
+    if (typeof sessionPrompt === "object") {
         cleanPrompt = `
         SYSTEM INSTRUCTIONS:
-        1. Role: ${sessionPrompt.rolePlay || "Chatbot"}
-        2. Audience: ${sessionPrompt.generalAudience || "General Public"}
-        3. Constraints: ${sessionPrompt.expected || "None"}
-        
+            1. Role: ${sessionPrompt.rolePlay || "Chatbot"}
+            2. Audience: ${sessionPrompt.generalAudience || "General Public"}
+            3. Constraints: ${sessionPrompt.expected || "None"}
+
         STRICT FORMATTING RULES:
-        - ${sessionPrompt.lengthConstraint || "Max 40 words."}
-        - ABSOLUTE LIMIT: Do not exceed 40 words.
-        - Stop immediately after 2 or 3 sentences. Never use more than 4 sentences.
-        - Never write long paragraphs.
-        - Greetings and farewells must be no longer than 2 short sentences (maximum 2 lines).
-        - When asked a simple question, DO NOT add unnecessary details
+            - ${sessionPrompt.lengthConstraint || "Max 50 words."}
+            - ABSOLUTE LIMIT: Do not exceed 50 words.
+            - Stop after 2 or 3 sentences.
+            - Never write long paragraphs.
+            - Greetings must be short.
+            - Simple answers must stay simple.
+
+        ROUTING LOGIC (MANDATORY):
+            1. Check the MUSEUM_INFO list.
+               If the user message matches anything in the list:
+               Return ONLY:
+               {
+                 "response": "<museum_response>",
+                 "source": "museum"
+               }
+
+            2. If no match:
+               Generate a persona-correct reply and return ONLY:
+               {
+                 "response": "<generated_reply>",
+                 "source": "generated"
+               }
+
+        CRITICAL JSON OUTPUT RULES:
+        - You MUST output ONLY valid JSON.
+        - You MUST NOT write natural language outside JSON.
+        - If you want to output text, it must be inside the "response" field.
+        - Never wrap JSON in code fences.
+        - Never return multiple JSON objects.
+        - If you cannot determine a match, return:
+        {
+        "response": null,
+        "source": "generated"
+        }
+        IF YOUR OUTPUT IS NOT VALID JSON, YOU ARE IN ERROR.
         `;
+    } else if (typeof sessionPrompt === "string") {
+        cleanPrompt = sessionPrompt;
     }
-    else if (typeof sessionPrompt === 'string') {
-            cleanPrompt = sessionPrompt;
-    }
+
 
     // --- CLEAN HISTORY ---
-let cleanHistory = [];
+    let cleanHistory = [];
 
-try {
-    let rawHistory = messageEnvelope.history;
+    try {
+        let rawHistory = messageEnvelope.history;
 
-    // Parse if stored as JSON string
-    if (typeof rawHistory === 'string') {
-        rawHistory = JSON.parse(rawHistory);
-    }
+        if (typeof rawHistory === "string") {
+            rawHistory = JSON.parse(rawHistory);
+        }
 
-    // Convert stored history into LLM-friendly structure
-    if (Array.isArray(rawHistory)) {
-        for (const entry of rawHistory) {
-            if (entry.userInput?.trim()) {
-                cleanHistory.push({
-                    role: "user",
-                    content: entry.userInput.trim()
-                });
-            }
+        if (Array.isArray(rawHistory)) {
+            for (const entry of rawHistory) {
+                if (!entry || typeof entry !== "object") continue;
 
-            if (entry.response?.trim()) {
-                cleanHistory.push({
-                    role: "assistant",
-                    content: entry.response.trim()
-                });
+                if (entry.userInput?.trim()) {
+                    cleanHistory.push({
+                        role: "user",
+                        content: entry.userInput.trim()
+                    });
+                }
+
+                if (entry.response?.trim()) {
+                    cleanHistory.push({
+                        role: "assistant",
+                        content: entry.response.trim()
+                    });
+                }
             }
         }
+
+    } catch (err) {
+        console.warn("[AI Logic] Failed to parse history:", err);
+
+        messageEnvelope.error = true;
+        messageEnvelope.errorMsg = "History parsing failed.";
+        messageEnvelope.flagState = "error";
+        return messageEnvelope;
     }
 
-} catch (err) {
-    console.warn("[AI Logic] Could not parse history. Ignoring context.", err);
-}
 
-// --- FINAL MESSAGE PAYLOAD SENT TO MODEL ---
-const messages = [
-    { role: "system", content: cleanPrompt },
-    ...cleanHistory,
-    { role: "user", content: String(messageEnvelope.userInput) }
-];
+    // --- LLM MESSAGE PAYLOAD ---
+    const messages = [
+        { role: "system", content: cleanPrompt },
+        {
+            role: "system",
+            content: `MUSEUM_INFO:\n${JSON.stringify(museumInfo)}`
+        },
+        ...cleanHistory,
+        { role: "user", content: String(messageEnvelope.userInput) }
+    ];
 
-    console.log("[AI Logic] Sending request to API...");
+    console.log("[AI Logic] Sending request to LLM...");
 
-    // Call External API
-    const rawResponse = await sendToExternalAI(messages);
 
-    // PARSE RESPONSE 
-    let finalReply = rawResponse.replace(/^"|"$/g, '').trim();
+    // --- SEND TO LLM (ONLY ONCE) ---
+    const result = await sendToExternalAI(messages);
 
-if (finalReply.includes("```json")) {
-        try {
-            const cleanJson = finalReply.replace(/```json|```/g, '').trim();
-            const parsed = JSON.parse(cleanJson);
-            finalReply = parsed.reply || parsed.message || finalReply;
-        } catch (e) {
-            // Ignore parse error, use text
-        }
+
+    // --- HANDLE FAILURE ---
+    if (!result.ok) {
+        messageEnvelope.response = null;
+        messageEnvelope.source = null;
+        messageEnvelope.error = true;
+        messageEnvelope.errorMsg = result.error;
+        messageEnvelope.rawAIResponse = result.raw || null;
+        messageEnvelope.flagState = "error";
+        messageEnvelope.componentUsed = "External LLM";
+        return messageEnvelope;
     }
 
-    // Always update envelope no matter what
-    messageEnvelope.response = finalReply;
-    messageEnvelope.flagState = "frontFlow";
+
+    // --- HANDLE SUCCESS ---
+    messageEnvelope.response = result.json.response;
+    messageEnvelope.source = result.json.source;
     messageEnvelope.error = false;
-    messageEnvelope.componentUsed = 'External LLM';
+    messageEnvelope.flagState = "frontFlow";
+    messageEnvelope.componentUsed = "External LLM";
 
-    console.log ("Envolope Updated. Flag set to frontFlow");
     return messageEnvelope;
 }

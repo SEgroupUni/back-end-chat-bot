@@ -1,0 +1,348 @@
+{
+  "intents": [
+    {
+      "intent": "birth_date",
+      "patterns": ["when were you born", "what year were you born"]
+    },
+    {
+      "intent": "birthplace",
+      "patterns": ["where were you born", "what is your birthplace"]
+    },
+    {
+      "intent": "childhood_environment",
+      "patterns": ["what was your childhood environment like", "where did you grow up"]
+    },
+    {
+      "intent": "childhood_upbringing",
+      "patterns": ["how were you raised", "what was your upbringing like"]
+    },
+    {
+      "intent": "titles",
+      "patterns": ["what titles did you hold", "what were you called"]
+    },
+    {
+      "intent": "names_epithets",
+      "patterns": ["what names did you use", "what was your throne name"]
+    },
+    {
+      "intent": "personality_traits",
+      "patterns": ["what were you like", "how would you describe your personality"]
+    },
+    {
+      "intent": "age_at_accession",
+      "patterns": ["how old were you when you became pharaoh", "what age did you take the throne"]
+    },
+    {
+      "intent": "length_of_reign",
+      "patterns": ["how long did you rule", "how many years did you reign"]
+    },
+    {
+      "intent": "education",
+      "patterns": ["how were you educated", "what did you study"]
+    },
+    {
+      "intent": "languages_spoken",
+      "patterns": ["what languages did you speak", "did you know hieroglyphs"]
+    },
+    {
+      "intent": "lifestyle_habits",
+      "patterns": ["how did you live day to day", "what was your lifestyle like"]
+    },
+    {
+      "intent": "typical_wardrobe",
+      "patterns": ["what did you usually wear", "what kind of clothing did you wear"]
+    },
+    {
+      "intent": "foods_commonly_eaten",
+      "patterns": ["what did you usually eat", "what was your diet like"]
+    },
+    {
+      "intent": "daily_routine",
+      "patterns": ["what was your daily routine", "how did you spend your day"]
+    },
+    {
+      "intent": "administrative_duties",
+      "patterns": ["what were your responsibilities", "how did you govern"]
+    },
+    {
+      "intent": "leisure_activities",
+      "patterns": ["what did you do for leisure", "how did you relax"]
+    },
+    {
+      "intent": "early_challenges",
+      "patterns": ["what challenges did you face early in your reign", "did anyone oppose you"]
+    },
+    {
+      "intent": "major_achievements",
+      "patterns": ["what are you most remembered for", "what are your greatest achievements"]
+    },
+    {
+      "intent": "first_peace_treaty",
+      "patterns": ["did you make any peace treaties", "tell me about diplomacy with the hittites"]
+    },
+    {
+      "intent": "infrastructure_projects",
+      "patterns": ["what monuments did you build", "did you build temples"]
+    },
+    {
+      "intent": "public_works",
+      "patterns": ["did you improve life for ordinary people", "were there public projects"]
+    },
+    {
+      "intent": "administrative_reforms",
+      "patterns": ["did you reform government", "how did you manage officials"]
+    },
+    {
+      "intent": "changes_in_governance",
+      "patterns": ["how did ruling systems change under you", "did you centralize power"]
+    },
+    {
+      "intent": "trade_expansions",
+      "patterns": ["did trade grow during your reign", "who did egypt trade with"]
+    },
+    {
+      "intent": "economic_policies",
+      "patterns": ["how did you manage the economy", "did you change taxes"]
+    },
+    {
+      "intent": "diplomatic_strategies",
+      "patterns": ["how did you handle foreign relations", "did you use diplomacy"]
+    },
+    {
+      "intent": "legacy_reflection",
+      "patterns": ["what do you think of your own legacy", "how do you see your reign"]
+    },
+    {
+      "intent": "desired_remembrance",
+      "patterns": ["how do you want to be remembered", "what legacy did you hope for"]
+    },
+    {
+      "intent": "preparations_for_burial",
+      "patterns": ["how was your body prepared for burial", "did priests prepare you in a special way"]
+    },
+    {
+      "intent": "items_placed_in_tomb",
+      "patterns": ["what did they put in your tomb", "did you take anything into the afterlife"]
+    },
+    {
+      "intent": "style_of_sarcophagus",
+      "patterns": ["what did your sarcophagus look like", "describe your coffin"]
+    },
+    {
+      "intent": "burial_rituals_performed",
+      "patterns": ["what rituals were done for you", "did priests perform special ceremonies"]
+    },
+    {
+      "intent": "treasures_added_to_tomb",
+      "patterns": ["did they bury treasures with you", "was your tomb filled with gold"]
+    },
+    {
+      "intent": "belief_in_afterlife_journey",
+      "patterns": ["what did you believe happened after death", "did you think there was a journey after dying"]
+    },
+    {
+      "intent": "belief_in_judgement",
+      "patterns": ["did you believe you'd be judged after death", "did you expect the gods to weigh your heart"]
+    },
+    {
+      "intent": "expected_honor_from_future_generations",
+      "patterns": ["did you expect people to remember you", "how did you hope future egyptians would see you"]
+    },
+    {
+      "intent": "parent_names",
+      "patterns": ["who were your parents", "who were your mother and father"]
+    },
+    {
+      "intent": "sibling_relationships",
+      "patterns": ["did you have any siblings", "who were your brothers or sisters"]
+    },
+    {
+      "intent": "number_of_wives",
+      "patterns": ["how many wives did you have", "did you have more than one queen"]
+    },
+    {
+      "intent": "marriage_customs",
+      "patterns": ["what were marriages like for you", "were royal marriages ceremonial"]
+    },
+    {
+      "intent": "number_of_children",
+      "patterns": ["did you have many children", "how many royal children did you father"]
+    },
+    {
+      "intent": "heirs_to_the_throne",
+      "patterns": ["who was supposed to take the throne after you", "which son inherited your crown"]
+    },
+    {
+      "intent": "role_of_royal_consorts",
+      "patterns": ["what did your queens do", "did royal consorts have power"]
+    },
+    {
+      "intent": "relationship_with_nefertari",
+      "patterns": ["what was your relationship with nefertari like", "why is nefertari talked about so much"]
+    },
+    {
+      "intent": "family_influence_on_politics",
+      "patterns": ["did your family help you rule egypt", "were your relatives involved in politics"]
+    },
+    {
+      "intent": "major_gods_worshipped",
+      "patterns": ["which gods did you worship", "who were the main gods you prayed to"]
+    },
+    {
+      "intent": "view_of_pharaoh_as_divine",
+      "patterns": ["were you seen as a god", "did people think you were divine"]
+    },
+    {
+      "intent": "role_in_maintaining_maat",
+      "patterns": ["what was your role with maat", "how did you uphold maat"]
+    },
+    {
+      "intent": "ritual_offerings_performed",
+      "patterns": ["what offerings did you make", "did you perform daily rituals"]
+    },
+    {
+      "intent": "temple_responsibilities",
+      "patterns": ["what did you do for temples", "were you responsible for temple duties"]
+    },
+    {
+      "intent": "religious_duties",
+      "patterns": ["what were your religious duties", "did you act as a priest"]
+    },
+    {
+      "intent": "views_on_afterlife",
+      "patterns": ["what did you believe happened after death", "how did you view the afterlife"]
+    },
+    {
+      "intent": "religious_festivals_participated_in",
+      "patterns": ["what festivals did you take part in", "did you join religious celebrations"]
+    },
+    {
+      "intent": "primary_enemies",
+      "patterns": ["who were your main enemies", "who challenged egypt"]
+    },
+    {
+      "intent": "military_duties",
+      "patterns": ["what were your military duties", "how did you lead the army"]
+    },
+    {
+      "intent": "primary_allies",
+      "patterns": ["who were your allies", "which nations supported egypt"]
+    },
+    {
+      "intent": "major_battles_fought",
+      "patterns": ["what major battles did you fight", "which battles are you known for"]
+    },
+    {
+      "intent": "military_tactics_used",
+      "patterns": ["what tactics did you use", "what was your military strategy"]
+    },
+    {
+      "intent": "use_of_chariots_in_warfare",
+      "patterns": ["did you use chariots in battle", "how important were chariots"]
+    },
+    {
+      "intent": "typical_weaponry_used",
+      "patterns": ["what weapons did your soldiers carry", "how was your army armed"]
+    },
+    {
+      "intent": "leadership_style_in_war",
+      "patterns": ["what kind of leader were you in war", "did you command from the front"]
+    },
+    {
+      "intent": "diplomatic_negotiations",
+      "patterns": ["did you negotiate with other nations", "were you involved in peace talks"]
+    },
+    {
+      "intent": "peace_treaty_with_hittites",
+      "patterns": ["what was the peace treaty with the hittites", "how did peace with the hittites happen"]
+    },
+    {
+      "intent": "philosophy_on_strength_and_kingship",
+      "patterns": ["what did strength and kingship mean to you", "how did you view power"]
+    },
+    {
+      "intent": "temples_commissioned",
+      "patterns": ["what temples did you build", "which temples were made during your reign"]
+    },
+    {
+      "intent": "statues_commissioned",
+      "patterns": ["how many statues did you make", "what statues are from your time"]
+    },
+    {
+      "intent": "significance_of_abu_simbel",
+      "patterns": ["why is abu simbel important", "why did you build abu simbel"]
+    },
+    {
+      "intent": "significance_of_ramesseum",
+      "patterns": ["what was the ramesseum for", "why did you build the ramesseum"]
+    },
+    {
+      "intent": "construction_of_pi_ramesses",
+      "patterns": ["what was pi-ramesses", "why did you build pi-ramesses"]
+    },
+    {
+      "intent": "purpose_of_monumental_architecture",
+      "patterns": ["why did you build so many monuments", "what was the purpose of your architecture"]
+    },
+    {
+      "intent": "methods_of_building",
+      "patterns": ["how did you build monuments", "how did you move large stones"]
+    },
+    {
+      "intent": "symbolism_in_decoration",
+      "patterns": ["what did the carvings mean", "why so many symbols on monuments"]
+    },
+    {
+      "intent": "artistic_style_used",
+      "patterns": ["what was the art style like", "how would you describe the art of your reign"]
+    },
+    {
+      "intent": "social_class_structure",
+      "patterns": ["how was society organized", "what was the class system like"]
+    },
+    {
+      "intent": "role_of_priests",
+      "patterns": ["what did priests do", "how important were priests"]
+    },
+    {
+      "intent": "role_of_craftsmen",
+      "patterns": ["what did craftsmen do", "what did artisans make"]
+    },
+    {
+      "intent": "role_of_peasants",
+      "patterns": ["what did peasants do", "what work did farmers do"]
+    },
+    {
+      "intent": "typical_food_sources",
+      "patterns": ["what did people eat", "what foods were common"]
+    },
+    {
+      "intent": "farming_methods",
+      "patterns": ["how did farming work", "how did people grow crops"]
+    },
+    {
+      "intent": "importance_of_the_nile",
+      "patterns": ["why was the nile important", "what role did the river play"]
+    },
+    {
+      "intent": "medical_practices",
+      "patterns": ["how did you treat illness", "did you have doctors"]
+    },
+    {
+      "intent": "health_beliefs",
+      "patterns": ["what did you believe caused illness", "were health beliefs religious"]
+    },
+    {
+      "intent": "music_traditions",
+      "patterns": ["what music did people listen to", "what instruments did egyptians use"]
+    },
+    {
+      "intent": "games_and_entertainment",
+      "patterns": ["what did people do for fun", "what games did egyptians play"]
+    },
+    {
+      "intent": "religious_or_civic_festivals",
+      "patterns": ["what festivals did you have", "were festivals religious or civic"]
+    }
+  ]
+}
