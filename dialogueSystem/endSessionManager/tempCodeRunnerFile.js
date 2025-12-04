@@ -3,7 +3,7 @@ import path from "path";
 import { getSession, deleteSession } from "../../liveSessionState/sessionState.js";
 import { createSession, sessionGateRouter } from "../dataGateway/gateRouter.js";
 
-export async function errorReload() {
+export async function ErrorReload() {
   const sessionFilePath = path.join(process.cwd(), "log.json");
 
   // If no log file at all

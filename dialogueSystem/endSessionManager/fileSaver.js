@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 import { getSession } from "../../liveSessionState/sessionState.js";
 
-export default function fileSaver(messageEnvelope, history, sessionLog, id) {
+export default function fileSaver(messageEnvelope) {
   console.log("file saver");
 
   const workingEnvelope = structuredClone(messageEnvelope);
