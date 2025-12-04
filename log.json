@@ -1,0 +1,34 @@
+[
+  {
+    "id": "2025-12-04T13:23:21.917Z",
+    "sessionLog": [
+      {
+        "userInput": "end session",
+        "response": null,
+        "userPrompt": null,
+        "promptIntent": null,
+        "flagState": "endSession",
+        "error": false,
+        "errorCount": 0,
+        "errMsg": null,
+        "history": []
+      }
+    ]
+  },
+  {
+    "id": "2025-12-04T13:23:32.614Z",
+    "sessionLog": [
+      {
+        "userInput": "end session",
+        "response": null,
+        "userPrompt": null,
+        "promptIntent": null,
+        "flagState": "endSession",
+        "error": false,
+        "errorCount": 0,
+        "errMsg": null,
+        "history": []
+      }
+    ]
+  }
+]

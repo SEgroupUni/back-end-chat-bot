@@ -4,7 +4,6 @@ import { getSession } from "../../liveSessionState/sessionState.js";
 
 export default function fileSaver(messageEnvelope, history, sessionLog, id) {
   console.log("file saver");
-  console.log(">>> USING ARRAY FILE SAVER <<<");
 
   const workingEnvelope = structuredClone(messageEnvelope);
   const sessionFilePath = path.join(process.cwd(), "log.json");
@@ -20,7 +19,6 @@ export default function fileSaver(messageEnvelope, history, sessionLog, id) {
       allSessions = [];
     }
   }
-  console.log(">>>  second stage USING ARRAY FILE SAVER <<<");
   // Add new session entry
   allSessions.push({
     id,
