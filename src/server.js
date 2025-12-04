@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import sessionRoute from "./routes/session.js";
 import messageRoute from "./routes/messages.js";
+import sessionEnd  from "./routes/sessionEnd.js"
 
 const app = express();
 const PORT = 3001;
@@ -15,6 +16,7 @@ app.use(express.json());
 // Mount session and message routes
 app.use("/api/session", sessionRoute);
 app.use("/api/messages", messageRoute);
+app.use("/api/sessionEnd", sessionEnd);
 
 // Simple health check endpoint
 app.get("/api/health", (req, res) => res.json({ status: "Active" }));

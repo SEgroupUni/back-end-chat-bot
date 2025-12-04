@@ -1,59 +1,45 @@
 import fs from "fs";
 import path from "path";
-import { getSession, deleteSession } from "../../liveSessionState/sessionState.js";
-import { createSession, sessionGateRouter } from "../dataGateway/gateRouter.js";
-
+import { getSession } from "../../liveSessionState/sessionState.js";
 
 export default function fileSaver(messageEnvelope, history, sessionLog, id) {
-  const workingEnvelope = structuredClone(messageEnvelope)
-  // finds the file to save the data into
-  const sessionFilePath = path.join(process.cwd(), 'log.json');
+  console.log("file saver");
+  console.log(">>> USING ARRAY FILE SAVER <<<");
 
-  // gets the current session
+  const workingEnvelope = structuredClone(messageEnvelope);
+  const sessionFilePath = path.join(process.cwd(), "log.json");
   const currentSession = getSession();
 
-  const sessionData = {
-    id: id,
-    sessionLog: sessionLog
-  };
-  if (messageEnvelope.error == true) {
-    workingEnvelope.errorMsg = 'new session required'
-    workingEnvelope.flagState = 'frontFlow'
-    workingEnvelope.response = 'req response'
-    currentSession.processSessionObj(workingEnvelope)
+  // Load existing array or create a fresh one
+  let allSessions = [];
+  if (fs.existsSync(sessionFilePath)) {
+    try {
+      allSessions = JSON.parse(fs.readFileSync(sessionFilePath, "utf8"));
+      if (!Array.isArray(allSessions)) allSessions = [];
+    } catch {
+      allSessions = [];
+    }
   }
-  // appends the current session data to all previous sessions
-  fs.appendFileSync(sessionFilePath, JSON.stringify(sessionData) + "\n", "utf-8");
+  console.log(">>>  second stage USING ARRAY FILE SAVER <<<");
+  // Add new session entry
+  allSessions.push({
+    id,
+    sessionLog
+  });
 
-   // deletes the session from memory after saving
-  deleteSession();
-  
-}
+  // Save the entire array to disk
+  fs.writeFileSync(sessionFilePath, JSON.stringify(allSessions, null, 2), "utf8");
 
+  // Error handling behaviour unchanged
+  if (messageEnvelope.error === true) {
+    workingEnvelope.errorMsg = "new session required";
+    workingEnvelope.flagState = "frontFlow";
+    workingEnvelope.response = "req response";
+    currentSession.processSessionObj(workingEnvelope);
+  }
 
-export async function ErrorReload() {
-
-  const sessionFilePath = path.join(process.cwd(), "log.json");
-
-  const lines = fs.readFileSync(sessionFilePath, "utf-8")
-    .trim()
-    .split("\n")
-    .filter(Boolean);
-
-  const data = lines.map(l => JSON.parse(l));
-  const latestSave = data[data.length - 1];
-  const oldSession = getSession()
-  const persona = oldSession.persona
-  deleteSession();
-
-  const sessionLive = createSession(persona);
-  if (!sessionLive) return await ErrorReload();
-
-  const session = getSession();
-  session.loadSessionLog(latestSave.sessionLog);
-
-  const lastUserInput =
-    latestSave.sessionLog[latestSave.sessionLog.length - 1].userInput;
-
-  return await sessionGateRouter(lastUserInput);
+  // End session
+  workingEnvelope.response = "end session";
+  workingEnvelope.flagState = "frontFlow";
+  currentSession.processSessionObj(workingEnvelope);
 }

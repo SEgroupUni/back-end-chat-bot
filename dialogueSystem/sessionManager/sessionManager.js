@@ -48,7 +48,10 @@ class Session {
 
         this.currentSessionObj.userInput = userInput;
         this.setHistory();
-
+        if(userInput === 'end session'){
+            this.currentSessionObj.flagState = 'endSession'
+            return await this.runPipeline();
+        }
         if (userInput !== 'no input') {
             this.currentSessionObj.flagState = "intEngine";
         } else {
@@ -147,7 +150,7 @@ async runPipeline() {
         console.log(this.currentSessionObj);
     }
     endSession(){
-        this.flagState = 'endSession'
+        this.currentSessionObj.flagState = 'endSession'
         this.runPipeline()
     }
 }

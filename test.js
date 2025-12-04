@@ -3,7 +3,7 @@ from "./dialogueSystem/dataGateway/gateRouter.js";
 import { getSession } from "./liveSessionState/sessionState.js";
 
 
-const userInput =  'what exhibits are on show'
+const userInput =  'what do you eat'
 
 const persona = 'ramesses'
 
@@ -19,3 +19,4 @@ sessionGateRouter(userInput)
 
 
 
+session.endSession()

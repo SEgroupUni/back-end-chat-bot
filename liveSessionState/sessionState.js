@@ -11,4 +11,7 @@ export function getSession(initialData = null) {
 
 export function deleteSession() {
     sessionInstance = null;
+    if(!sessionInstance){
+        console.log('session deleted')
+    }
 }
