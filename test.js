@@ -3,7 +3,7 @@ from "./dialogueSystem/dataGateway/gateRouter.js";
 import { getSession } from "./liveSessionState/sessionState.js";
 
 
-const userInput =  'what do you eat'
+const userInput =  'what is a computer';
 
 const persona = 'ramesses'
 
@@ -18,5 +18,3 @@ console.log(`session lives: ${sesh}`);
 sessionGateRouter(userInput)
 
 
-
-session.endSession()

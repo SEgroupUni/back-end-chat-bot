@@ -1,1 +1,0 @@
-noReturnMsg(messageEnvelope, history)

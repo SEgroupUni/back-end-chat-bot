@@ -1,24 +1,61 @@
-import { inputError, noReturnMsg } from "./errorHelpers.js";
+import { 
+    inputError, 
+    noReturnMsg,
+    gatewayVerification,
+    historyParseError,
+    missingTokenError,
+    aiRecycle
+} from "./errorHelpers.js";
 
-
-export function errorSwitch(messageEnvelope, history) {
-    const switchErrMsg = messageEnvelope.response;
+export function errorSwitch(messageEnvelope) {
+    console.log('switch')
+    const switchErrMsg = messageEnvelope.errMsg;
 
     switch (switchErrMsg) {
-        case 'no input':
-            return inputError(messageEnvelope, history);
 
-        case 'no return me':
-            return noReturnMsg(messageEnvelope, history);
+        // --------------------------
+        // INTERNAL ERRORS
+        // --------------------------
+        case "no input":
+            return inputError(messageEnvelope);
 
+        case "no return msg":
+            return noReturnMsg(messageEnvelope);
+
+        case "AI gateway verification fail":
+            return gatewayVerification(messageEnvelope);
+
+        case "History parsing failed":
+            return historyParseError(messageEnvelope);
+
+
+        // --------------------------
+        // HUGGINGFACE ERRORS
+        // --------------------------
+
+        // Missing token
+        case "Missing HUGGINGFACE_TOKEN":
+            return missingTokenError(messageEnvelope);
+
+        // HF gateway failures → all recycled
+        case "HF_HTTP_ERROR":
+        case "HF_NO_CONTENT":
+        case "HF_INVALID_JSON":
+        case "HF_NETWORK_ERROR":
+            return aiRecycle(messageEnvelope);
+
+
+        // --------------------------
+        // DEFAULT FALLBACK
+        // --------------------------
         default:
-            // ALWAYS return a fallback envelope
             return {
                 ...messageEnvelope,
                 error: true,
-                errorMsg: "unhandled error type",
-                response: "Something went wrong.",
-                flagState: "frontFlow"
+                errorMsg: switchErrMsg ?? "unknown error",
+                flagState: "frontFlow",
+                componentUsed: "Error Switch",
+        
             };
     }
 }

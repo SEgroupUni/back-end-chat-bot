@@ -54,8 +54,11 @@ class Session {
         }
         if (userInput !== 'no input') {
             this.currentSessionObj.flagState = "intEngine";
+            
         } else {
             this.currentSessionObj.flagState = "error";
+            this.currentSessionObj.errMsg = 'no input'
+            this.currentSessionObj.error = true
         }
 
         return await this.runPipeline();
@@ -64,7 +67,7 @@ class Session {
 
     // Logging clone for persistence/debug 
     logSessionObj() {
-    // 1. Store a copy, not the actual reference
+    // 1. Store a copy, not previous memory reference only one
     const logObj = structuredClone(this.currentSessionObj);
 
     // 2. Push that snapshot so history is frozen in time
@@ -78,7 +81,7 @@ class Session {
     }
 
 
-    // --- Core Conversation Pipeline Engine ---
+/// --- Core Conversation Pipeline Engine ---
 async runPipeline() {
     let lastFlag = null;
 
@@ -91,40 +94,43 @@ async runPipeline() {
 
         if (!stage) {
             console.log("Pipeline ended — no matching stage.");
-            this.logSessionObj();
+            this.logSessionObj();    // <-- only log happens here
             break;
         }
 
         // Special handling for endSession
         if (stage.flagState === "endSession") {
-            this.logSessionObj();
+            this.logSessionObj();    // <-- good: log before ending
             await stage.step(
                 this.currentSessionObj,
                 this.sessionPrompt,
                 this.sessionLog,
                 this.id,
-                this               
+                this
             );
-            continue;  // optional: if endSession is terminal
+            continue;
         }
 
-        //  Normal stages (no extra arg)
+        // Normal stages
         await stage.step(
             this.currentSessionObj,
             this.sessionPrompt,
-            this               
+            this
         );
+
     }
 }
 
-    processSessionObj(messageEnvelope) {
-    // Replace current object with the clone
-    this.currentSessionObj = messageEnvelope;
 
-    // If it contains an error, log 
+    processSessionObj(messageEnvelope) {
+    // Replace current object with a clone break reference connection
+    const logObj = structuredClone(messageEnvelope)
+    this.currentSessionObj = logObj;
+
+    // If it contains an error, log before cont with pipeline
     if (this.currentSessionObj.error) {
-        this.logSessionObj();
-    }
+        this.logSessionObj();}
+    
 }
 
     flushSessionObject() {
@@ -153,6 +159,26 @@ async runPipeline() {
         this.currentSessionObj.flagState = 'endSession'
         this.runPipeline()
     }
+    getUserInputBool(){
+        return this.currentSessionObj.userInput? true : false
+    }
+    getpromptBool(){
+        return this.sessionPrompt? true : false
+    }
+    getHistoryBool(){
+        return this.currentSessionObj.history? true : false
+    }
+    testErrorUserInput(){
+        this.currentSessionObj.userInput = null;
+    }
+    testErrorNoReturn(){
+        this.currentSessionObj.response = null;
+    }
+    
+    testNohistory(){
+        this.currentSessionObj.history = null;
+    }
+
 }
 
 export default Session;

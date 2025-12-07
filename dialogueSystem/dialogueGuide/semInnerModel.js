@@ -93,6 +93,9 @@ export function semInnerModel(intentName, history) {
 
   const semanticDecay = 1 - (semFieldHistory.length / intentModel.intents.length);
 
+  // ---- NEW: extract last 5 intents ----
+  const recentIntents = history.map(h => h.intent);
+
   const scoredIntents = intentVector
     .map((value, index) => {
       const name = intentModel.intents[index];
@@ -102,81 +105,76 @@ export function semInnerModel(intentName, history) {
         intent: name,
         score: value * semanticDecay,
         promptMsg: full.msgPrompt ?? null
-
       };
     })
+    // exclude the starting intent
     .filter(item => item.intent !== intentName)
+
+    //  remove any intent that appears in the last 5 turns ----
+    .filter(item => !recentIntents.includes(item.intent))
+
     .sort((a, b) => b.score - a.score);
 
   if (!scoredIntents.length || scoredIntents[0].score <= 0.2) {
     return null;
   }
-  
-  return scoredIntents[0] || null; // <-- single object or null
+
+  return scoredIntents[0] || null;
 }
 
-// ---- TEST SUITE: STARTING INTENT = "greeting" ----
+// // ------------------------------------------------------------
+// // LIMITED TEST SUITE — daily_life ONLY
+// // ------------------------------------------------------------
 
-// helper for readable output
+// // Simple output helper
 // function print(label, result) {
 //   console.log(`\n--- ${label} ---`);
 //   console.log(result);
 // }
 
-// const startIntent = "greeting";
-
-// const history1 = [
-//   { intent: "intent_2" },   // same semantic group
-//   { intent: "intent_4" },   // same semantic group
-//   { intent: "intent_6" },   // same semantic group
-//   { intent: "intent_12" },  // different semantic group
-//   { intent: "intent_1" }    // same semantic group
+// const dailyLifeIntents = [
+//   "lifestyle_habits",
+//   "typical_wardrobe",
+//   "foods_commonly_eaten",
+//   "daily_routine",
+//   "administrative_duties",
+//   "leisure_activities"
 // ];
 
-// const history2 = [
-//   { intent: "intent_12" },
-//   { intent: "intent_8" },
-//   { intent: "intent_9" }
-// ]; // no matching category for greeting
+// // console.log("\n===== LIMITED SEMANTIC MODEL TEST SUITE (daily_life only) =====");
 
-// const history3 = [
-//   { intent: "greeting" },
-//   { intent: "greeting" },
-//   { intent: "intent_1" },
-//   { intent: "greeting" },
-//   { intent: "intent_5" }
-// ]; // high repetition decay case
+// // // ------------------------------------------------------------
+// // // TEST 1 — Starting from lifestyle_habits, propose next intent
+// // // ------------------------------------------------------------
+// // print(
+// //   "Test 1: daily_life transition",
+// //   semInnerModel("lifestyle_habits", [])
+// // );
 
-// const history4 = []; // empty conversation history
+// // // ------------------------------------------------------------
+// // // TEST 2 — Ensure last 5 daily_life intents are removed from scoring
+// // // ------------------------------------------------------------
+// // const lastFive = dailyLifeIntents.slice(0, 5).map(intent => ({ intent }));
 
-// console.log("\n===== SEMANTIC MODEL TESTS (intent: greeting) =====");
+// // print(
+// //   "Test 2: remove last 5 daily_life intents",
+// //   semInnerModel("lifestyle_habits", lastFive)
+// // );
 
-// print(
-//   "Case 1: Normal matching semantic history",
-//   semInnerModel(startIntent, history1)
-// );
+// // // ------------------------------------------------------------
+// // // TEST 3 — All candidates removed → should return null
+// // // ------------------------------------------------------------
+// // const heavyHistory = dailyLifeIntents.map(intent => ({ intent }));
 
-// print(
-//   "Case 2: No matching semantic field",
-//   semInnerModel(startIntent, history2)
-// );
+// // print(
+// //   "Test 3: all daily_life intents in history (expect null)",
+// //   semInnerModel("lifestyle_habits", heavyHistory)
+// // );
 
-// print(
-//   "Case 3: Heavy repetition (decay may remove prediction)",
-//   semInnerModel(startIntent, history3)
-// );
+// // console.log("\n===== END LIMITED TESTS =====\n");
 
-// print(
-//   "Case 4: No prior conversation",
-//   semInnerModel(startIntent, history4)
-// );
 
-// print(
-//   "Case 5: Invalid starting intent",
-//   semInnerModel("not_an_intent", history1)
-// );
 
-// console.log("\n===== END TESTS =====\n");
 
 
 

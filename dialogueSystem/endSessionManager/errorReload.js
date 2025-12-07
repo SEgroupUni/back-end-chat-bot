@@ -3,18 +3,21 @@ import path from "path";
 import { getSession, deleteSession } from "../../liveSessionState/sessionState.js";
 import { createSession, sessionGateRouter } from "../dataGateway/gateRouter.js";
 
-export async function errorReload() {
+export async function errorReload(messageEnvelope, sessionPrompt, sessionLog, id) {
   const sessionFilePath = path.join(process.cwd(), "log.json");
 
-  // If no log file at all
+  // No log file at all
   if (!fs.existsSync(sessionFilePath)) {
     return "No logs available.";
   }
 
-  
+  // Load saved sessions
+  let allSessions = [];
   try {
-    allSessions = JSON.parse(fs.readFileSync(sessionFilePath, "utf8"));
-    if (!Array.isArray(allSessions)) allSessions = [];
+    const parsed = JSON.parse(fs.readFileSync(sessionFilePath, "utf8"));
+    if (Array.isArray(parsed)) {
+      allSessions = parsed;
+    }
   } catch {
     return "Log file corrupted.";
   }
@@ -23,16 +26,16 @@ export async function errorReload() {
     return "No previous session found.";
   }
 
-  // Load last saved session
+  // Latest saved session
   const latestSave = allSessions[allSessions.length - 1];
+  const { lastUserInput } = latestSave;
 
-  // Extract persona before deleting
+  // Get old persona
   const oldSession = getSession();
-  const persona = oldSession?.persona || "default persona";
+  const persona = oldSession?.sessionPersona || "default persona";
 
+  // Reset session
   deleteSession();
-
-  // Create a new session
   const sessionLive = createSession(persona);
   if (!sessionLive) {
     deleteSession();
@@ -40,19 +43,15 @@ export async function errorReload() {
     return "Failed to restore session. Started a fresh session.";
   }
 
-  // Load the previous session log
+  // Restore session history
   const session = getSession();
-  session.loadSessionLog(latestSave.sessionLog);
+  session.loadSessionLog(sessionLog);
 
-  // Extract last input
-  const lastEntry = latestSave.sessionLog[latestSave.sessionLog.length - 1];
-  const lastUserInput = lastEntry.userInput;
-
-  // Prevent infinite end-session trigger
-  if (lastUserInput === "end session") {
+  // If no real input, do not replay
+  if (!lastUserInput || lastUserInput === "end session") {
     return "Restored session. No replay executed.";
   }
 
-  // Replay the last input
+  // Replay last real input
   return await sessionGateRouter(lastUserInput);
 }

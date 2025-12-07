@@ -2,42 +2,54 @@ import fs from "fs";
 import path from "path";
 import { getSession } from "../../liveSessionState/sessionState.js";
 
-export default function fileSaver(messageEnvelope) {
+export default function fileSaver(messageEnvelope, sessionPrompt, sessionLog, id) {
   console.log("file saver");
 
-  const workingEnvelope = structuredClone(messageEnvelope);
   const sessionFilePath = path.join(process.cwd(), "log.json");
   const currentSession = getSession();
 
-  // Load existing array or create a fresh one
+  // ---- Determine the last REAL user input ----
+  const lastUserInput = sessionLog
+    .slice()       // shallow copy
+    .reverse()
+    .find(entry => entry.userInput !== null && entry.userInput !== undefined)
+    ?.userInput || null;
+
+  // ---- Load existing saved sessions ----
   let allSessions = [];
   if (fs.existsSync(sessionFilePath)) {
     try {
-      allSessions = JSON.parse(fs.readFileSync(sessionFilePath, "utf8"));
-      if (!Array.isArray(allSessions)) allSessions = [];
+      const parsed = JSON.parse(fs.readFileSync(sessionFilePath, "utf8"));
+      if (Array.isArray(parsed)) allSessions = parsed;
     } catch {
       allSessions = [];
     }
   }
-  // Add new session entry
+
+  // ---- Save new session structure ----
   allSessions.push({
     id,
-    sessionLog
+    sessionLog,
+    lastUserInput,
   });
 
-  // Save the entire array to disk
   fs.writeFileSync(sessionFilePath, JSON.stringify(allSessions, null, 2), "utf8");
 
-  // Error handling behaviour unchanged
+  // ---- If we ended due to an error, prep for a new session ----
   if (messageEnvelope.error === true) {
-    workingEnvelope.errorMsg = "new session required";
-    workingEnvelope.flagState = "frontFlow";
-    workingEnvelope.response = "req response";
-    currentSession.processSessionObj(workingEnvelope);
+    const resend = structuredClone(messageEnvelope);
+    resend.flagState = "frontFlow";
+    resend.errMsg = "new session required";
+    resend.response = "req response";
+    currentSession.processSessionObj(resend);
+    return;
   }
 
-  // End session
-  workingEnvelope.response = "end session";
-  workingEnvelope.flagState = "frontFlow";
-  currentSession.processSessionObj(workingEnvelope);
+  // ---- Normal clean end ----
+  const finalObj = structuredClone(messageEnvelope);
+  finalObj.flagState = null;        // Stop pipeline
+  finalObj.response = "end session";
+  finalObj.userInput = null;
+
+  currentSession.processSessionObj(finalObj);
 }

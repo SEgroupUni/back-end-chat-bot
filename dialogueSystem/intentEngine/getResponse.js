@@ -10,7 +10,7 @@ const intents = Array.isArray(intentsData.intents) ? intentsData.intents : [];
 // ------------------------------------------------------------
 // MAIN INTENT-MATCH FUNCTION
 // ------------------------------------------------------------
-export default async function getResponse(messageEnvelope, history = []) {
+export default async function getResponse(messageEnvelope) {
     let bestScore = 0;
     let bestIntent = null;
     let bestResponse = null;
@@ -43,7 +43,7 @@ export default async function getResponse(messageEnvelope, history = []) {
     }
 
     // --------------------------------------------------------
-    // 2) SEMANTIC EMBEDDING BACKUP (only if no match at all)
+    // 2) SEMANTIC EMBEDDING BACKUP
     // --------------------------------------------------------
     if (bestScore === 0) {
         const detected = await detectIntent(messageEnvelope);
@@ -65,24 +65,31 @@ export default async function getResponse(messageEnvelope, history = []) {
     // 3) SPECIAL CASE: USER SAID “YES”
     // --------------------------------------------------------
     if (bestIntent === "yes") {
-        const last = history?.[history.length - 1];
+        const last = messageEnvelope.history?.length
+            ? messageEnvelope.history[messageEnvelope.history.length - 1]
+            : null;
 
-        if (last?.promptIntent) {
-            const continuedIntentName = last.promptIntent;   // e.g. "birthplace"
-            const continuedIntent = intents.find(
-                i => i.intent === continuedIntentName
-            );
+    if (last?.promptIntent) {
+        const continuedIntentName = last.promptIntent;
+        const continuedIntent = intents.find(i => i.intent === continuedIntentName);
 
-            if (continuedIntent) {
-                bestIntent = continuedIntent.intent;
-                bestResponse =
-                    continuedIntent.responses[
-                        Math.floor(Math.random() * continuedIntent.responses.length)
-                    ];
-                componentUsed = "yes-followup";
+        if (continuedIntent) {
+            const firstPattern = continuedIntent.patterns[0];
+
+            if (firstPattern) {
+                messageEnvelope.userInput = firstPattern;
             }
+
+            bestIntent = continuedIntent.intent;
+            bestResponse =
+                continuedIntent.responses[
+                    Math.floor(Math.random() * continuedIntent.responses.length)
+                ];
+
+            componentUsed = "yes-followup";
         }
     }
+}
 
     // --------------------------------------------------------
     // FINAL ASSEMBLY

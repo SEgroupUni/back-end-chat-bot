@@ -27,6 +27,7 @@ export async function processAiLogic(messageEnvelope, sessionPrompt) {
             1. Role: ${sessionPrompt.rolePlay || "Chatbot"}
             2. Audience: ${sessionPrompt.generalAudience || "General Public"}
             3. Constraints: ${sessionPrompt.expected || "None"}
+            4. Response : ${sessionPrompt.outDateRespond}
 
         STRICT FORMATTING RULES:
             - ${sessionPrompt.lengthConstraint || "Max 50 words."}
@@ -104,7 +105,7 @@ export async function processAiLogic(messageEnvelope, sessionPrompt) {
         console.warn("[AI Logic] Failed to parse history:", err);
 
         messageEnvelope.error = true;
-        messageEnvelope.errorMsg = "History parsing failed.";
+        messageEnvelope.errMsg = "History parsing failed.";
         messageEnvelope.flagState = "error";
         return messageEnvelope;
     }
@@ -130,11 +131,8 @@ export async function processAiLogic(messageEnvelope, sessionPrompt) {
 
     // --- HANDLE FAILURE ---
     if (!result.ok) {
-        messageEnvelope.response = null;
-        messageEnvelope.source = null;
         messageEnvelope.error = true;
-        messageEnvelope.errorMsg = result.error;
-        messageEnvelope.rawAIResponse = result.raw || null;
+        messageEnvelope.errMsg = result.error
         messageEnvelope.flagState = "error";
         messageEnvelope.componentUsed = "External LLM";
         return messageEnvelope;
@@ -143,7 +141,6 @@ export async function processAiLogic(messageEnvelope, sessionPrompt) {
 
     // --- HANDLE SUCCESS ---
     messageEnvelope.response = result.json.response;
-    messageEnvelope.source = result.json.source;
     messageEnvelope.error = false;
     messageEnvelope.flagState = "frontFlow";
     messageEnvelope.componentUsed = "External LLM";

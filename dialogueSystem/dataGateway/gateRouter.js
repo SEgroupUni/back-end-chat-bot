@@ -48,8 +48,11 @@ export function finishCycle(response) {
 
     // 2. Determine whether a valid response exists and set the next flag accordingly
     if (!workingEnvelope.response) {
+        console.log('error working')
         workingEnvelope.flagState = "error";
-        workingEnvelope.errorMsg = "no return message";
+        workingEnvelope.error = true
+        workingEnvelope.errMsg = "no return msg";
+        
     } else {
         workingEnvelope.flagState = null;
         console.log(workingEnvelope);

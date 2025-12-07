@@ -15,16 +15,13 @@ export async function sendToExternalAI(messages) {
         console.error("[SEND_TO_AI][FATAL] Missing HUGGINGFACE_TOKEN in .env");
         return {
             ok: false,
-            error: "Missing HUGGINGFACE_TOKEN in .env"
+            error: "Missing HUGGINGFACE_TOKEN"  // KEEP UNIQUE
         };
     }
 
     try {
         console.time("AI_Speed_Test");
 
-        // ------------------------------
-        // SEND REQUEST TO HUGGINGFACE
-        // ------------------------------
         const resp = await fetch(HF_URL, {
             method: "POST",
             headers: {
@@ -47,7 +44,7 @@ export async function sendToExternalAI(messages) {
             console.error("[SEND_TO_AI][HTTP_ERROR]", resp.status, err);
             return {
                 ok: false,
-                error: `HTTP Error: ${resp.status} - ${err}`
+                error: "HF_HTTP_ERROR"  // STANDARDISED
             };
         }
 
@@ -57,14 +54,11 @@ export async function sendToExternalAI(messages) {
         const data = await resp.json();
         console.timeEnd("AI_Speed_Test");
 
-        // ------------------------------
-        // LLM RETURNED NO OUTPUT
-        // ------------------------------
         if (!data.choices?.[0]?.message?.content) {
-            console.error("[SEND_TO_AI][NO_CONTENT] Model returned no content.", data);
+            console.error("[SEND_TO_AI][NO_CONTENT]", data);
             return {
                 ok: false,
-                error: "No AI content returned."
+                error: "HF_NO_CONTENT"  // STANDARDISED
             };
         }
 
@@ -73,31 +67,28 @@ export async function sendToExternalAI(messages) {
         // Clean <think> blocks
         reply = reply.replace(/<think>[\s\S]*?<\/think>/g, "").trim();
 
-
         // ------------------------------
-        // TRY PARSING JSON NORMALLY
+        // TRY PARSING JSON
         // ------------------------------
         let json = null;
         try {
             json = JSON.parse(reply);
-        } catch (e1) {
+        } catch {
             console.warn("[SEND_TO_AI][JSON_PARSE_FAIL] Raw reply:", reply);
 
-            // Try removing ```json fences
+            // Remove code fences
             reply = reply.replace(/```json|```/g, "").trim();
 
             try {
                 json = JSON.parse(reply);
-            } catch (e2) {
-                console.error("[SEND_TO_AI][INVALID_JSON]", reply, e2);
+            } catch {
+                console.error("[SEND_TO_AI][INVALID_JSON]", reply);
                 return {
                     ok: false,
-                    raw: reply,
-                    error: "Invalid JSON returned by LLM"
+                    error: "HF_INVALID_JSON"  // STANDARDISED
                 };
             }
         }
-
 
         // ------------------------------
         // SUCCESS
@@ -111,12 +102,12 @@ export async function sendToExternalAI(messages) {
     } catch (error) {
 
         // ------------------------------
-        // NETWORK / FETCH / ROUTER ERRORS
+        // NETWORK ERRORS
         // ------------------------------
         console.error("[SEND_TO_AI][EXCEPTION_CAUGHT]", error);
         return {
             ok: false,
-            error: String(error)
+            error: "HF_NETWORK_ERROR"  // STANDARDISED
         };
     }
 }
