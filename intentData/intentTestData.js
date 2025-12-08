@@ -58,7 +58,7 @@ export const testDatasetExact = [
   { text: "what did egypt call you", expectedIntent: "titles" },
   { text: "tell me your titles", expectedIntent: "titles" },
   { text: "what were your royal titles", expectedIntent: "titles" },
-
+  
   // names_epithets
   { text: "what names did you use", expectedIntent: "names_epithets" },
   { text: "what were your other names", expectedIntent: "names_epithets" },

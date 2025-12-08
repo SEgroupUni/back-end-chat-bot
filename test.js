@@ -3,7 +3,7 @@ from "./dialogueSystem/dataGateway/gateRouter.js";
 import { getSession } from "./liveSessionState/sessionState.js";
 
 
-const userInput =  'what is a computer';
+const userInput =  'what is your name';
 
 const persona = 'ramesses'
 
