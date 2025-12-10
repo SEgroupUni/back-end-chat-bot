@@ -5,9 +5,9 @@
   "main": "main.js",
   "type": "module",
   "scripts": {
-    "start": "node main.js",
-    "dev": "nodemon main.js",
-    "test": "node test.js"
+  "start": "node src/server.js",  
+  "dev": "nodemon src/server.js",
+  "test": "node test.js"
   },
   "dependencies": {
     "@huggingface/inference": "^4.13.3",
