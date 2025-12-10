@@ -77,7 +77,7 @@ function semanticFieldHistory(intentName, history) {
 
 
 
-export function semInnerModel(intentName, history) {
+export function promptModel(intentName, history) {
   const topN = 1;
 
   const semFieldHistory = semanticFieldHistory(intentName, history);

@@ -1,11 +1,11 @@
-import getResponse from './getResponse.js';
+import getResponse from '../dialogueSystem/intentEngine/getResponse.js';
 
 import {
     testDatasetExact,
     testDatasetFuzzy,
     testDatasetBoundary,
     testDatasetErroneous
-} from '../../intentData/intentTestData.js';
+} from '../intentData/intentTestData.js';
 
 const testLoop = [
     ['Exact dataset', testDatasetExact],

@@ -1,7 +1,7 @@
 import { compositeMatchScore } from "./compositeMatchScore.js";
 import checkFullInput from "./checkFullInput.js";
 import { createRequire } from "module";
-import { detectIntent } from "./detectIntent.js";
+import { detectIntent } from "./vectorIntentClassifier.js";
 
 const require = createRequire(import.meta.url);
 const intentsData = require("../../intentData/intents.json");

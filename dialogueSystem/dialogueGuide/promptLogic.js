@@ -1,7 +1,7 @@
-import { semInnerModel } from "./semInnerModel.js";
+import { promptModel } from "./promptModel.js";
 export function promptLogic(messageEnvelope) {
   
-  const prediction = semInnerModel(messageEnvelope.intent, messageEnvelope.history);
+  const prediction = promptModel(messageEnvelope.intent, messageEnvelope.history);
   console.log(prediction)
   if (prediction && prediction.promptMsg) {
     // Model found a meaningful next intent

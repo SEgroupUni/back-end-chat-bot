@@ -7,10 +7,10 @@ export function errorGateway(messageEnvelope) {
     const lastEntry = messageEnvelope.history?.[messageEnvelope.history.length - 1];  
     const count = lastEntry?.errorCount ?? 0;
 
-    // // 1. Log the original error state BEFORE modifying anything
-    // const logObj = structuredClone(messageEnvelope);
-    // logObj.componentUsed = "error handler";
-    // session.processSessionObj(logObj);
+    // 1. Log the original error state BEFORE modifying anything
+    const logObj = structuredClone(messageEnvelope);
+    logObj.componentUsed = "error handler";
+    session.processSessionObj(logObj);
 
     // 2. If error count >= 3 → end session
     if (count >= 3) {
