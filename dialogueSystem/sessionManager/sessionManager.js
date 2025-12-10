@@ -67,7 +67,9 @@ class Session {
 
     // Logging clone for persistence/debug 
     logSessionObj() {
-    // 1. Store a copy, not previous memory reference only one
+    // delete history as it is a snapshot of session log
+    this.currentSessionObj.history = []
+        // 1. Store a copy, not previous memory reference only one
     const logObj = structuredClone(this.currentSessionObj);
 
     // 2. Push that snapshot so history is frozen in time

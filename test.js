@@ -3,7 +3,7 @@ from "./dialogueSystem/dataGateway/gateRouter.js";
 import { getSession } from "./liveSessionState/sessionState.js";
 
 
-const userInput =  'where were you born';
+const userInput =  'what kind of legacy do you want';
 
 const persona = 'ramesses'
 
