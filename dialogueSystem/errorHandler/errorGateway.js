@@ -27,6 +27,7 @@ export function errorGateway(messageEnvelope) {
     // 5. If errorSwitch resolved → clear error flag
     if (processEnvelope.flagState !== "error" && processEnvelope.flagState !== 'endSession') {
         processEnvelope.error = false;
+        processEnvelope.errMsg = null;
     }
 
     // 6. Commit updated state to session

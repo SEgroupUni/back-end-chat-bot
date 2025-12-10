@@ -1,0 +1,97 @@
+[
+  {
+    "id": "2025-12-10T16:54:11.598Z",
+    "sessionLog": [
+      {
+        "userInput": "what food did you eat?",
+        "response": "I ate as the nobles do: bread, meats, beer, and fruits from the fertile Nile banks.",
+        "userPrompt": "Would you like to know how I spent my leisure time?",
+        "promptIntent": "leisure_activities",
+        "flagState": null,
+        "error": false,
+        "errorCount": 0,
+        "errMsg": null,
+        "history": [],
+        "intent": "foods_commonly_eaten",
+        "componentUsed": "exact",
+        "score": 0.7692307692307693
+      },
+      {
+        "userInput": "what did you do for leisure",
+        "response": "In moments of rest, I hunted, especially lions and great beasts that tested strength.",
+        "userPrompt": "Would you like to know how I lived each day?",
+        "promptIntent": "lifestyle_habits",
+        "flagState": null,
+        "error": false,
+        "errorCount": 0,
+        "errMsg": null,
+        "history": [],
+        "intent": "leisure_activities",
+        "componentUsed": "yes-followup",
+        "score": 1,
+        "promptInent": null
+      },
+      {
+        "userInput": "what were your beiiefs?",
+        "response": "Curious, let me consult the priests.",
+        "userPrompt": null,
+        "promptIntent": "lifestyle_habits",
+        "flagState": "error",
+        "error": true,
+        "errorCount": 0,
+        "errMsg": "HF_INVALID_JSON",
+        "history": [],
+        "intent": null,
+        "componentUsed": "External LLM",
+        "score": 0,
+        "promptInent": null
+      },
+      {
+        "userInput": "what were your beiiefs?",
+        "response": "Curious, let me consult the priests.",
+        "userPrompt": null,
+        "promptIntent": "lifestyle_habits",
+        "flagState": "error",
+        "error": true,
+        "errorCount": 0,
+        "errMsg": "HF_INVALID_JSON",
+        "history": [],
+        "intent": null,
+        "componentUsed": "error handler",
+        "score": 0,
+        "promptInent": null
+      },
+      {
+        "userInput": "what were your beiiefs?",
+        "response": "As Pharaoh Ramesses II, I hold firm beliefs in the divine authority of the gods and my role as their intermediary on earth. I revered the pantheon of Egyptian deities and sought to maintain Ma'at, the harmony of the universe, through my reign.",
+        "userPrompt": null,
+        "promptIntent": "lifestyle_habits",
+        "flagState": null,
+        "error": false,
+        "errorCount": 1,
+        "errMsg": "HF_INVALID_JSON",
+        "history": [],
+        "intent": null,
+        "componentUsed": "External LLM",
+        "score": 0,
+        "promptInent": null
+      },
+      {
+        "userInput": "end session",
+        "response": null,
+        "userPrompt": null,
+        "promptIntent": "lifestyle_habits",
+        "flagState": "endSession",
+        "error": false,
+        "errorCount": 0,
+        "errMsg": null,
+        "history": [],
+        "intent": null,
+        "componentUsed": "External LLM",
+        "score": 0,
+        "promptInent": null
+      }
+    ],
+    "lastUserInput": "end session"
+  }
+]
