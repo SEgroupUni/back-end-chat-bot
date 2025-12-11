@@ -1,17 +1,23 @@
-// dialogueSystem/tests/fullErrorTest.js
-// Run with:  node dialogueSystem/tests/fullErrorTest.js
+/**
+ * errorTests.js
+ * Run with: node testingSuite/errorTests.js
+ */
 
-import { createSession, sessionGateRouter } 
-    from "../dialogueSystem/dataGateway/gateRouter.js";
+import { sessionGateRouter } 
+  from "../dialogueSystem/dataGateway/gateRouter.js";
 
 import { errorReload } 
-    from "../dialogueSystem/endSessionManager/errorReload.js";
+  from "../dialogueSystem/endSessionManager/errorReload.js";
 
 import { errorGateway } 
-    from "../dialogueSystem/errorHandler/errorGateway.js";
+  from "../dialogueSystem/errorHandler/errorGateway.js";
 
 import { getSession, deleteSession } 
-    from "../liveSessionState/sessionState.js";
+  from "../liveSessionState/sessionState.js";
+
+/* ------------------------------------------------------------------ */
+/* Utility Functions                                                  */
+/* ------------------------------------------------------------------ */
 
 function logState(label) {
   const session = getSession();
@@ -30,17 +36,19 @@ function logState(label) {
   });
 }
 
-// Helper to reset and start a fresh session
+/**
+ * Reset Session — now matches real system design
+ * - delete current session
+ * - let getSession() rebuild it automatically
+ */
 function resetSession(personaName = "ramesses") {
   deleteSession();
-  const created = createSession(personaName);
-  if (!created) {
-    throw new Error(`Failed to create session for persona: ${personaName}`);
-  }
-  return getSession();
+  return getSession(personaName);
 }
 
-// Build a generic error envelope to feed into errorGateway
+/**
+ * Build an error envelope that reflects your actual session object shape.
+ */
 function buildErrorEnvelope(overrides = {}) {
   const session = getSession();
   const base = session.currentSessionObj || {};
@@ -61,27 +69,25 @@ function buildErrorEnvelope(overrides = {}) {
 }
 
 /* ------------------------------------------------------------------ */
-/* 1. inputError: errMsg = "no input" (no user input case)            */
+/* TEST 1: inputError                                                 */
 /* ------------------------------------------------------------------ */
 async function test_inputError() {
   resetSession();
 
-  console.log("\n######## TEST: inputError (no input via sessionGateRouter) ########");
+  console.log("\n######## TEST: inputError ########");
 
-  // Passing null will cause gateRouter to convert to "no input",
-  // Session.setUserInput will set errMsg="no input" and flagState="error"
   await sessionGateRouter(null);
 
-  logState("After inputError flow (expected: componentUsed='error input')");
+  logState("After inputError");
 }
 
 /* ------------------------------------------------------------------ */
-/* 2. noReturnMsg: errMsg = "no return msg"                           */
+/* TEST 2: noReturnMsg                                                */
 /* ------------------------------------------------------------------ */
 async function test_noReturnMsg() {
   resetSession();
 
-  console.log("\n######## TEST: noReturnMsg (no return from previous stage) ########");
+  console.log("\n######## TEST: noReturnMsg ########");
 
   const env = buildErrorEnvelope({
     errMsg: "no return msg",
@@ -89,17 +95,12 @@ async function test_noReturnMsg() {
     response: null,
   });
 
-  // Directly call errorGateway → errorSwitch → noReturnMsg
   errorGateway(env);
-
-  logState(
-    "After noReturnMsg via errorGateway (expected: flagState='frontFlow' or 'intEngine', componentUsed='error return')"
-  );
+  logState("After noReturnMsg");
 }
 
 /* ------------------------------------------------------------------ */
-/* 3. gatewayVerification: errMsg = "AI gateway verification fail"    */
-/*    We test one branch: input present + history present → intEngine */
+/* TEST 3: gatewayVerification                                        */
 /* ------------------------------------------------------------------ */
 async function test_gatewayVerification() {
   resetSession();
@@ -107,7 +108,6 @@ async function test_gatewayVerification() {
   console.log("\n######## TEST: gatewayVerification ########");
 
   const session = getSession();
-  // Make sure session thinks it has user input and history
   session.currentSessionObj.userInput = "test user input";
   session.currentSessionObj.history = [{ userInput: "prev", response: "prev" }];
 
@@ -117,14 +117,11 @@ async function test_gatewayVerification() {
 
   errorGateway(env);
 
-  logState(
-    "After gatewayVerification (expected: flagState='intEngine', componentUsed='error gateway')"
-  );
+  logState("After gatewayVerification");
 }
 
 /* ------------------------------------------------------------------ */
-/* 4. historyParseError: errMsg = 'History parsing failed'            */
-/*    We test histBool=true → flagState='aiRequest'                   */
+/* TEST 4: historyParseError                                          */
 /* ------------------------------------------------------------------ */
 async function test_historyParseError() {
   resetSession();
@@ -132,7 +129,6 @@ async function test_historyParseError() {
   console.log("\n######## TEST: historyParseError ########");
 
   const session = getSession();
-  // Make history truthy
   session.currentSessionObj.history = [{ userInput: "u", response: "r" }];
 
   const env = buildErrorEnvelope({
@@ -141,14 +137,11 @@ async function test_historyParseError() {
 
   errorGateway(env);
 
-  logState(
-    "After historyParseError (expected: flagState='aiRequest', componentUsed='history parse')"
-  );
+  logState("After historyParseError");
 }
 
 /* ------------------------------------------------------------------ */
-/* 5. missingTokenError: errMsg = 'Missing HUGGINGFACE_TOKEN'         */
-/*    We simulate missing token by clearing env var                   */
+/* TEST 5: missingTokenError                                          */
 /* ------------------------------------------------------------------ */
 async function test_missingTokenError() {
   resetSession();
@@ -164,23 +157,20 @@ async function test_missingTokenError() {
 
   errorGateway(env);
 
-  logState(
-    "After missingTokenError (expected: flagState='endSession' when no token, componentUsed='token missing')"
-  );
+  logState("After missingTokenError");
 
-  // Restore env to be safe
   if (oldToken !== undefined) {
     process.env.HUGGINGFACE_TOKEN = oldToken;
   }
 }
 
 /* ------------------------------------------------------------------ */
-/* 6. aiRecycle: HF_* error codes → aiRecycle                         */
+/* TEST 6: aiRecycle                                                  */
 /* ------------------------------------------------------------------ */
 async function test_aiRecycle() {
   resetSession();
 
-  console.log("\n######## TEST: aiRecycle (HF_HTTP_ERROR) ########");
+  console.log("\n######## TEST: aiRecycle ########");
 
   const env = buildErrorEnvelope({
     errMsg: "HF_HTTP_ERROR",
@@ -188,42 +178,55 @@ async function test_aiRecycle() {
 
   errorGateway(env);
 
-  logState(
-    "After aiRecycle (expected: flagState='aiRequest', componentUsed='network error')"
-  );
+  logState("After aiRecycle");
 }
 
 /* ------------------------------------------------------------------ */
-/* 7. errorReload: use fileSaver's log.json and replay last input     */
+/* TEST 7: errorCountReset                                            */
+/* ------------------------------------------------------------------ */
+async function test_errorCountReset() {
+  resetSession();
+
+  console.log("\n######## TEST: errorCountReset ########");
+
+  for (let i = 0; i <= 3; i++) {
+    const env = buildErrorEnvelope({
+      errMsg: "Simulated error " + (i + 1),
+      errorCount: i,
+    });
+
+    errorGateway(env);
+  }
+
+  logState("After 4 consecutive errors");
+}
+
+/* ------------------------------------------------------------------ */
+/* TEST 8: errorReload                                                */
 /* ------------------------------------------------------------------ */
 async function test_errorReload() {
+  resetSession();
+
   console.log("\n######## TEST: errorReload ########");
 
-  // Start fresh session and run one normal input
-  resetSession();
-  await sessionGateRouter("hello from user");
+  await sessionGateRouter("where were you born");
 
-  // Now force an "endSession" to trigger fileSaver & log.json
   const session = getSession();
-  session.endSession(); // sets flagState='endSession' and runs pipeline → fileSaver
+  session.endSession();
 
-  // Allow a tick for async pipeline completion
   await new Promise((resolve) => setTimeout(resolve, 250));
 
   console.log("\n--- Calling errorReload() ---");
-  const reloadResult = await errorReload();
-  console.log("errorReload() returned:", reloadResult);
+  const result = await errorReload();
 
-  // After reload, a new session should exist and the last user input replayed
-  logState(
-    "After errorReload (expected: session restored and pipeline re-run on lastUserInput)"
-  );
+  console.log("errorReload() returned:", result);
+
+  logState("After errorReload");
 }
 
 /* ------------------------------------------------------------------ */
 /* MAIN RUNNER                                                        */
 /* ------------------------------------------------------------------ */
-
 async function main() {
   try {
     await test_inputError();
@@ -232,11 +235,12 @@ async function main() {
     await test_historyParseError();
     await test_missingTokenError();
     await test_aiRecycle();
+    await test_errorCountReset();
     await test_errorReload();
 
     console.log("\n######## ALL ERROR TESTS COMPLETED ########\n");
   } catch (err) {
-    console.error("Test runner crashed with error:", err);
+    console.error("Test runner crashed:", err);
   }
 }
 

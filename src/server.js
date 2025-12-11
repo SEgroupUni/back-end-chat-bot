@@ -2,7 +2,24 @@ import express from "express";
 import cors from "cors";
 import sessionRoute from "./routes/session.js";
 import messageRoute from "./routes/messages.js";
-import sessionEnd  from "./routes/sessionEnd.js"
+import sessionEnd from "./routes/sessionEnd.js";
+
+/**
+ * Express Server Entry Point
+ * --------------------------
+ * This file initializes and runs the backend web server.
+ *
+ * Responsibilities:
+ *  - Create an Express application
+ *  - Enable CORS for frontend communication
+ *  - Parse incoming JSON request bodies
+ *  - Mount all API routes:
+ *  - Start listening on the configured port
+ *
+ * IMPORTANT:
+ * This file must NOT be deleted. It is required to boot the backend.
+ */
+
 
 const app = express();
 const PORT = 3001;

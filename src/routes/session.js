@@ -1,5 +1,23 @@
 import express from 'express';
 import { createSession } from '../../dialogueSystem/dataGateway/gateRouter.js';
+/**
+ * Session Route
+ * -------------
+ * Provides an endpoint for creating a new chatbot session.
+ *
+ * Responsibilities:
+ *  - Accept persona initialization data from the client
+ *  - Validate the persona using `createSession()`
+ *  - Start a new dialogue session if valid
+ *  - Return a clear success or error response
+ *
+ * Notes:
+ *  - This endpoint must be called before sending any user messages.
+ *  - It does NOT handle conversation messages — those are processed 
+ *    through the /messages route.
+ */
+
+
 
 const router = express.Router();
 

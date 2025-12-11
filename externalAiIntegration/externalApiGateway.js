@@ -1,6 +1,29 @@
 import fetch from "node-fetch";
 import dotenv from "dotenv";
 
+/**
+ * sendToExternalAI(messages)
+ * ------------------------------------------------------------
+ * This module sends chat-style messages to the HuggingFace
+ * inference router and enforces strict JSON response handling.
+ *
+ * Responsibilities:
+ *  - Perform authenticated POST request to HF router.
+ *  - Handle non-200 HTTP errors safely.
+ *  - Strip <think> blocks from DeepSeek / R1 style models.
+ *  - Parse returned JSON safely with fallback sanitisation.
+ *  - Return standardized "ok / error" objects so the rest of
+ *    the pipeline never crashes due to malformed LLM output.
+ *
+ 
+ *
+ * The API wrapper NEVER throws an exception. Errors always
+ * return a standardized object for error handler.
+ * 
+ * ------------------------------------------------------------
+ */
+
+
 dotenv.config();
 
 const HF_URL = "https://router.huggingface.co/v1/chat/completions";
@@ -9,19 +32,22 @@ const HF_TOKEN = process.env.HUGGINGFACE_TOKEN;
 export async function sendToExternalAI(messages) {
 
     // ------------------------------
-    // ENVIRONMENT TOKEN CHECK
+    // Ensure API key exists in environment
     // ------------------------------
     if (!HF_TOKEN) {
         console.error("[SEND_TO_AI][FATAL] Missing HUGGINGFACE_TOKEN in .env");
         return {
             ok: false,
-            error: "Missing HUGGINGFACE_TOKEN"  // KEEP UNIQUE
+            error: "Missing_HUGGINGFACE_TOKEN"
         };
     }
 
     try {
         console.time("AI_Speed_Test");
 
+        // ------------------------------
+        // Perform the actual POST request
+        // ------------------------------
         const resp = await fetch(HF_URL, {
             method: "POST",
             headers: {
@@ -37,19 +63,19 @@ export async function sendToExternalAI(messages) {
         });
 
         // ------------------------------
-        // NON-200 HTTP STATUS
+        // Handle HTTP Failure (400–599)
         // ------------------------------
         if (!resp.ok) {
             const err = await resp.text();
             console.error("[SEND_TO_AI][HTTP_ERROR]", resp.status, err);
             return {
                 ok: false,
-                error: "HF_HTTP_ERROR"  // STANDARDISED
+                error: "HF_HTTP_ERROR"
             };
         }
 
         // ------------------------------
-        // PARSE JSON RESPONSE
+        // Parse JSON Body
         // ------------------------------
         const data = await resp.json();
         console.timeEnd("AI_Speed_Test");
@@ -58,17 +84,19 @@ export async function sendToExternalAI(messages) {
             console.error("[SEND_TO_AI][NO_CONTENT]", data);
             return {
                 ok: false,
-                error: "HF_NO_CONTENT"  // STANDARDISED
+                error: "HF_NO_CONTENT"
             };
         }
 
         let reply = data.choices[0].message.content;
 
-        // Clean <think> blocks
+        // ------------------------------
+        // Remove <think> blocks (DeepSeek / R1)
+        // ------------------------------
         reply = reply.replace(/<think>[\s\S]*?<\/think>/g, "").trim();
 
         // ------------------------------
-        // TRY PARSING JSON
+        // Try parsing JSON directly
         // ------------------------------
         let json = null;
         try {
@@ -76,7 +104,7 @@ export async function sendToExternalAI(messages) {
         } catch {
             console.warn("[SEND_TO_AI][JSON_PARSE_FAIL] Raw reply:", reply);
 
-            // Remove code fences
+            // Remove common code fences the model may output
             reply = reply.replace(/```json|```/g, "").trim();
 
             try {
@@ -85,13 +113,13 @@ export async function sendToExternalAI(messages) {
                 console.error("[SEND_TO_AI][INVALID_JSON]", reply);
                 return {
                     ok: false,
-                    error: "HF_INVALID_JSON"  // STANDARDISED
+                    error: "HF_INVALID_JSON"
                 };
             }
         }
 
         // ------------------------------
-        // SUCCESS
+        // Successful, well-formed JSON
         // ------------------------------
         return {
             ok: true,
@@ -102,12 +130,12 @@ export async function sendToExternalAI(messages) {
     } catch (error) {
 
         // ------------------------------
-        // NETWORK ERRORS
+        // Network/Fetch Failure
         // ------------------------------
         console.error("[SEND_TO_AI][EXCEPTION_CAUGHT]", error);
         return {
             ok: false,
-            error: "HF_NETWORK_ERROR"  // STANDARDISED
+            error: "HF_NETWORK_ERROR"
         };
     }
 }
