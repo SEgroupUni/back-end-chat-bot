@@ -68,7 +68,6 @@ export async function errorReload(messageEnvelope, sessionPrompt, sessionLog, id
 
   const persona = oldSession.sessionPrompt
   
-  console.log(persona)
 
   // ------------------------------------------------------------------
   // 5. RESET SESSION AND REBUILD A NEW ONE

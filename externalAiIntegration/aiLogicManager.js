@@ -13,7 +13,6 @@ import { fileURLToPath } from "url";
  *  - Strict JSON-only responses
  *  - Museum dataset routing
  *  - History-aware interpretation of vague messages
- 
  */
 
 const __filename = fileURLToPath(import.meta.url);
@@ -23,75 +22,89 @@ const __dirname = path.dirname(__filename);
 const museumInfoPath = path.join(__dirname, "../intentData/museumInfo.json");
 const museumInfo = JSON.parse(fs.readFileSync(museumInfoPath, "utf8"));
 
-
 // ---------------------------------------------------------------------------
 // MAIN LOGIC
 // ---------------------------------------------------------------------------
 export async function processAiLogic(messageEnvelope, sessionPrompt) {
-
     // -----------------------------------------------------------------------
     // BUILD SYSTEM PROMPT (Persona + Formatting Rules + Routing + JSON Rules)
     // -----------------------------------------------------------------------
+   
     let cleanPrompt = "You are a chatbot.";
 
     if (typeof sessionPrompt === "object") {
+        // Extract persona sub-configs
+        const reasoning = sessionPrompt.reasoning || {};
+        const formatting = sessionPrompt.formatting || {};
+        const outOfScope = sessionPrompt.outOfScope || {};
+       
+        
+    cleanPrompt = `
+        IMPORTANT RULE (STRICT):
+            - You are ALWAYS a historical persona.
+            - You are NOT a museum guide by default.
 
-        cleanPrompt = `
-        SYSTEM INSTRUCTIONS:
-            1. Role: ${sessionPrompt.rolePlay || "Chatbot"}
-            2. Audience: ${sessionPrompt.generalAudience || "General Public"}
-            3. Constraints: ${sessionPrompt.expected || "None"}
-            4. Response : ${sessionPrompt.outDateRespond}
+        SYSTEM ROLE:
+            - ${sessionPrompt.rolePlay || "You are a chatbot."}
+            - Audience: ${sessionPrompt.generalAudience || "General Public"}
 
-        STRICT FORMATTING RULES:
-            - ${sessionPrompt.lengthConstraint || "Max 50 words."}
-            - ABSOLUTE LIMIT: Do not exceed 50 words.
-            - Stop after 2 or 3 sentences.
-            - Never write long paragraphs.
-            - Greetings must be short.
-            - Simple answers must stay simple.
+        KNOWLEDGE BOUNDARIES (STRICT):
+            - Respond ONLY using knowledge allowed by the persona.
+            - If the question is outside scope, use the out-of-scope response EXACTLY.
 
-        CONTEXT RULES (MANDATORY):
-            - You MUST always use the conversation history to determine user intent.
-            - If the user's message is vague (e.g., "yah", "yes", "ok", "right", "hm", "lol"),
-              treat it as a continuation or confirmation of the previous topic.
-            - Do NOT ask for clarification unless the history genuinely provides no clues.
+        OUT-OF-SCOPE RESPONSE:
+            ${outOfScope.response || sessionPrompt.outDateRespond}
 
-        ROUTING LOGIC (MANDATORY):
-            1. Check the MUSEUM_INFO list.
-               If the user message matches anything in the list:
-               Return ONLY:
-               {
-                 "response": "<museum_response>",
-                 "source": "museum"
-               }
+        REASONING MODE:
+            - Reasoning mode: ${reasoning.mode || "standard"}
+            - Use last ${reasoning.historyDepth || "all"} exchange(s) for context.
+            - Ambiguity policy: assume-self
+            - Decision style: ${reasoning.decisionStyle || "balanced"}
 
-            2. If no match:
-               Generate a persona-correct reply and return ONLY:
-               {
-                 "response": "<generated_reply>",
-                 "source": "generated"
-               }
+        FORMAT CONSTRAINTS:
+            - Max sentences: ${formatting.maxSentences || 3}
+            - Max words: ${formatting.maxWords || 50}
+            - Greeting style: ${formatting.greetingStyle || "neutral"}
+            - Do not explain reasoning.
 
-        CRITICAL JSON OUTPUT RULES:
-            - You MUST output ONLY valid JSON.
-            - You MUST NOT write natural language outside JSON.
-            - If you want to output text, it must be inside the "response" field.
-            - Never wrap JSON in code fences.
-            - Never return multiple JSON objects.
-            - If you cannot determine a match, return:
-              {
-                "response": null,
-                "source": "generated"
-              }
+        MUSEUM TRIGGER (EXPLICIT AND REQUIRED):
+            - You are provided with a list called MUSEUM_INFO.
+            - Museum mode is activated ONLY if the user's message matches
+            one of the patterns listed in MUSEUM_INFO.
+            - If no pattern matches:
+            - You MUST NOT mention the museum.
+            - You MUST answer as the historical persona or use the out-of-scope response.
+            - Do NOT infer museum intent from general wording.
+            - Pattern match = permission. No match = no museum context.
 
-            IF YOUR OUTPUT IS NOT VALID JSON, YOU ARE IN ERROR.
+        MUSEUM RESPONSE MODE:
+            - When museum mode is triggered:
+            - Respond as an informational guide.
+            - Do NOT roleplay as the persona.
+
+        JSON OUTPUT RULES (ABSOLUTE):
+            - Output ONLY one valid JSON object.
+
+        ALLOWED OUTPUT FORMATS (EXACT):
+            Your ENTIRE response MUST be a single valid JSON object.
+                Exact Persona response:
+                {   
+                    "response": "<persona_response>",
+                    "source": "generated"
+                }
+
+            Exact Museum response:
+                {
+                    "response": "<museum_response>",
+                    "source": "museum"
+                }
+
+        FAILURE TO FOLLOW THESE RULES IS AN ERROR.
         `;
-
     } else if (typeof sessionPrompt === "string") {
-        cleanPrompt = sessionPrompt; // Allow raw custom prompt text
+        // Allow raw custom prompt text
+        cleanPrompt = sessionPrompt;
     }
-
 
     // -----------------------------------------------------------------------
     // CLEAN HISTORY FOR LLM INPUT (convert to message objects)
@@ -126,7 +139,6 @@ export async function processAiLogic(messageEnvelope, sessionPrompt) {
                 }
             }
         }
-
     } catch (err) {
         console.warn("[AI Logic] Failed to parse history:", err);
 
@@ -135,7 +147,6 @@ export async function processAiLogic(messageEnvelope, sessionPrompt) {
         messageEnvelope.flagState = "error";
         return messageEnvelope;
     }
-
 
     // -----------------------------------------------------------------------
     // BUILD MESSAGE PAYLOAD FOR LLM
@@ -152,12 +163,10 @@ export async function processAiLogic(messageEnvelope, sessionPrompt) {
 
     console.log("[AI Logic] Sending request to LLM...");
 
-
     // -----------------------------------------------------------------------
     // SEND REQUEST TO EXTERNAL API
     // -----------------------------------------------------------------------
     const result = await sendToExternalAI(messages);
-
 
     // -----------------------------------------------------------------------
     // HANDLE FAILURE FROM API GATEWAY
@@ -169,7 +178,6 @@ export async function processAiLogic(messageEnvelope, sessionPrompt) {
         messageEnvelope.componentUsed = "External LLM";
         return messageEnvelope;
     }
-
 
     // -----------------------------------------------------------------------
     // SUCCESS — APPLY AI RESPONSE BACK INTO ENVELOPE
