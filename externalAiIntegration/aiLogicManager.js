@@ -109,6 +109,7 @@ export async function processAiLogic(messageEnvelope, sessionPrompt) {
     // -----------------------------------------------------------------------
     // CLEAN HISTORY FOR LLM INPUT (convert to message objects)
     // -----------------------------------------------------------------------
+    
     let cleanHistory = [];
 
     try {
@@ -147,8 +148,8 @@ export async function processAiLogic(messageEnvelope, sessionPrompt) {
         messageEnvelope.flagState = "error";
         return messageEnvelope;
     }
-
-    // -----------------------------------------------------------------------
+    console.log(`current history = ${cleanHistory}`)
+    // -------------H---------------------------------------------------------
     // BUILD MESSAGE PAYLOAD FOR LLM
     // -----------------------------------------------------------------------
     const messages = [
